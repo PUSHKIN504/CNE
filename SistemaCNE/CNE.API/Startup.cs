@@ -1,9 +1,9 @@
 using CNE.API.Extensions;
 using CNE.BusinessLogic;
+using CNE.BusinessLogic.Services;
 using CNE.DataAccess.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +37,6 @@ namespace CNE.API
                 options.Cookie.IsEssential = true;
             });
             services.DataAccess(Configuration.GetConnectionString("CNEConn"));
-            services.AddSession();
             services.BusinessLogic();
             services.AddAutoMapper(x => x.AddProfile<MappingProfileExtensions>(), AppDomain.CurrentDomain.GetAssemblies());
 
@@ -45,7 +44,30 @@ namespace CNE.API
             services.AddScoped<PersonasRepository>();
             services.AddScoped<PresidenteRepository>();
             services.AddScoped<VotoRepository>();
+            services.AddScoped<EstadoCivilRepository>();
+            services.AddScoped<MunicipioRepository>();
+            services.AddScoped<CentroVotacionRepository>();
+            services.AddScoped<MesaRepository>();
+            services.AddScoped<PantallaRepository>();
+            services.AddScoped<RolRepository>();
             services.AddScoped<DiputadoRepository>();
+            services.AddScoped<AlcaldeRepository>();
+            services.AddScoped<PartidoRepository>();
+            services.AddScoped<UsuarioRepository>();
+            services.AddScoped<AccesoServices>();
+
+
+            services.AddScoped<VotoRepository>();
+
+
+
+
+
+
+
+
+
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -76,7 +98,7 @@ namespace CNE.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CNE.API v1"));
             }
             app.UseCors("AllowSpecificOrigin");
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

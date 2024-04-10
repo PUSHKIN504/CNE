@@ -13,12 +13,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Candidatos</title>
-    <link rel="stylesheet" href="~../../vendors/typicons.font/font/typicons.css">
-    <link rel="stylesheet" href="~../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/vendors/typicons.font/font/typicons.css">
+    <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css">
     <link rel="stylesheet" href="~/css/style.css">
 
-    <link rel="stylesheet" href="~../../css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="~../../css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="~/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="~/css/dataTables.dataTables.min.css">
 
     <style>
         input[type=checkbox] {
@@ -84,10 +84,10 @@
 
                                         <div class="custom-form-step">
                                             @*<div class="row mb-2">*@
-                                                <div class="col-sm-12">
-                                                    <div class="card-header">PAPELETA CANDIDATOS DIPUTADOS</div>
-                                                    <div class="card-body card-candidatos" id="candidatosDip" style="max-height: 500px; overflow-y: scroll;">
-                                                    </div>
+                                            <div class="col-sm-12">
+                                                <div class="card-header">PAPELETA CANDIDATOS DIPUTADOS</div>
+                                                <div class="card-body card-candidatos" id="candidatosDip" style="max-height: 500px; overflow-y: scroll;">
+                                                </div>
                                                 @*</div>*@
                                             </div>
                                             <div class="custom-btns-group" style="padding-top:3%;">
@@ -123,20 +123,22 @@
 
 
     </div>
-    <script src="~../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="~../../js/off-canvas.js"></script>
-    <script src="~../../js/hoverable-collapse.js"></script>
-    <script src="~../../js/template.js"></script>
-    <script src="~../../js/settings.js"></script>
-    <script src="~../../js/todolist.js"></script>
+    <script src="~/js/off-canvas.js"></script>
+
+    @*<script src="../wwwroot/images/"></script>*@
+    <script src="~/js/hoverable-collapse.js"></script>
+    <script src="~/js/template.js"></script>
+    <script src="~/js/settings.js"></script>
+    <script src="~/js/todolist.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
-    <script src="~../../vendors/progressbar.js/progressbar.min.js"></script>
-    <script src="~../../css/script.js"></script>
+    <script src="~/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="~/css/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @*@Scripts.Render("~/bundles/jquery")*@
@@ -243,7 +245,7 @@
         });
 
 
-        
+
 
         $(document).on('click', '#nextStep1', function (event) {
             // Verificar si al menos un checkbox de candidato a presidente está marcado
@@ -255,15 +257,15 @@
             if (!checkboxPresiChecked) {
                 // Si ninguno está marcado, mostrar un mensaje de error y detener el avance al siguiente paso
                 formStepsNum--;
-            updateFormSteps();
-            updateProgressbar();
+                updateFormSteps();
+                updateProgressbar();
 
-            Swal.fire({
-                icon: "warning",
-            title: "Oops...",
-            text: "Debes de seleccionar almenos un campo!",
+                Swal.fire({
+                    icon: "warning",
+                    title: "Oops...",
+                    text: "Debes de seleccionar almenos un campo!",
                 });
-            event.preventDefault(); // Detener el comportamiento predeterminado del enlace
+                event.preventDefault(); // Detener el comportamiento predeterminado del enlace
             }
         });
         let headers = new Headers();
@@ -320,57 +322,57 @@
 
         $(document).ready(function () {
 
-        
 
 
-            var url3 = "https://localhost:44377/Diputados/List" ;
+
+            var url3 = "https://localhost:44377/Diputados/List";
             var url = "https://localhost:44377/Presidentes/List";
             /**/
             var url2 = "https://localhost:44377/Alcaldes/List/" + localStorage.getItem("id");
             /**/
             $("#dni").val(localStorage.getItem("id"));
-            
-                // Agrega un evento al botón de "Votar"
-                //$("#Vot").click(function (event) {
-                //    //event.preventDefault(); // Evitar el envío del formulario por defecto
 
-                    
-
-                //    // Itera sobre los checkboxes y agrega los IDs de los diputados seleccionados al array
-                //    $("input[name='optionCandidatoD']:checked").each(function () {
-                //        diputadosSeleccionados.push($(this).data("idcandidatoD"));
-                //    });
-
-                //    // En este punto, diputadosSeleccionados contiene los IDs de todos los diputados seleccionados
-                //    console.log(diputadosSeleccionados);
+            // Agrega un evento al botón de "Votar"
+            //$("#Vot").click(function (event) {
+            //    //event.preventDefault(); // Evitar el envío del formulario por defecto
 
 
-                //    fetch('https://localhost:44377/Diputados/Create', {
-                //        method: 'POST',
-                //        headers: {
-                //            'Content-Type': 'application/json'
-                //        },
-                //        body: JSON.stringify(diputadosSeleccionados)
-                //    })
-                //        .then(function (response) {
-                //            if (!response.ok) {
-                //                throw new Error('Hubo un problema al enviar los datos al servidor.');
-                //            }
-                //            return response.json();
-                //        })
-                //        .then(function (data) {
-                //            // Manejar la respuesta del servidor si es necesario
-                //        })
-                //        .catch(function (error) {
-                //            console.error('Error:', error);
-                //        });
-                //    // Ahora puedes enviar estos IDs al controlador a través de una solicitud fetch, como ya lo estás haciendo
-                //    // Utiliza el array diputadosSeleccionados en el cuerpo de la solicitud fetch
-                //    // ...
 
-                //    // Aquí debería ir tu código para enviar los datos al servidor mediante fetch
-                //});
-          
+            //    // Itera sobre los checkboxes y agrega los IDs de los diputados seleccionados al array
+            //    $("input[name='optionCandidatoD']:checked").each(function () {
+            //        diputadosSeleccionados.push($(this).data("idcandidatoD"));
+            //    });
+
+            //    // En este punto, diputadosSeleccionados contiene los IDs de todos los diputados seleccionados
+            //    console.log(diputadosSeleccionados);
+
+
+            //    fetch('https://localhost:44377/Diputados/Create', {
+            //        method: 'POST',
+            //        headers: {
+            //            'Content-Type': 'application/json'
+            //        },
+            //        body: JSON.stringify(diputadosSeleccionados)
+            //    })
+            //        .then(function (response) {
+            //            if (!response.ok) {
+            //                throw new Error('Hubo un problema al enviar los datos al servidor.');
+            //            }
+            //            return response.json();
+            //        })
+            //        .then(function (data) {
+            //            // Manejar la respuesta del servidor si es necesario
+            //        })
+            //        .catch(function (error) {
+            //            console.error('Error:', error);
+            //        });
+            //    // Ahora puedes enviar estos IDs al controlador a través de una solicitud fetch, como ya lo estás haciendo
+            //    // Utiliza el array diputadosSeleccionados en el cuerpo de la solicitud fetch
+            //    // ...
+
+            //    // Aquí debería ir tu código para enviar los datos al servidor mediante fetch
+            //});
+
 
 
             fetch(url)
@@ -389,13 +391,13 @@
 
                                 $("<div>").addClass("card-body p-2").append(
                                     $("<img>").attr({
-                                        "src": "~../../images/" + row.par_ImgUrl,
+                                        "src": "../images/" + row.par_ImgUrl,
                                         "alt": "Foto",
                                         "width": "100",
                                         "height": "50"
                                     }).addClass("border border-primary"),
                                     $("<img>").attr({
-                                        "src": "~../../images/" + row.pre_ImgUrl,
+                                        "src": "../images/" + row.pre_ImgUrl,
                                         "alt": "Foto",
                                         "width": "60",
                                         "height": "100"
@@ -437,13 +439,13 @@
 
                                 $("<div>").addClass("card-body p-2").append(
                                     $("<img>").attr({
-                                        "src": "~../../images/" + row.par_ImgUrl,
+                                        "src": "../images/" + row.par_ImgUrl,
                                         "alt": "Foto",
                                         "width": "100",
                                         "height": "50"
                                     }).addClass("border border-primary"),
                                     $("<img>").attr({
-                                        "src": "~../../images/" + row.alc_ImgUrl,
+                                        "src": "../images/" + row.alc_ImgUrl,
                                         "alt": "Foto",
                                         "width": "60",
                                         "height": "100"
@@ -507,13 +509,13 @@
                                 var card = $("<div>").addClass("card text-center border-primary mb-2").append(
                                     $("<div>").addClass("card-body p-2").append(
                                         $("<img>").attr({
-                                            "src": "~../../images/" + diputado.par_ImgUrl,
+                                            "src": "../images/" + diputado.par_ImgUrl,
                                             "alt": "Foto",
                                             "width": "100",
                                             "height": "50"
                                         }).addClass("border border-primary"),
                                         $("<img>").attr({
-                                            "src": "~../../images/" + diputado.dip_ImgUrl,
+                                            "src": "../images/" + diputado.dip_ImgUrl,
                                             "alt": "Foto",
                                             "width": "60",
                                             "height": "100"
@@ -545,7 +547,7 @@
                     }
                 })
                 .catch(error => console.log('Authorization failed : ' + error.message));
-            
+
 
             //fetch(url3)
             //    .then(function (result) {
@@ -581,13 +583,13 @@
             //                    var card = $("<div>").addClass("card text-center border-primary mb-2").append(
             //                        $("<div>").addClass("card-body p-2").append(
             //                            $("<img>").attr({
-            //                                "src": "~../../images/" + diputado.par_ImgUrl,
+            //                                "src": "~/images/" + diputado.par_ImgUrl,
             //                                "alt": "Foto",
             //                                "width": "100",
             //                                "height": "50"
             //                            }).addClass("border border-primary"),
             //                            $("<img>").attr({
-            //                                "src": "~../../images/" + diputado.dip_ImgUrl,
+            //                                "src": "~/images/" + diputado.dip_ImgUrl,
             //                                "alt": "Foto",
             //                                "width": "60",
             //                                "height": "100"
@@ -631,13 +633,13 @@
 
             //                    $("<div>").addClass("card-body p-2").append(
             //                        $("<img>").attr({
-            //                            "src": "~../../images/" + row.par_ImgUrl,
+            //                            "src": "~/images/" + row.par_ImgUrl,
             //                            "alt": "Foto",
             //                            "width": "100",
             //                            "height": "50"
             //                        }).addClass("border border-primary"),
             //                        $("<img>").attr({
-            //                            "src": "~../../images/" + row.dip_ImgUrl,
+            //                            "src": "~/images/" + row.dip_ImgUrl,
             //                            "alt": "Foto",
             //                            "width": "60",
             //                            "height": "100"
@@ -666,14 +668,14 @@
         });
 
 
-        
+
 
         $(document).on('click', 'input:checkbox[name="optionCandidato"]', function (event) {
             var $box = $(this);
             var idCandidato = $box.data("idcandidato");
             console.log("presi=" + idCandidato);
             $("#Pre_Id").val(idCandidato);
-            
+
 
             if ($box.is(":checked")) {
                 var group = "input:checkbox[name='" + $box.attr("name") + "']";
@@ -733,25 +735,25 @@
 //        }
 //    });
 
-        //$(document).on('click', 'input:checkbox[name="optionCandidatoalc"]', function (event) {
-        //    var $boxa = $(this);
-        //    var idCandidatoAlc = $boxa.data("idcandidatoal");
-        //    $("#Alc_Id").val(idCandidatoAlc)
+            //$(document).on('click', 'input:checkbox[name="optionCandidatoalc"]', function (event) {
+            //    var $boxa = $(this);
+            //    var idCandidatoAlc = $boxa.data("idcandidatoal");
+            //    $("#Alc_Id").val(idCandidatoAlc)
 
-        //    // Aquí puedes realizar las operaciones que necesites con el id del candidato alcalde seleccionado
-        //    console.log("alcalde="+idCandidatoAlc);
+            //    // Aquí puedes realizar las operaciones que necesites con el id del candidato alcalde seleccionado
+            //    console.log("alcalde="+idCandidatoAlc);
 
-        //    // Si necesitas asignar el id del candidato alcalde a algún campo oculto, puedes hacerlo aquí
-        //    // Por ejemplo:
-        //    // $("#Alc_Id").val(idCandidatoAlc);
+            //    // Si necesitas asignar el id del candidato alcalde a algún campo oculto, puedes hacerlo aquí
+            //    // Por ejemplo:
+            //    // $("#Alc_Id").val(idCandidatoAlc);
 
-        //    // Si deseas asegurarte de que solo se pueda seleccionar un candidato alcalde a la vez, puedes deseleccionar los demás
-        //    if ($boxa.is(":checked")) {
-        //        $('input:checkbox[name="optionCandidatoalc"]').not($boxa).prop("checked", false);
-        //    } else {
-        //        $boxa.prop("checked", false);
-        //    }
-        //});
+            //    // Si deseas asegurarte de que solo se pueda seleccionar un candidato alcalde a la vez, puedes deseleccionar los demás
+            //    if ($boxa.is(":checked")) {
+            //        $('input:checkbox[name="optionCandidatoalc"]').not($boxa).prop("checked", false);
+            //    } else {
+            //        $boxa.prop("checked", false);
+            //    }
+            //});
 
     </script>
 

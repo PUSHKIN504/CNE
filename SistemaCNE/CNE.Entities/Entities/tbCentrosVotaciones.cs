@@ -15,12 +15,12 @@ namespace CNE.Entities.Entities
 
         public int CeV_Id { get; set; }
         public string Mun_Id { get; set; }
+        public string CeV_Nombre { get; set; }
         public int CeV_UsuarioCreacion { get; set; }
         public DateTime CeV_FechaCreacion { get; set; }
         public int? CeV_UsuarioModificacion { get; set; }
         public DateTime? CeV_FechaModificacion { get; set; }
         public bool? CeV_Estado { get; set; }
-        public string CeV_Nombre { get; set; }
 
         public virtual tbUsuarios CeV_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios CeV_UsuarioModificacionNavigation { get; set; }
