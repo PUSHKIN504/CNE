@@ -1,5 +1,11 @@
 ﻿@model FrontendCNE.Models.PersonasViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
+@{
+    // Acceder a la sesión
+    var session = HttpContextAccessor.HttpContext.Session;
+}
 @{
     Layout = null;
 }
@@ -47,9 +53,11 @@
                                             </div>}
                                                     </div>*@
 
-                                        <div class="mb-3 text-center">
-                                            <button class="btn btn-primary btn-block" id="ingresar" type="submit">Ingresar</button>
-                                        </div>
+                                    <div class="mb-3 text-center">
+                                        
+                                        
+                                        <button class="btn btn-primary btn-block" id="ingresar" type="submit">Ingresar</button>
+                                    </div>
                                         @*</form>*@
                                     </div>
                                     <!-- end card-body -->
@@ -99,21 +107,21 @@
 
 @*<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Ingreso</title>
-    @Styles.Render("~/Content/css")
-    <link rel="stylesheet" href="~../../vendors/typicons.font/font/typicons.css">
-    <link rel="stylesheet" href="~../../vendors/css/vendor.bundle.base.css">
-     
-    <link rel="stylesheet" href="~../../css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="~../../css/dataTables.dataTables.min.css">
-</head>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Ingreso</title>
+        @Styles.Render("~/Content/css")
+        <link rel="stylesheet" href="~../../vendors/typicons.font/font/typicons.css">
+        <link rel="stylesheet" href="~../../vendors/css/vendor.bundle.base.css">
 
-   
-</body>
-</html>*@
+        <link rel="stylesheet" href="~../../css/vertical-layout-light/style.css">
+        <link rel="stylesheet" href="~../../css/dataTables.dataTables.min.css">
+    </head>
+
+
+    </body>
+    </html>*@
 <script>
 
     let headers = new Headers();
@@ -133,7 +141,7 @@
     //        if (data.data.per_Voto === false) {
     //            console.log("El valor de per_Voto es false.", data.data.per_Voto);
     //            window.location.href = "/Presidente";
-              
+
     //        }
     //        else {
     //            console.log("El valor de per_Voto no es false.", data.data.per_Voto);
@@ -157,6 +165,7 @@
     $("#ingresar").click(function () {
         var id = $("#dni").val();
         var url = "https://localhost:44377/InfoVotante/" + id;
+        localStorage.setItem("id", id);
 
         fetch(url)
             .then(function (result) {
@@ -165,17 +174,26 @@
                 }
             })
             .then(function (data) {
-                if (data.data.per_Voto === false) {
-                    console.log("El valor de per_Voto es false.", data.data.per_Voto);
-                    window.location.href = "/Presidente";
-                } else {
+                if (data.data.per_Voto === true) {
                     console.log("El valor de per_Voto no es false.", data.data.per_Voto);
+                    console.log("El valor de per_Voto no es false.", id);
                     Swal.fire({
                         title: "ADVERTENCIA",
                         text: "Ya realizó su voto",
                         icon: "info"
                     });
                 }
+                else {
+                    console.log("El valor de per_Voto es false.", data.data.per_Voto);
+                    if (data.data.per_Voto === false) {
+                        console.log("Si entro al otro if");
+                        window.location.href = "/Presidente";
+                    }
+
+                   
+                    
+                }
+               
             })
             .catch(function (error) {
                 console.error('Authorization failed : ' + error.message);
@@ -185,5 +203,21 @@
                     icon: "error"
                 });
             });
+
+         $.ajax({
+            url: "/Votacion/AlgunaAccion", // Reemplaza "Controlador" por el nombre de tu controlador
+            type: "POST",
+            data: { id: id },
+            
+        });
+        @{
+
+
+                                                  // Recuperar un valor de la sesión
+            var coso = session.GetString("DNI");
+         }
+
     });
+
+
 </script>

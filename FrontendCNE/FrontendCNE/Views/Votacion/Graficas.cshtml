@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewData["Title"] = "Graficas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Graficas</h1>
+<header class="w-100 d-flex justify-content-between align-items-center p-2 text-center" style="background: rgb(255,255,255); min-height: 12vh;">
+    <h1>Conteo de Votos</h1>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Votar</a>
+</header>
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+
+            <div class="card-body">
+                <h5 class="card-title">Alcaldes</h5>
+                <div id="pieChartAlcaldes"></div>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+                        // Hacer un fetch para obtener los datos de la API
+                        fetch('url_de_tu_api')
+                            .then(response => response.json())
+                            .then(data => {
+                                // Los datos deben estar en un formato adecuado para ApexCharts
+                                // Aquí se asume que data tiene la estructura adecuada,
+                                // puedes ajustar esto según la respuesta real de tu API
+
+                                const seriesData = data.series;
+                                const labelsData = data.labels;
+
+                                // Crear y renderizar la gráfica con los datos obtenidos
+                                new ApexCharts(document.querySelector("#pieChartAlcaldes"), {
+                                    series: seriesData,
+                                    chart: {
+                                        height: 350,
+                                        type: 'pie',
+                                        toolbar: {
+                                            show: true
+                                        }
+                                    },
+                                    labels: labelsData
+                                }).render();
+                            })
+                            .catch(error => {
+                                console.error('Error al obtener los datos:', error);
+                            });
+                    });
+                </script>
+            </div>
+
+
+            <div class="card-body">
+
+                <h5 class="card-title">Alcaldes</h5>
+                <div id="pieChartAlcaldes"></div>
+
+
+
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", () => {
+
+
+                        new ApexCharts(document.querySelector("#pieChartAlcaldes"), {
+                            series: seriesData,
+                            chart: {
+                                height: 350,
+                                type: 'pie',
+                                toolbar: {
+                                    show: true
+                                }
+                            },
+                            labels: labelsData
+                        }).render();
+                    });
+                </script>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Presidentes</h5>
+                <div id="pieChartPresidentes"></div>
+
+                <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    
+
+                    new ApexCharts(document.querySelector("#pieChartPresidentes"), {
+                        series: seriesData,
+                        chart: {
+                            height: 350,
+                            type: 'pie',
+                            toolbar: {
+                                show: true
+                            }
+                        },
+                        labels: labelsData
+                    }).render();
+                });
+                </script>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
