@@ -1,0 +1,206 @@
+﻿
+@{ Layout = null; }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Candidatos</title>
+    <link rel="stylesheet" href="~../../vendors/typicons.font/font/typicons.css">
+    <link rel="stylesheet" href="~../../vendors/css/vendor.bundle.base.css">
+
+    <link rel="stylesheet" href="~../../css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="~../../css/dataTables.dataTables.min.css">
+
+    <style>
+        input[type=checkbox] {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head> 
+<body style="background-color: gray;">
+    <div class="container">
+
+        <div class="row" id="vista1">
+            <div class="col-12">
+                <div class="d-flex align-items-center min-vh-100">
+                    <div class="w-100 d-block">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-8">
+                                <div class="card p-3">
+                                    <div class="row mb-2">
+                                        <div class="col-sm-12">
+                                            <div class="card-body card-candidatos" id="candidatos" style="max-height: 500px; overflow-x: scroll;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            @Html.Partial("~/Views/Votacion/_Create.cshtml", new FrontendCNE.Models.VotoViewModel())
+                                           
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+    <script src="~../../vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="~../../js/off-canvas.js"></script>
+    <script src="~../../js/hoverable-collapse.js"></script>
+    <script src="~../../js/template.js"></script>
+    <script src="~../../js/settings.js"></script>
+    <script src="~../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- plugin js for this page -->
+    <script src="~../../vendors/progressbar.js/progressbar.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+    <script >
+
+        let headers = new Headers();
+
+
+        //$(document).ready(function () {
+        //    var url = "https://localhost:44377/Presidentes/List";
+
+        //    fetch(url)
+        //        .then(function (result) {
+        //            if (result.ok) {
+        //                return result.json();
+        //            }
+        //        })
+        //        .then(function (response) {
+        //            if (response != undefined && response.data.length > 0) {
+        //                var fragment = document.createDocumentFragment();
+
+        //                response.data.forEach(function (row) {
+        //                    var card = $("<div>").addClass("card text-center border-primary mb-2").append(
+        //                        $("<div>").addClass("card-body p-2").append(
+        //                            $("<div>").addClass("row").append(
+        //                                $("<div>").addClass("col-sm-3").append(
+        //                                    $("<img>").attr({
+        //                                        "src": row.pre_ImgUrl,
+        //                                        "alt": "Foto",
+        //                                        "width": "100",
+        //                                        "height": "100"
+        //                                    }).addClass("border border-primary")
+        //                                ),
+        //                                $("<div>").addClass("col-sm-6").append(
+        //                                    $("<h5>").addClass("card-title").text(row.per_Nombre),
+        //                                    $("<p>").addClass("card-text").text(row.per_Apellido)
+        //                                ),
+        //                                $("<div>").addClass("col-sm-3").append(
+        //                                    $("<input>").attr({
+        //                                        "type": "checkbox",
+        //                                        "name": "optionCandidato"
+        //                                    }).data("idcandidato", row.pre_Id)
+        //                                )
+        //                            )
+        //                        )
+        //                    );
+
+        //                    fragment.appendChild(card[0]);
+        //                });
+
+        //                $("#candidatos").empty().append(fragment);
+        //            }
+        //        })
+        //        .catch(error => console.log('Authorization failed : ' + error.message));
+        //});
+
+
+        $(document).ready(function () {
+            var url = "https://localhost:44377/Presidentes/List";
+
+            fetch(url)
+                .then(function (result) {
+                    if (result.ok) {
+                        return result.json();
+                    }
+                })
+                .then(function (response) {
+                    if (response != undefined && response.data.length > 0) {
+                        var fragment = document.createDocumentFragment();
+
+                        response.data.forEach(function (row) {
+                            var card = $("<div>").addClass("card text-center border-primary mb-2").append(
+                                
+                                    
+                                $("<div>").addClass("card-body p-2").append(
+                                    $("<img>").attr({
+                                        "src": "~../../images/" + row.par_ImgUrl,
+                                        "alt": "Foto",
+                                        "width": "100",
+                                        "height": "50"
+                                    }).addClass("border border-primary"),
+                                    $("<img>").attr({
+                                        "src": "~../../images/" +row.pre_ImgUrl,
+                                        "alt": "Foto",
+                                        "width": "60",
+                                        "height": "100"
+                                    }).addClass("border border-primary"),
+                                    $("<h5>").addClass("card-title").text(row.per_Nombre + ' '+row.per_Apellido),
+                                    
+                                    $("<input>").attr({
+                                        "type": "checkbox",
+                                        "name": "optionCandidato"
+                                    }).data("idcandidato", row.pre_Id)
+                                )
+                            );
+
+                            var column = $("<div>").addClass("col-sm-3").append(card);
+
+                            fragment.appendChild(column[0]);
+                        });
+
+                        var row = $("<div>").addClass("row").append(fragment);
+                        $("#candidatos").empty().append(row);
+                    }
+                })
+                .catch(error => console.log('Authorization failed : ' + error.message));
+        });
+
+
+        $(document).on('click', 'input:checkbox', function (event) {
+
+            var $box = $(this);
+
+            idcandidato = $box.data("idcandidato");
+            console.log(idcandidato);
+            $("#Pre_Id").val(idcandidato)
+            $("#Mes_Id").val(1)
+            $("#Alc_Id").val(1)
+
+            if ($box.is(":checked")) {
+                var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                $(group).prop("checked", false);
+                $box.prop("checked", true);
+            } else {
+                $box.prop("checked", false);
+            }
+
+        });
+    </script>
+
+</body>
+</html>

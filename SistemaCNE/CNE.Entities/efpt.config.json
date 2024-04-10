@@ -1,0 +1,101 @@
+﻿{
+   "CodeGenerationMode": 0,
+   "ContextClassName": "ConsejonacionalelectoralContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": "Entities",
+   "OutputContextPath": null,
+   "OutputPath": "Entities",
+   "ProjectRootNamespace": "CNE.Entities",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 2,
+   "Tables": [
+      {
+         "Name": "[Acce].[tbPantallas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbPantallasPorRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbRoles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Acce].[tbUsuarios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbDepartamentos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbEstadosCiviles]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbMunicipios]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Gral].[tbPersonas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbAlcaldes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbCentrosVotaciones]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbDiputados]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbEmpleados]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbMesas]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbPartidos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbPresidentes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbVotos]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Vota].[tbVotosPorDiputados]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "vj2400.COnsejoNacionalElectoral",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false
+}

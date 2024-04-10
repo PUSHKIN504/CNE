@@ -1,0 +1,116 @@
+﻿@model FrontendCNE.Models.PersonasViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>PersonasViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Per_Id" class="control-label"></label>
+                <input asp-for="Per_Id" class="form-control" />
+                <span asp-validation-for="Per_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_Nombre" class="control-label"></label>
+                <input asp-for="Per_Nombre" class="form-control" />
+                <span asp-validation-for="Per_Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_Apellido" class="control-label"></label>
+                <input asp-for="Per_Apellido" class="form-control" />
+                <span asp-validation-for="Per_Apellido" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_FechaNacimiento" class="control-label"></label>
+                <input asp-for="Per_FechaNacimiento" class="form-control" />
+                <span asp-validation-for="Per_FechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_Sexo" class="control-label"></label>
+                <input asp-for="Per_Sexo" class="form-control" />
+                <span asp-validation-for="Per_Sexo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_CedulaIdentidad" class="control-label"></label>
+                <input asp-for="Per_CedulaIdentidad" class="form-control" />
+                <span asp-validation-for="Per_CedulaIdentidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_Direccion" class="control-label"></label>
+                <input asp-for="Per_Direccion" class="form-control" />
+                <span asp-validation-for="Per_Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mun_Id" class="control-label"></label>
+                <input asp-for="Mun_Id" class="form-control" />
+                <span asp-validation-for="Mun_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_Telefono" class="control-label"></label>
+                <input asp-for="Per_Telefono" class="form-control" />
+                <span asp-validation-for="Per_Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_UsuarioCreacion" class="control-label"></label>
+                <input asp-for="Per_UsuarioCreacion" class="form-control" />
+                <span asp-validation-for="Per_UsuarioCreacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_FechaCreacion" class="control-label"></label>
+                <input asp-for="Per_FechaCreacion" class="form-control" />
+                <span asp-validation-for="Per_FechaCreacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_UsuarioModificacion" class="control-label"></label>
+                <input asp-for="Per_UsuarioModificacion" class="form-control" />
+                <span asp-validation-for="Per_UsuarioModificacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_FechaModificacion" class="control-label"></label>
+                <input asp-for="Per_FechaModificacion" class="form-control" />
+                <span asp-validation-for="Per_FechaModificacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EsC_Id" class="control-label"></label>
+                <input asp-for="EsC_Id" class="form-control" />
+                <span asp-validation-for="EsC_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_Estado" class="control-label"></label>
+                <input asp-for="Per_Estado" class="form-control" />
+                <span asp-validation-for="Per_Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mes_Mesa" class="control-label"></label>
+                <input asp-for="Mes_Mesa" class="form-control" />
+                <span asp-validation-for="Mes_Mesa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mes_Id" class="control-label"></label>
+                <input asp-for="Mes_Id" class="form-control" />
+                <span asp-validation-for="Mes_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Per_Voto" class="control-label"></label>
+                <input asp-for="Per_Voto" class="form-control" />
+                <span asp-validation-for="Per_Voto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+

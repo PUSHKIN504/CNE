@@ -1,0 +1,77 @@
+﻿
+@model CNE.Common.Models.MesaViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Detalle</h5>
+    </div>
+    <div class="card-body">
+
+        <div class="container-sm">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.Mes_Id)</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.Mes_Jurado)</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.Mes_Custodio1)</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.Mes_Custodio2)</strong>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Mes_Id)
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Mes_Jurado)
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Mes_Custodio1)
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Mes_Custodio2)
+                </div>
+            </div>
+        </div>
+
+        <h5 class="card-title mt-5">Auditoria</h5>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Creación</td>
+                    <td>@Html.DisplayFor(model => model.Mes_UsuarioCreacion)</td>
+                    <td>@Html.DisplayFor(model => model.Mes_FechaCreacion)</td>
+                </tr>
+                <tr>
+                    <td>Modificación</td>
+                    <td>@Html.DisplayFor(model => model.Mes_UsuarioModificacion)</td>
+                    <td>@Html.DisplayFor(model => model.Mes_FechaModificacion)</td>
+                </tr>
+            </tbody>
+        </table>
+        <a asp-controller="Mesa" asp-action="Index" class="btn btn-primary">Regresar</a>
+
+    </div>
+</div>
+

@@ -1,0 +1,168 @@
+﻿@model IEnumerable<CNE.Common.Models.MesaViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Mesa</h1>
+
+<p>
+    <button class="btnCreate btn btn-primary">Nuevo</button>
+</p>
+<table class="table table-striped table-hover" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Mes_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mes_Jurado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mes_Custodio1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mes_Custodio2)
+            </th>
+
+
+
+
+
+            <th> Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mes_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mes_Jurado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mes_Custodio1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mes_Custodio2)
+            </td>
+
+            <td style="width: 5%">
+                <div class="w-100" style="max-width: 250px">
+                    <div class="d-flex w-100" style="gap: 5px;">
+                        <button class="btn btn-outline-warning btn-sm editar-depa" data-depa-id="@item.Mes_Id"><i class="fas fa-edit"></i>Editar</button>
+
+                        <a href="@Url.Action("Details", "EstadoCivil", new { Mes_Id = item.Mes_Id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
+
+                        <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar(@item.Mes_Id)">
+                            <i class="bi bi-trash-fill"></i>
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Edit", new CNE.Common.Models.MesaViewModel())
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                @Html.Partial("_Create", new CNE.Common.Models.MesaViewModel())
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("_Delete", new CNE.Common.Models.MesaViewModel())
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="~../../lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~../../js/dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        let table = new DataTable('#myTable');
+    });
+
+
+
+    $('.btnCreate').click(function () {
+        $('#ModalCrear').modal('show')
+
+    });
+
+
+
+
+    $(".editar-depa").click(function () {
+        $('#modalEditar').modal('show');
+    });
+
+
+    $(".editar-depa").click(function () {
+        var id = $(this).data("depa-id");
+        var url = "https://localhost:44377/API/EstadoCivil/Fill/" + id;
+        fetch(url).then(function (result) {
+            if (result.ok) {
+                return result.json();
+            }
+        }).then(function (data) {
+            console.log(data.data);
+            var datos = data.data
+            console.log("hola");
+
+            //var depa = datos[0];
+            var id = datos.esc_Id
+            var descripcion = datos.esC_Descripcion;
+
+            console.log(descripcion);
+            $("#id").val(id);
+            $("#Mes_Descripcion").val(descripcion);
+
+        });
+    });
+
+
+    function Eliminar(id) {
+        console.log(id)
+        $("#inputHidden").val(id);
+        localStorage.setItem("inputHidden", id);
+        $('#modalEliminar').modal('show');
+    }
+</script>

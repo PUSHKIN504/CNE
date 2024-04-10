@@ -1,0 +1,39 @@
+﻿@model FrontendCNE.Models.DepartamentoViewModel
+@{ ViewData["Title"] = "tbDepartamentos".Substring(2);
+                ViewData["ViewName"] = "_Create".Substring(1); }
+<h4>Agregar Departamento</h4>
+<hr />
+<div class="row">
+    <div class="col" style="max-width: 600px;">
+        <form asp-action="@ViewData["ViewName"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Dep_Id" class="control-label"></label>
+                            <input asp-for="Dep_Id" class="form-control" />
+                            <span asp-validation-for="Dep_Id" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Dep_Descripcion" class="control-label"></label>
+                            <input asp-for="Dep_Descripcion" class="form-control" />
+                            <span asp-validation-for="Dep_Descripcion" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

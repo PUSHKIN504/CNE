@@ -1,0 +1,83 @@
+﻿@model IEnumerable<FrontendCNE.Models.DepartamentoViewModel>
+
+
+    @foreach (var departamento in Model)
+    {
+
+
+
+        <div class="card">
+            <div class="card-header">
+                <h5>Detalle</h5>
+            </div>
+            <div class="card-body">
+
+                <div class="container-sm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>@Html.DisplayNameFor(model => departamento.Dep_Descripcion)</strong>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>@Html.DisplayNameFor(model => departamento.Dep_Id)</strong>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => departamento.Dep_Descripcion)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => departamento.Dep_Id)
+                        </div>
+                    </div>
+                </div>
+
+                <h5 class="card-title mt-5">Auditoria</h5>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Acción</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Creación</td>
+                            <td>@Html.DisplayFor(model => departamento.Dep_UsuarioCreacion)</td>
+                            <td>@Html.DisplayFor(model => departamento.Dep_FechaCreacion)</td>
+                        </tr>
+                        <tr>
+                            <td>Modificación</td>
+                            <td>@Html.DisplayFor(model => departamento.Dep_UsuarioModificacion)</td>
+                            <td>@Html.DisplayFor(model => departamento.Dep_FechaModificacion)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a asp-controller="Departamento" asp-action="Index" class="btn btn-primary">Regresar</a>
+
+            </div>
+        </div>
+    }
+
+
+    @*@section scripts {
+            <script>
+                $(document).ready(function () {
+                    var id = "@departamento.Dep_Id";
+                    var url = "https://localhost:44377/API/Departamento/Fill/" + id;
+                    fetch(url)
+                        .then(function (result) {
+                            if (result.ok) {
+                                return result.json();
+                            }
+                        })
+                        .then(function (data) {
+                            console.log("Entro")
+                            // Actualiza los campos con la información obtenida
+                            $("#depId").text(data.dep_Id);
+                            $("#depDescripcion").text(data.dep_Descripcion);
+                            // Actualiza los demás campos de acuerdo a tus necesidades
+                        });
+                });
+            </script>
+        }*@

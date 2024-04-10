@@ -1,0 +1,37 @@
+﻿@model FrontendCNE.Models.VotoViewModel
+@{
+    ViewData["Title"] = "tbVoto".Substring(2);
+    ViewData["ViewName"] = "_Create".Substring(1);
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="@ViewData["ViewName"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger" hidden></div>
+
+            <div class="form-group" hidden>
+                <label asp-for="Mes_Id" class="control-label"></label>
+                <input asp-for="Mes_Id" class="form-control" />
+                <span asp-validation-for="Mes_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Pre_Id" class="control-label"></label>
+                <input asp-for="Pre_Id" class="form-control" />
+                <span asp-validation-for="Pre_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Alc_Id" class="control-label"></label>
+                <input asp-for="Alc_Id" class="form-control" />
+                <span asp-validation-for="Alc_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Votar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

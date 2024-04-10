@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FrontendCNE.Models.AlcaldeViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Alcalde</h1>
+
+<p>
+    <button class="btnCreate btn btn-primary">Nuevo</button>
+</p>
+<table class="table table-striped table-hover" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Alc_Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alc_ImgUrl)
+            </th> 
+
+            <th>
+                @Html.DisplayNameFor(model => model.Partido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Alc_Votos)
+            </th>
+
+
+
+
+
+            <th> Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alc_Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alc_ImgUrl)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Partido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Alc_Votos)
+            </td>
+
+            <td style="width: 5%">
+                <div class="w-100" style="max-width: 250px">
+                    <div class="d-flex w-100" style="gap: 5px;">
+                        <button class="btn btn-outline-warning btn-sm editar-depa" data-depa-id="@item.Alc_Id"><i class="fas fa-edit"></i>Editar</button>
+
+                        <a href="@Url.Action("Details", "Rol", new { EsC_Id = item.Alc_Id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
+
+                        <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Alc_Id')">
+                            <i class="bi bi-trash-fill"></i>
+                            Eliminar
+                        </button>
+                    </div>
+                </div>
+        </tr>
+        }
+    </tbody>
+</table>
+

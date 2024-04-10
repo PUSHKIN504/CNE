@@ -1,0 +1,168 @@
+﻿
+@model FrontendCNE.Models.PersonasViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Detalle</h5>
+    </div>
+    <div class="card-body">
+
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.DisplayNameFor(model => model.Per_Id)
+                </div>
+                <div class="col-md-4">
+                    <strong> @Html.DisplayNameFor(model => model.Per_Nombre)</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>
+                        @Html.DisplayNameFor(model => model.Per_Apellido)
+                    </strong>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <strong>
+                            @Html.DisplayNameFor(model => model.Per_FechaNacimiento)
+                        </strong>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>
+                            @Html.DisplayNameFor(model => model.Per_Sexo)
+                        </strong>
+                    </div>
+                    <div class="col-md-4">
+                        <strong>
+                            @Html.DisplayNameFor(model => model.Per_CedulaIdentidad)
+                        </strong>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Per_Direccion)
+                            </strong>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Mun_Id)
+                            </strong>
+                        </div>
+                        <div class="col-md-4">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Per_Telefono)
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.EsC_Id)
+                            </strong>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Mes_Mesa)
+                            </strong>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Mes_Id)
+                            </strong>
+                        </div>
+                        <div class="col-md-3">
+                            <strong>
+                                @Html.DisplayNameFor(model => model.Per_Voto)
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_Id)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_Nombre)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_Apellido)
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_FechaNacimiento)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_Sexo)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_CedulaIdentidad)
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_Direccion)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Mun_Id)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_Telefono)
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.EsC_Id)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Mes_Mesa)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Mes_Id)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DisplayFor(model => model.Per_Voto)
+                        </div>
+                    </div>
+
+                </div>
+
+        <h5 class="card-title mt-5">Auditoria</h5>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Creación</td>
+                    <td>@Html.DisplayFor(model => model.Per_UsuarioCreacion)</td>
+                    <td>@Html.DisplayFor(model => model.Per_FechaCreacion)</td>
+                </tr>
+                <tr>
+                    <td>Modificación</td>
+                    <td>@Html.DisplayFor(model => model.Per_UsuarioModificacion)</td>
+                    <td>@Html.DisplayFor(model => model.Per_FechaModificacion)</td>
+                </tr>
+            </tbody>
+        </table>
+        <a asp-controller="Municipio" asp-action="Index" class="btn btn-primary">Regresar</a>
+
+    </div>
+</div>
+
