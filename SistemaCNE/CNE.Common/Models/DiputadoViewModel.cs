@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CNE.Common.Models
 {
-    class DiputadoViewModel
+    public class DiputadoViewModel
     {
         public int Dip_Id { get; set; }
         public int? Dip_Votos { get; set; }

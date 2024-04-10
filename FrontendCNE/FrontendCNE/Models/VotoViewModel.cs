@@ -16,7 +16,7 @@ namespace FrontendCNE.Models
         public string? dni { get; set; }
 
         [NotMapped]
-        public List<int> listaEnteros { get; set; }
+        public string listaEnteros { get; set; }
 
     }
 }

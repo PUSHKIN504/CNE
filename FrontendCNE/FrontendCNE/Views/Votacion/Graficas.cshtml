@@ -15,39 +15,57 @@
         <div class="card">
 
             <div class="card-body">
-                <h5 class="card-title">Alcaldes</h5>
+                <h5 class="card-title">Presidentes</h5>
                 <div id="pieChartAlcaldes"></div>
-
+                <canvas id="myChart"></canvas>
                 <script>
-                    document.addEventListener("DOMContentLoaded", () => {
+                    //document.addEventListener("DOMContentLoaded", () => {
+                        
                         // Hacer un fetch para obtener los datos de la API
-                        fetch('url_de_tu_api')
-                            .then(response => response.json())
-                            .then(data => {
-                                // Los datos deben estar en un formato adecuado para ApexCharts
-                                // Aquí se asume que data tiene la estructura adecuada,
-                                // puedes ajustar esto según la respuesta real de tu API
+                        //fetch('https://localhost:44377/Presidentes/List')
+                        //    .then(response => response.json())
+                        //    .then(data => {
+                        //        // Los datos deben estar en un formato adecuado para ApexCharts
+                        //        // Aquí se asume que data tiene la estructura adecuada,
+                        //        // puedes ajustar esto según la respuesta real de tu API
 
-                                const seriesData = data.series;
-                                const labelsData = data.labels;
-
-                                // Crear y renderizar la gráfica con los datos obtenidos
-                                new ApexCharts(document.querySelector("#pieChartAlcaldes"), {
-                                    series: seriesData,
-                                    chart: {
-                                        height: 350,
-                                        type: 'pie',
-                                        toolbar: {
-                                            show: true
-                                        }
-                                    },
-                                    labels: labelsData
-                                }).render();
-                            })
-                            .catch(error => {
-                                console.error('Error al obtener los datos:', error);
-                            });
-                    });
+                        //        const seriesData = data.pre_Votos;
+                        //        const labelsData = data.labels;
+                        //        new Chart(seriesData, {s
+                        //            type: 'bar',
+                        //            data: {
+                        //                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                        //                datasets: [{
+                        //                    label: '# of Votes',
+                        //                    data: data.pre_Votos,
+                        //                    borderWidth: 1
+                        //                }]
+                        //            },
+                        //            options: {
+                        //                scales: {
+                        //                    y: {
+                        //                        beginAtZero: true
+                        //                    }
+                        //                }
+                        //            }
+                        //        });
+                        //        // Crear y renderizar la gráfica con los datos obtenidos
+                        //        //new Chart(document.querySelector("#pieChartAlcaldes"), {
+                        //        //    series: seriesData,
+                        //        //    chart: {
+                        //        //        height: 350,
+                        //        //        type: 'pie',
+                        //        //        toolbar: {
+                        //        //            show: true
+                        //        //        }
+                        //        //    },
+                        //        //    labels: labelsData
+                        //        //}).render();
+                        //    })
+                        //    .catch(error => {
+                        //        console.error('Error al obtener los datos:', error);
+                        //    });
+                    //});
                 </script>
             </div>
 
@@ -60,7 +78,7 @@
 
 
 
-                <script>
+                @*<script>
                     document.addEventListener("DOMContentLoaded", () => {
 
 
@@ -76,7 +94,7 @@
                             labels: labelsData
                         }).render();
                     });
-                </script>
+                </script>*@
 
             </div>
         </div>
@@ -88,23 +106,23 @@
                 <h5 class="card-title">Presidentes</h5>
                 <div id="pieChartPresidentes"></div>
 
-                <script>
-                document.addEventListener("DOMContentLoaded", () => {
-                    
+                @*<script>
+                    document.addEventListener("DOMContentLoaded", () => {
 
-                    new ApexCharts(document.querySelector("#pieChartPresidentes"), {
-                        series: seriesData,
-                        chart: {
-                            height: 350,
-                            type: 'pie',
-                            toolbar: {
-                                show: true
-                            }
-                        },
-                        labels: labelsData
-                    }).render();
-                });
-                </script>
+
+                        new ApexCharts(document.querySelector("#pieChartPresidentes"), {
+                            series: seriesData,
+                            chart: {
+                                height: 350,
+                                type: 'pie',
+                                toolbar: {
+                                    show: true
+                                }
+                            },
+                            labels: labelsData
+                        }).render();
+                    });
+                </script>*@
 
             </div>
         </div>
@@ -112,3 +130,86 @@
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!--<script src="~/vendors/js/vendor.bundle.base.js"></script>-->
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<!--<script src="~/js/off-canvas.js"></script>
+<script src="~/js/hoverable-collapse.js"></script>
+<script src="~/js/template.js"></script>
+<script src="~/js/settings.js"></script>
+<script src="~/js/todolist.js"></script>-->
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    var Votos = [], presidentes = [];
+
+
+    $(document).ready(function () {
+        var url = "https://localhost:44377/Presidentes/List";
+
+        fetch(url)
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            })
+            .then(function (data) {
+
+                console.log(data)
+
+                data.data.forEach(function(row) {
+                 
+                    presidentes.push(row.per_Nombre);
+                    Votos.push(row.pre_Votos);
+                });
+
+                   
+                
+                console.log('presi : ' + presidentes);
+                console.log('presivot : ' + Votos);
+
+
+
+            })
+            .catch(error => console.log('Authorization failed : ' + error.message));
+
+        const ctx = document.getElementById('myChart');
+                const data = {
+                    labels: presidentes,
+                    datasets: [{
+                        label: 'Presidentes',
+                        data: Votos,
+                        backgroundColor: [
+                            'rgb(0, 121, 181)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }]
+                };
+                new Chart(ctx, {
+                    type: 'doughnut',
+                    data
+                    //: {
+                    //    labels: presidentes,
+                    //    datasets: [{
+                    //        label: '# of Votes',
+                    //        data: Votos,
+                    //        borderWidth: 1
+                    //    }]
+                    //}
+                    //,
+                    //options: {
+                    //    scales: {
+                    //        y: {
+                    //            beginAtZero: true
+                    //        }
+                    //    }
+                    //}
+                });
+    });
+                
+</script>

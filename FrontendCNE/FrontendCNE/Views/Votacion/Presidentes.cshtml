@@ -271,53 +271,53 @@
         let headers = new Headers();
 
 
-        //$(document).ready(function () {
-        //    var url = "https://localhost:44377/Presidentes/List";
+            //$(document).ready(function () {
+            //    var url = "https://localhost:44377/Presidentes/List";
 
-        //    fetch(url)
-        //        .then(function (result) {
-        //            if (result.ok) {
-        //                return result.json();
-        //            }
-        //        })
-        //        .then(function (response) {
-        //            if (response != undefined && response.data.length > 0) {
-        //                var fragment = document.createDocumentFragment();
+            //    fetch(url)
+            //        .then(function (result) {
+            //            if (result.ok) {
+            //                return result.json();
+            //            }
+            //        })
+            //        .then(function (response) {
+            //            if (response != undefined && response.data.length > 0) {
+            //                var fragment = document.createDocumentFragment();
 
-        //                response.data.forEach(function (row) {
-        //                    var card = $("<div>").addClass("card text-center border-primary mb-2").append(
-        //                        $("<div>").addClass("card-body p-2").append(
-        //                            $("<div>").addClass("row").append(
-        //                                $("<div>").addClass("col-sm-3").append(
-        //                                    $("<img>").attr({
-        //                                        "src": row.pre_ImgUrl,
-        //                                        "alt": "Foto",
-        //                                        "width": "100",
-        //                                        "height": "100"
-        //                                    }).addClass("border border-primary")
-        //                                ),
-        //                                $("<div>").addClass("col-sm-6").append(
-        //                                    $("<h5>").addClass("card-title").text(row.per_Nombre),
-        //                                    $("<p>").addClass("card-text").text(row.per_Apellido)
-        //                                ),
-        //                                $("<div>").addClass("col-sm-3").append(
-        //                                    $("<input>").attr({
-        //                                        "type": "checkbox",
-        //                                        "name": "optionCandidato"
-        //                                    }).data("idcandidato", row.pre_Id)
-        //                                )
-        //                            )
-        //                        )
-        //                    );
+            //                response.data.forEach(function (row) {
+            //                    var card = $("<div>").addClass("card text-center border-primary mb-2").append(
+            //                        $("<div>").addClass("card-body p-2").append(
+            //                            $("<div>").addClass("row").append(
+            //                                $("<div>").addClass("col-sm-3").append(
+            //                                    $("<img>").attr({
+            //                                        "src": row.pre_ImgUrl,
+            //                                        "alt": "Foto",
+            //                                        "width": "100",
+            //                                        "height": "100"
+            //                                    }).addClass("border border-primary")
+            //                                ),
+            //                                $("<div>").addClass("col-sm-6").append(
+            //                                    $("<h5>").addClass("card-title").text(row.per_Nombre),
+            //                                    $("<p>").addClass("card-text").text(row.per_Apellido)
+            //                                ),
+            //                                $("<div>").addClass("col-sm-3").append(
+            //                                    $("<input>").attr({
+            //                                        "type": "checkbox",
+            //                                        "name": "optionCandidato"
+            //                                    }).data("idcandidato", row.pre_Id)
+            //                                )
+            //                            )
+            //                        )
+            //                    );
 
-        //                    fragment.appendChild(card[0]);
-        //                });
+            //                    fragment.appendChild(card[0]);
+            //                });
 
-        //                $("#candidatos").empty().append(fragment);
-        //            }
-        //        })
-        //        .catch(error => console.log('Authorization failed : ' + error.message));
-        //});
+            //                $("#candidatos").empty().append(fragment);
+            //            }
+            //        })
+            //        .catch(error => console.log('Authorization failed : ' + error.message));
+            //});
 
 
         $(document).ready(function () {

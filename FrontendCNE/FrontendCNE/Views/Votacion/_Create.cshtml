@@ -29,16 +29,7 @@
                 <input asp-for="dni" class="form-control" value="" />
                 <span asp-validation-for="dni" class="text-danger"></span>
             </div>
-            @{
-                // Declaración de una lista de enteros
-                List<int> listaEnteros = new List<int>();
-
-                // Agregar elementos a la lista
-                listaEnteros.Add(3);
-                listaEnteros.Add(5);
-                
-                // y así sucesivamente...
-            }
+          
             <input type="hidden" name="listaEnteros" value="3,5" />
             <div class="form-group">
                 <input type="submit" value="Votar" id="Vot" name="vot" class="btn btn-primary" />

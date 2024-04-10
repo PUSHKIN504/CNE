@@ -23,6 +23,10 @@ namespace FrontendCNE.Controllers
         {
             return View();
         }
+        public IActionResult Graficas()
+        {
+            return View("~/Views/Votacion/Graficas.cshtml");
+        }
         [HttpPost]
         public void AlgunaAccion(string id)
         {
@@ -49,15 +53,21 @@ namespace FrontendCNE.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(VotoViewModel item, List<int> listaEnteros)
+        public async Task<IActionResult> Create(VotoViewModel item)
         {
             try
             {
-                
+
                 var list = await _VotacionesServicios.CrearVoto(item/*, listaEnteros*/);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Votacion");
+
+
+
                 //return View(new List<DepartamentoViewModel> { (DepartamentoViewModel)list.Data } );
+            
+            
             }
+
             catch (Exception ex)
             {
                 return View(item);

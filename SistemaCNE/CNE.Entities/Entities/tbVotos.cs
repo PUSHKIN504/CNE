@@ -20,6 +20,8 @@ namespace CNE.Entities.Entities
         public int? Alc_Id { get; set; }
         [NotMapped]
         public string? dni { get; set; }
+        [NotMapped]
+        public string listaEnteros { get; set; }
         public virtual tbAlcaldes Alc { get; set; }
         public virtual tbMesas Mes { get; set; }
         public virtual tbPresidentes Pre { get; set; }

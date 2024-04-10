@@ -59,9 +59,16 @@ namespace CNE.API.Controllers
             return Json(list);
         }
         [HttpPost("Voto/Create")]
-        public IActionResult Insert(VotoViewModel item,List<int> listaEnteros)
+        public IActionResult Insert(VotoViewModel item)
         {
+            var splitLista = item.listaEnteros.Split(',');
+            List<int> listaEnteros = new List<int>();
+            foreach (var num in splitLista)
+            {
+                listaEnteros.Add(Convert.ToInt32(num));
+            }
             var model = _mapper.Map<tbVotos>(item);
+
             var modelo = new tbVotos()
             {
                 dni = item.dni,
