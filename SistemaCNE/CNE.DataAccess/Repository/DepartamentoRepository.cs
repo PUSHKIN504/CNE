@@ -119,6 +119,8 @@ namespace CNE.DataAccess.Repository
 
 
 
+
+
             //using (var db = new SqlConnection(CNEContext.ConnectionString))
             //{
             //    var parameter = new DynamicParameters();
@@ -131,5 +133,21 @@ namespace CNE.DataAccess.Repository
             //    return new RequestStatus { CodeStatus = result.Resultado, MessageStatus = (result.Resultado == 1) ? "Exito" : "Error" };
             //}
         }
+
+
+
+
+
+
+        public async Task<IEnumerable<tbDepartamentos>> ObtenerDepto()
+        {
+            using (var connection = new SqlConnection(CNEContext.ConnectionString))
+            {
+                await connection.OpenAsync();
+                var result = await connection.QueryAsync<tbDepartamentos>("Gral.sp_Departamentos_listar", commandType: CommandType.StoredProcedure);
+                return result;
+            }
+        }
+
     }
 }

@@ -1,0 +1,86 @@
+﻿@model FrontendCNE.Models.AlcaldeViewModel
+@{ ViewData["Title"] = "tbPartidos".Substring(2);
+    ViewData["ViewName"] = "_Create".Substring(1); }
+<h4>Agregar Partido</h4>
+<hr />
+<div class="modal-content">
+    <div class="modal-body ">
+        <form asp-action="@ViewData["ViewName"]" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6" >
+                            <label asp-for="Alc_Id" class="control-label">Id</label>
+                            <input asp-for="Alc_Id" class="form-control" /> 
+                            <span asp-validation-for="Alc_Id" class="text-danger"></span>
+                        
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label for="Par_id">Partido</label>
+                        <select id="Par_id" name="Par_id" class="form-control">
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </div>
+
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6" >
+
+                            <label for="formFile" class="form-label">Elija una imagen</label>
+                            <input asp-for="FotoP" class="form-control" type="file" id="formFile">
+
+
+                            <span asp-validation-for="FotoP" class="text-danger"></span>
+                        
+                    </div>
+                </div>
+
+
+          
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-controller="Alcalde" class="btn btn-secondary" asp-action="Index">Regresar</a>
+
+            </div>
+        </form>
+          </div>
+    </div>
+
+
+
+
+
+<script>
+    async function ObtenerDepto() {
+        try {
+            const response = await fetch('https://localhost:44377/API/Partido/List');
+            if (!response.ok) {
+                throw new Error('Error al obtener Partido');
+            }
+            const data = await response.json();
+            console.log(data)
+            $("#Par_id").empty().append('<option value="">Seleccione una opcion</option>');
+            $.each(data, function (key, depto) {
+                $("#Par_id").append(`<option value="${depto.par_id}">${depto.par_Nombre}</option>`);
+            });
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    ObtenerDepto();
+</script>
+
+
+

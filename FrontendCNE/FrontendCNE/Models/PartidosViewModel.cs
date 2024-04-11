@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -18,5 +20,7 @@ namespace CNE.Common.Models
         public int? Par_UsuarioModificacion { get; set; }
         public DateTime? Par_FechaModificacion { get; set; }
         public bool? Par_Estado { get; set; }
+        [Display(Name="Elija una imagen")]
+        public IFormFile FotoP { get; set; }
     }
 }

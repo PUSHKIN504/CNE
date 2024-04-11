@@ -75,9 +75,9 @@ namespace CNE.API.Controllers
         }
 
         [HttpDelete("Delete")]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int EsC_Id)
         {
-            var list = _generalServices.EliminarEstadoCivil(id);
+            var list = _generalServices.EliminarEstadoCivil(EsC_Id);
             return Ok(list);
         }
 

@@ -24,11 +24,6 @@
             </th>
 
 
-         
-
-
-
-
 
             <th> Acciones</th>
         </tr>
@@ -36,34 +31,66 @@
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Par_id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Par_Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Par_ImgUrl)
-            </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Par_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Par_Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Par_ImgUrl)
+                </td>
 
 
 
-            <td style="width: 5%">
-                <div class="w-100" style="max-width: 250px">
-                    <div class="d-flex w-100" style="gap: 5px;">
-                        <button class="btn btn-outline-warning btn-sm editar-depa" data-depa-id="@item.Par_id"><i class="fas fa-edit"></i>Editar</button>
+                <td style="width: 5%">
+                    <div class="w-100" style="max-width: 250px">
+                        <div class="d-flex w-100" style="gap: 5px;">
+                            <button class="btn btn-outline-warning btn-sm editar-depa" data-depa-id="@item.Par_id"><i class="fas fa-edit"></i>Editar</button>
 
-                        <a href="@Url.Action("Details", "Rol", new { EsC_Id = item.Par_id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
+                            <a href="@Url.Action("Details", "Rol", new { EsC_Id = item.Par_id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
 
-                        <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Par_id')">
-                            <i class="bi bi-trash-fill"></i>
-                            Eliminar
-                        </button>
+                            <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Par_id')">
+                                <i class="bi bi-trash-fill"></i>
+                                Eliminar
+                            </button>
+                        </div>
                     </div>
-                </div>
-        </tr>
+            </tr>
         }
     </tbody>
 </table>
+
+
+
+<div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                @Html.Partial("_Create", new CNE.Common.Models.PartidosViewModel())
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~../../lib/jquery/dist/jquery.min.js"></script>
+
+<script src="~../../js/dataTables.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        let table = new DataTable('#myTable');
+    });
+
+
+
+    $('.btnCreate').click(function () {
+        $('#ModalCrear').modal('show')
+
+    });
+
+</script>
 

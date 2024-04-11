@@ -39,7 +39,121 @@ namespace CNE.BusinessLogic.Services
 
         #region Presidentes
 
-        
+
+        public ServiceResult ListadoPresi()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.List();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        public ServiceResult CrearPresi(tbPresidentes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+        public ServiceResult ListPresi(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.List(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+        public ServiceResult EditarPresi(tbPresidentes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"editado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("Y existe un registro con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+        public ServiceResult EliminarPresi(int Pre_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.Delete(Pre_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+
+
+
+
         #endregion
 
        
@@ -285,6 +399,90 @@ namespace CNE.BusinessLogic.Services
 
 
 
+        public ServiceResult CrearAlcalde(tbAlcaldes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alcaldeRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+        public ServiceResult ListAlcalde(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alcaldeRepository.List(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+        public ServiceResult EditarAlcaldel(tbAlcaldes item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alcaldeRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"editado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("Y existe un registro con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+        public ServiceResult EliminarAlcalde(int Alc_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alcaldeRepository.Delete(Alc_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+
 
 
 
@@ -313,6 +511,86 @@ namespace CNE.BusinessLogic.Services
 
 
 
+        public ServiceResult CrearDiputado(tbDiputados item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _diputadoRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+        public ServiceResult ListDiputado(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _diputadoRepository.List(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+        public ServiceResult EditarDiputadol(tbDiputados item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _diputadoRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"editado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("Y existe un registro con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+        public ServiceResult EliminarDiputado(int Dip_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _diputadoRepository.Delete(Dip_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
 
 
 
@@ -339,6 +617,91 @@ namespace CNE.BusinessLogic.Services
 
 
 
+
+
+
+
+        public ServiceResult CrearPartido(tbPartidos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
+
+
+
+
+        public ServiceResult ListPartido(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.List(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+        public ServiceResult EditarPartido(tbPartidos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"editado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("Y existe un registro con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+        public ServiceResult EliminarPartidos(int Par_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _partidoRepository.Delete(Par_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
 
 
 
