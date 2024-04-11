@@ -31,8 +31,8 @@
                     Votos.push(row.pre_Votos);
                 });
 
-                localStorage.setItem("PVot", JSON.stringify(Votos)); // Serialize to JSON string
-                localStorage.setItem("Pres", JSON.stringify(presidentes)); // Serialize to JSON string
+                localStorage.setItem("PVot", JSON.stringify(Votos)); 
+                localStorage.setItem("Pres", JSON.stringify(presidentes));
 
                 console.log('presi : ' + JSON.stringify(presidentes));
                 console.log('presivot : ' + JSON.stringify(Votos));
@@ -51,8 +51,8 @@
                     votD.push(row.dip_Votos);
                 });
 
-                localStorage.setItem("DVot", JSON.stringify(votD)); // Serialize to JSON string
-                localStorage.setItem("Dip", JSON.stringify(dip)); // Serialize to JSON string
+                localStorage.setItem("DVot", JSON.stringify(votD)); 
+                localStorage.setItem("Dip", JSON.stringify(dip)); 
 
                 console.log('presi : ' + JSON.stringify(dip));
                 console.log('presivot : ' + JSON.stringify(votD));
@@ -72,9 +72,9 @@
                     ciu.push(row.mun_Descripcion)
                 });
 
-                localStorage.setItem("AVot", JSON.stringify(votA)); // Serialize to JSON string
-                localStorage.setItem("Alc", JSON.stringify(Alc)); // Serialize to JSON string
-                localStorage.setItem("Ciu", JSON.stringify(ciu)); // Serialize to JSON string
+                localStorage.setItem("AVot", JSON.stringify(votA)); 
+                localStorage.setItem("Alc", JSON.stringify(Alc)); 
+                localStorage.setItem("Ciu", JSON.stringify(ciu)); 
 
                 console.log('Alc : ' + JSON.stringify(Alc));
                 console.log('AVot : ' + JSON.stringify(votA));

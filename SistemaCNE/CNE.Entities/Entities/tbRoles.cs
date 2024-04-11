@@ -19,7 +19,11 @@ namespace CNE.Entities.Entities
 
         [NotMapped]
         public List<int> PantallasID { get; set; }
+        [NotMapped]
+        public string  Panta_Descripcion { get; set; }
 
+        [NotMapped]
+        public int Panta_Id { get; set; }
         public int Roles_Id { get; set; }
         public string Roles_Descripcion { get; set; }
         public int Roles_UsuarioCreacion { get; set; }

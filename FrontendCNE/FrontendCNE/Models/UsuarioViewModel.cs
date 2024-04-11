@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,21 @@ namespace CNE.Common.Models
 {
     public class UsuarioViewModel
     {
+        [Display(Name = "Usuario")]
+        [Required(ErrorMessage = "El Campo {0} es requerido")]
         public int Usuar_Id { get; set; }
+        [Display(Name = "Usuario")]
+        [Required(ErrorMessage = "El Campo {0} es requerido")]
         public string Usuar_Usuario { get; set; }
+        [Display(Name = "Nombre")]
+        [Required(ErrorMessage = "El Campo {0} es requerido")]
         [NotMapped]
         public string Nombre { get; set; }
+        [Display(Name = "Descripcion Rol")]
+        [Required(ErrorMessage = "El Campo {0} es requerido")]
         [NotMapped]
         public string Rol_Descripcion { get; set; }
+
         [NotMapped]
         public string Id_Rol { get; set; }
 
