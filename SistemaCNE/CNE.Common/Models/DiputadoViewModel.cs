@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CNE.Common.Models
 {
-   public class DiputadoViewModel
+    public class DiputadoViewModel
     {
         public int Dip_Id { get; set; }
         public int? Dip_Votos { get; set; }
@@ -19,6 +19,10 @@ namespace CNE.Common.Models
         public bool? Dip_Estado { get; set; }
         public int? Par_id { get; set; }
         [NotMapped]
-        public string Partido { get; set; }
+        public string Par_ImgUrl { get; set; }
+        [NotMapped]
+        public string Per_Nombre { get; set; }
+        [NotMapped]
+        public string Per_Apellido { get; set; }
     }
 }

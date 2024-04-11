@@ -33,6 +33,7 @@ namespace CNE.API.Controllers
 
 
 
+
         [HttpPost("Create")]
 
         public IActionResult Insert(AlcaldeViewModel item)
@@ -86,6 +87,12 @@ namespace CNE.API.Controllers
             var list = _votacionesServices.EliminarAlcalde(Alc_Id);
             return Ok(list);
         }
+        [HttpGet("ListCh")]
+                public IActionResult listC()
+                {
+                    var list = _votacionesServices.ListAlcChart();
+                    return Ok(list);
+                }
 
 
 

@@ -1,5 +1,6 @@
 using CNE.API.Extensions;
 using CNE.BusinessLogic;
+using CNE.BusinessLogic.Services;
 using CNE.DataAccess.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,12 @@ namespace CNE.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             services.DataAccess(Configuration.GetConnectionString("CNEConn"));
             services.BusinessLogic();
             services.AddAutoMapper(x => x.AddProfile<MappingProfileExtensions>(), AppDomain.CurrentDomain.GetAssemblies());
@@ -47,8 +54,10 @@ namespace CNE.API
             services.AddScoped<AlcaldeRepository>();
             services.AddScoped<PartidoRepository>();
             services.AddScoped<UsuarioRepository>();
+            services.AddScoped<AccesoServices>();
 
 
+            services.AddScoped<VotoRepository>();
 
 
 
@@ -81,6 +90,7 @@ namespace CNE.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSession();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -88,7 +98,7 @@ namespace CNE.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CNE.API v1"));
             }
             app.UseCors("AllowSpecificOrigin");
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

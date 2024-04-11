@@ -11,12 +11,13 @@ namespace CNE.BusinessLogic.Services
     public class VotacionesServices
     {
         private readonly PresidenteRepository _presidenteRepository;
-     
+
         private readonly VotoRepository _votoRepository;
         private readonly CentroVotacionRepository _centroVotacionRepository;
         private readonly MesaRepository _mesaRepository;
-        private readonly AlcaldeRepository _alcaldeRepository ;
-        private readonly DiputadoRepository _diputadoRepository;
+        private readonly AlcaldeRepository _alcaldeRepository;
+        private readonly DiputadoRepository _diputadoRepository; 
+        private readonly AlcaldesRepository _alcaldesRepository;
         private readonly PartidoRepository _partidoRepository;
 
 
@@ -24,18 +25,20 @@ namespace CNE.BusinessLogic.Services
 
 
 
-        public VotacionesServices(PresidenteRepository presidenteRepository, MesaRepository mesaRepository ,VotoRepository votoRepository, CentroVotacionRepository centroVotacionRepository, AlcaldeRepository alcaldeRepository, DiputadoRepository diputadoRepository, PartidoRepository partidoRepository)
+        public VotacionesServices(PresidenteRepository presidenteRepository, MesaRepository mesaRepository, VotoRepository votoRepository, AlcaldesRepository alcaldesRepository, CentroVotacionRepository centroVotacionRepository, AlcaldeRepository alcaldeRepository, DiputadoRepository diputadoRepository, PartidoRepository partidoRepository)
         {
             _presidenteRepository = presidenteRepository;
             _diputadoRepository = diputadoRepository;
-              _votoRepository = votoRepository;
+            _votoRepository = votoRepository;
             _centroVotacionRepository = centroVotacionRepository;
             _mesaRepository = mesaRepository;
             _alcaldeRepository = alcaldeRepository;
+            _alcaldesRepository = alcaldesRepository;
             _partidoRepository = partidoRepository;
         }
 
         #region Presidentes
+
 
         public ServiceResult ListadoPresi()
         {
@@ -150,31 +153,10 @@ namespace CNE.BusinessLogic.Services
 
 
 
-        #endregion
-
-        #region Voto
-        public ServiceResult InsertarVoto(tbVotos item)
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _votoRepository.Insert(item);
-                if (list.CodeStatus > 0)
-                {
-                    return result.Ok(list);
-                }
-                else
-                {
-                    return result.Error(list);
-                }
-            }
-            catch (Exception ex)
-            {
-                return result.Error(ex.Message);
-            }
-        }
 
         #endregion
+
+       
 
 
 
@@ -726,7 +708,114 @@ namespace CNE.BusinessLogic.Services
 
         #endregion
 
+        #region Diputados
+        public ServiceResult ListDip()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _diputadoRepository.List();
 
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
 
+        #endregion
+        #region Alcaldes
+        public ServiceResult ListAlc(string DNI)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alcaldesRepository.ListA(DNI);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+        public ServiceResult ListAlcChart()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alcaldesRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+        #endregion
+        #region Presidentes
+
+        public ServiceResult ListadoPresi()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _presidenteRepository.List();
+                return result.Ok(list);
+            }
+
+            catch (Exception ex)
+            {
+
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
+
+        #region Voto
+        public ServiceResult InsertarVoto(tbVotos item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votoRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        public ServiceResult InsertarVotoD( int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _votoRepository.InsertD(id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+        #endregion
     }
 }

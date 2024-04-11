@@ -1,26 +1,39 @@
 ﻿
 @{ Layout = null; }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
+@{
+    // Acceder a la sesión
+    var session = HttpContextAccessor.HttpContext.Session;
+}
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Candidatos</title>
-    <link rel="stylesheet" href="~../../vendors/typicons.font/font/typicons.css">
-    <link rel="stylesheet" href="~../../vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/vendors/typicons.font/font/typicons.css">
+    <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/css/style.css">
 
-    <link rel="stylesheet" href="~../../css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="~../../css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="~/css/vertical-layout-light/style.css">
+    <link rel="stylesheet" href="~/css/dataTables.dataTables.min.css">
 
     <style>
         input[type=checkbox] {
+           
+          
+            
+            
+        
             width: 100px;
             height: 100px;
+
             cursor: pointer;
         }
     </style>
-</head> 
+</head>
 <body style="background-color: gray;">
     <div class="container">
 
@@ -31,19 +44,72 @@
                         <div class="row justify-content-center">
                             <div class="col-sm-8">
                                 <div class="card p-3">
-                                    <div class="row mb-2">
-                                        <div class="col-sm-12">
-                                            <div class="card-body card-candidatos" id="candidatos" style="max-height: 500px; overflow-x: scroll;">
+                                    <div class="card-body">
+
+                                        <div class="custom-progressbar">
+                                            <div class="custom-progress" id="progress"></div>
+
+                                            <div class="custom-progress-step custom-progress-step-active" data-title="Presidentes"></div>
+                                            <div class="custom-progress-step" data-title="Alcaldes"></div>
+                                            <div class="custom-progress-step" data-title="Diputados"></div>
+                                        </div>
+
+                                        <div class="custom-form-step custom-form-step-active">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-12">
+                                                    <div class="card-header">PAPELETA CANDIDATOS PRESIDENCIA</div>
+                                                    <div class="card-body card-candidatos" id="candidatos" style="max-height: 500px; overflow-x: scroll;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <a href="#" id="nextStep1" class="custom-btn btn-next custom-width-50 custom-ml-auto btn-primary">Alcaldes</a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            @Html.Partial("~/Views/Votacion/_Create.cshtml", new FrontendCNE.Models.VotoViewModel())
-                                           
-                                        </div>
-                                    </div>
 
+
+
+                                        <div class="custom-form-step">
+                                            <div class="row mb-2">
+                                                <div class="col-sm-12">
+                                                    <div class="card-header">PAPELETA CANDIDATOS ALCALDES</div>
+                                                    <div class="card-body card-candidatos" id="candidatosAlc" style="max-height: 500px; overflow-x: scroll;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <a href="#" class="custom-btn btn-next custom-width-50 custom-ml-auto btn-primary" id="nextStep2">Diputados</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="custom-form-step">
+                                            @*<div class="row mb-2">*@
+                                            <div class="col-sm-12">
+                                                <div class="card-header">PAPELETA CANDIDATOS DIPUTADOS</div>
+                                                <div class="card-body card-candidatos" id="candidatosDip" style="max-height: 500px; overflow-y: scroll;">
+                                                </div>
+                                                @*</div>*@
+                                            </div>
+                                            <div class="custom-btns-group" style="padding-top:3%;">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        @Html.Partial("~/Views/Votacion/_Create.cshtml", new FrontendCNE.Models.VotoViewModel())
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        @*<div class="row mb-2">
+                                                <div class="col-sm-12">
+                                                    <div class="card-body card-candidatos" id="candidatos" style="max-height: 500px; overflow-x: scroll;">
+                                                    </div>
+                                                </div>
+                                            </div>*@
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -57,80 +123,308 @@
 
 
     </div>
-    <script src="~../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="~../../js/off-canvas.js"></script>
-    <script src="~../../js/hoverable-collapse.js"></script>
-    <script src="~../../js/template.js"></script>
-    <script src="~../../js/settings.js"></script>
-    <script src="~../../js/todolist.js"></script>
+    <script src="~/js/off-canvas.js"></script>
+
+    @*<script src="../wwwroot/images/"></script>*@
+    <script src="~/js/hoverable-collapse.js"></script>
+    <script src="~/js/template.js"></script>
+    <script src="~/js/settings.js"></script>
+    <script src="~/js/todolist.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
-    <script src="~../../vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="~/vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="~/css/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @*@Scripts.Render("~/bundles/jquery")*@
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @section Scripts {
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
-    <script >
+    <script>
+        // Esperar a que el documento esté completamente cargado
+        // Escuchar los eventos de cambio en los checkboxes
+        //$(document).on("change", "input[type='checkbox'][name='optionCandidatoD']", function () {
+        //    var listaEnteros = $("input[name='listaEnteros']"); // Seleccionar el campo listaEnteros
+        //    var valorActual = listaEnteros.val(); // Obtener el valor actual del campo
 
-        let headers = new Headers();
+        //    // Obtener el valor del checkbox seleccionado
+        //    var valorCheckbox = $(this).data("idcandidatoD");
 
+        //    // Si el checkbox está marcado, agregar su valor al campo listaEnteros
+        //    if ($(this).prop("checked")) {
+        //        // Si ya existe en la lista, no hacer nada
+        //        if (valorActual.indexOf(valorCheckbox) === -1) {
+        //            // Agregar el valor del checkbox a la lista
+        //            var nuevoValor = valorActual + (valorActual.length > 0 ? "," : "") + valorCheckbox;
+        //            listaEnteros.val(nuevoValor);
+        //        }
+        //    } else { // Si el checkbox está desmarcado, quitar su valor del campo listaEnteros
+        //        // Crear un array con los valores actuales en el campo listaEnteros
+        //        var valoresActuales = valorActual.split(",");
 
-        //$(document).ready(function () {
-        //    var url = "https://localhost:44377/Presidentes/List";
+        //        // Encontrar y eliminar el valor del checkbox del array
+        //        var index = valoresActuales.indexOf(valorCheckbox);
+        //        if (index !== -1) {
+        //            valoresActuales.splice(index, 1);
+        //            // Actualizar el valor del campo listaEnteros
+        //            listaEnteros.val(valoresActuales.join(","));
+        //        }
+        //    }
+        //});
+        $(document).on("change", "input[type='checkbox'][name='optionCandidatoD']", function () {
+            var listaEnteros = $("input[name='listaEnteros']"); 
+            var valorActual = listaEnteros.val(); 
 
-        //    fetch(url)
-        //        .then(function (result) {
-        //            if (result.ok) {
-        //                return result.json();
-        //            }
-        //        })
+            var valorCheckbox = $(this).data("idcandidatoD");
+
+            if ($(this).prop("checked")) {
+                if (valorActual.indexOf(valorCheckbox) === -1) {
+                    var nuevoValor = valorActual + (valorActual.length > 0 ? "," : "") + valorCheckbox;
+                    listaEnteros.val(nuevoValor);
+                }
+            } else {
+                var valoresActuales = valorActual.split(",");
+
+                var index = valoresActuales.indexOf(valorCheckbox.toString());
+                if (index !== -1) {
+                    valoresActuales.splice(index, 1);
+                    listaEnteros.val(valoresActuales.join(","));
+                }
+            }
+        });
+
+        //INSERT DIP X VOTO
+
+        //document.getElementsByName("vot")[0].addEventListener("click", function (event) {
+        //    event.preventDefault(); // Evitar el envío del formulario por defecto
+        //    var diputadosSeleccionados = [];
+
+        //    // Iterar sobre los checkboxes y agregar los IDs de los diputados seleccionados al array
+        //    document.querySelectorAll("input[type='checkbox'][name='optionCandidatoD']").forEach(function (checkbox) {
+        //        if (checkbox.checked) {
+        //            diputadosSeleccionados.push(checkbox.dataset.idcandidatoD);
+        //        }
+        //    });
+        //    alert(diputadosSeleccionados);
+
+        //    // Enviar los datos al servidor mediante fetch
+        //    fetch('https://localhost:44377/Diputados/Create', {
+        //        method: 'POST',
+        //        headers: {
+        //            'Content-Type': 'application/json'
+        //        },
+        //        body: JSON.stringify({ diputadosSeleccionados: diputadosSeleccionados })
+        //    })
         //        .then(function (response) {
-        //            if (response != undefined && response.data.length > 0) {
-        //                var fragment = document.createDocumentFragment();
-
-        //                response.data.forEach(function (row) {
-        //                    var card = $("<div>").addClass("card text-center border-primary mb-2").append(
-        //                        $("<div>").addClass("card-body p-2").append(
-        //                            $("<div>").addClass("row").append(
-        //                                $("<div>").addClass("col-sm-3").append(
-        //                                    $("<img>").attr({
-        //                                        "src": row.pre_ImgUrl,
-        //                                        "alt": "Foto",
-        //                                        "width": "100",
-        //                                        "height": "100"
-        //                                    }).addClass("border border-primary")
-        //                                ),
-        //                                $("<div>").addClass("col-sm-6").append(
-        //                                    $("<h5>").addClass("card-title").text(row.per_Nombre),
-        //                                    $("<p>").addClass("card-text").text(row.per_Apellido)
-        //                                ),
-        //                                $("<div>").addClass("col-sm-3").append(
-        //                                    $("<input>").attr({
-        //                                        "type": "checkbox",
-        //                                        "name": "optionCandidato"
-        //                                    }).data("idcandidato", row.pre_Id)
-        //                                )
-        //                            )
-        //                        )
-        //                    );
-
-        //                    fragment.appendChild(card[0]);
-        //                });
-
-        //                $("#candidatos").empty().append(fragment);
+        //            if (!response.ok) {
+        //                throw new Error('Hubo un problema al enviar los datos al servidor.');
         //            }
+        //            return response.json();
         //        })
-        //        .catch(error => console.log('Authorization failed : ' + error.message));
+        //        .then(function (data) {
+        //            // Manejar la respuesta del servidor si es necesario
+        //        })
+        //        .catch(function (error) {
+        //            console.error('Error:', error);
+        //        });
         //});
 
 
+
+        //document.getElementsByName("vot")[0].addEventListener("click", function (event) {
+        //    event.preventDefault(); // Evitar el envío del formulario por defecto
+        //    var diputadosSeleccionados = [];
+
+        //    // Iterar sobre los checkboxes y agregar los IDs de los diputados seleccionados al array
+        //    document.querySelectorAll("input[type='checkbox'][name='optionCandidatoD']").forEach(function (checkbox) {
+        //        if (checkbox.checked) {
+        //            diputadosSeleccionados.push(checkbox.dataset.idcandidatoD);
+        //        }
+        //    });
+        //    alert(diputadosSeleccionados);
+
+        //    // Enviar los datos al servidor mediante fetch
+        //    fetch('https://localhost:44377/Diputados/Create', {
+        //        method: 'POST',
+        //        headers: {
+        //            'Content-Type': 'application/json'
+        //        },
+        //        body: JSON.stringify({ diputadosSeleccionados: diputadosSeleccionados })
+        //    })
+        //        .then(function (response) {
+        //            if (!response.ok) {
+        //                throw new Error('Hubo un problema al enviar los datos al servidor.');
+        //            }
+        //            return response.json();
+        //        })
+        //        .then(function (data) {
+        //            // Manejar la respuesta del servidor si es necesario
+        //        })
+        //        .catch(function (error) {
+        //            console.error('Error:', error);
+        //        });
+        //});
+
+        // END INSERT DIP X VOTO
+
+        $(document).on('click', '#nextStep2', function (event) {
+            // Verificar si al menos un checkbox de candidato a presidente está marcado
+            var checkboxalcChecked = $('input[name="optionCandidatoalc"]:checked').length > 0;
+
+            // Verificar si al menos un checkbox de candidato a alcalde está marcado
+
+            // Validar que al menos uno esté marcado
+            if (!checkboxalcChecked) {
+                // Si ninguno está marcado, mostrar un mensaje de error y detener el avance al siguiente paso
+                formStepsNum--;
+                updateFormSteps();
+                updateProgressbar();
+
+                Swal.fire({
+                    icon: "warning",
+                    title: "Oops...",
+                    text: "Debes de seleccionar almenos un campo!",
+                });
+                event.preventDefault(); // Detener el comportamiento predeterminado del enlace
+            }
+        });
+
+
+
+
+        $(document).on('click', '#nextStep1', function (event) {
+            // Verificar si al menos un checkbox de candidato a presidente está marcado
+            var checkboxPresiChecked = $('input[name="optionCandidato"]:checked').length > 0;
+
+            // Verificar si al menos un checkbox de candidato a alcalde está marcado
+
+            // Validar que al menos uno esté marcado
+            if (!checkboxPresiChecked) {
+                // Si ninguno está marcado, mostrar un mensaje de error y detener el avance al siguiente paso
+                formStepsNum--;
+                updateFormSteps();
+                updateProgressbar();
+
+                Swal.fire({
+                    icon: "warning",
+                    title: "Oops...",
+                    text: "Debes de seleccionar almenos un campo!",
+                });
+                event.preventDefault(); // Detener el comportamiento predeterminado del enlace
+            }
+        });
+        let headers = new Headers();
+
+
+            //$(document).ready(function () {
+            //    var url = "https://localhost:44377/Presidentes/List";
+
+            //    fetch(url)
+            //        .then(function (result) {
+            //            if (result.ok) {
+            //                return result.json();
+            //            }
+            //        })
+            //        .then(function (response) {
+            //            if (response != undefined && response.data.length > 0) {
+            //                var fragment = document.createDocumentFragment();
+
+            //                response.data.forEach(function (row) {
+            //                    var card = $("<div>").addClass("card text-center border-primary mb-2").append(
+            //                        $("<div>").addClass("card-body p-2").append(
+            //                            $("<div>").addClass("row").append(
+            //                                $("<div>").addClass("col-sm-3").append(
+            //                                    $("<img>").attr({
+            //                                        "src": row.pre_ImgUrl,
+            //                                        "alt": "Foto",
+            //                                        "width": "100",
+            //                                        "height": "100"
+            //                                    }).addClass("border border-primary")
+            //                                ),
+            //                                $("<div>").addClass("col-sm-6").append(
+            //                                    $("<h5>").addClass("card-title").text(row.per_Nombre),
+            //                                    $("<p>").addClass("card-text").text(row.per_Apellido)
+            //                                ),
+            //                                $("<div>").addClass("col-sm-3").append(
+            //                                    $("<input>").attr({
+            //                                        "type": "checkbox",
+            //                                        "name": "optionCandidato"
+            //                                    }).data("idcandidato", row.pre_Id)
+            //                                )
+            //                            )
+            //                        )
+            //                    );
+
+            //                    fragment.appendChild(card[0]);
+            //                });
+
+            //                $("#candidatos").empty().append(fragment);
+            //            }
+            //        })
+            //        .catch(error => console.log('Authorization failed : ' + error.message));
+            //});
+
+
         $(document).ready(function () {
+
+
+
+
+            var url3 = "https://localhost:44377/Diputados/List";
             var url = "https://localhost:44377/Presidentes/List";
+            /**/
+            var url2 = "https://localhost:44377/Alcaldes/List/" + localStorage.getItem("id");
+            /**/
+            $("#dni").val(localStorage.getItem("id"));
+
+            // Agrega un evento al botón de "Votar"
+            //$("#Vot").click(function (event) {
+            //    //event.preventDefault(); // Evitar el envío del formulario por defecto
+
+
+
+            //    // Itera sobre los checkboxes y agrega los IDs de los diputados seleccionados al array
+            //    $("input[name='optionCandidatoD']:checked").each(function () {
+            //        diputadosSeleccionados.push($(this).data("idcandidatoD"));
+            //    });
+
+            //    // En este punto, diputadosSeleccionados contiene los IDs de todos los diputados seleccionados
+            //    console.log(diputadosSeleccionados);
+
+
+            //    fetch('https://localhost:44377/Diputados/Create', {
+            //        method: 'POST',
+            //        headers: {
+            //            'Content-Type': 'application/json'
+            //        },
+            //        body: JSON.stringify(diputadosSeleccionados)
+            //    })
+            //        .then(function (response) {
+            //            if (!response.ok) {
+            //                throw new Error('Hubo un problema al enviar los datos al servidor.');
+            //            }
+            //            return response.json();
+            //        })
+            //        .then(function (data) {
+            //            // Manejar la respuesta del servidor si es necesario
+            //        })
+            //        .catch(function (error) {
+            //            console.error('Error:', error);
+            //        });
+            //    // Ahora puedes enviar estos IDs al controlador a través de una solicitud fetch, como ya lo estás haciendo
+            //    // Utiliza el array diputadosSeleccionados en el cuerpo de la solicitud fetch
+            //    // ...
+
+            //    // Aquí debería ir tu código para enviar los datos al servidor mediante fetch
+            //});
+
+
 
             fetch(url)
                 .then(function (result) {
@@ -144,23 +438,23 @@
 
                         response.data.forEach(function (row) {
                             var card = $("<div>").addClass("card text-center border-primary mb-2").append(
-                                
-                                    
+
+
                                 $("<div>").addClass("card-body p-2").append(
                                     $("<img>").attr({
-                                        "src": "~../../images/" + row.par_ImgUrl,
+                                        "src": "../images/" + row.par_ImgUrl,
                                         "alt": "Foto",
                                         "width": "100",
                                         "height": "50"
                                     }).addClass("border border-primary"),
                                     $("<img>").attr({
-                                        "src": "~../../images/" +row.pre_ImgUrl,
+                                        "src": "../images/" + row.pre_ImgUrl,
                                         "alt": "Foto",
                                         "width": "60",
                                         "height": "100"
                                     }).addClass("border border-primary"),
-                                    $("<h5>").addClass("card-title").text(row.per_Nombre + ' '+row.per_Apellido),
-                                    
+                                    $("<h5>").addClass("card-title").text(row.per_Nombre + ' ' + row.per_Apellido),
+
                                     $("<input>").attr({
                                         "type": "checkbox",
                                         "name": "optionCandidato"
@@ -178,29 +472,342 @@
                     }
                 })
                 .catch(error => console.log('Authorization failed : ' + error.message));
+
+            fetch(url2)
+                .then(function (result) {
+                    if (result.ok) {
+                        return result.json();
+                    }
+                })
+                .then(function (response) {
+                    if (response != undefined && response.data.length > 0) {
+                        var fragment = document.createDocumentFragment();
+                        console.log(response.data);
+                        response.data.forEach(function (row) {
+
+                            var card = $("<div>").addClass("card text-center border-primary mb-2").append(
+
+
+                                $("<div>").addClass("card-body p-2").append(
+                                    $("<img>").attr({
+                                        "src": "../images/" + row.par_ImgUrl,
+                                        "alt": "Foto",
+                                        "width": "100",
+                                        "height": "50"
+                                    }).addClass("border border-primary"),
+                                    $("<img>").attr({
+                                        "src": "../images/" + row.alc_ImgUrl,
+                                        "alt": "Foto",
+                                        "width": "60",
+                                        "height": "100"
+                                    }).addClass("border border-primary"),
+                                    $("<h5>").addClass("card-title").text(row.per_Nombre + ' ' + row.per_Apellido),
+
+                                    //$("<input>").attr({
+                                    //    "type": "checkbox",
+                                    //    "name": "optionCandidatoalc"
+                                    //}).data("idcandidatoal", row.pre_Id)
+                                    $("<input>").attr({
+                                        "type": "checkbox",
+                                        "name": "optionCandidatoalc",
+                                        "data-idcandidatoal": row.alc_Id // Ajusta el atributo data-idcandidatoal
+                                    }).data("idcandidatoal", row.alc_Id)
+                                )
+                            );
+
+                            var column = $("<div>").addClass("col-sm-3").append(card);
+
+                            fragment.appendChild(column[0]);
+                        });
+
+                        var row = $("<div>").addClass("row").append(fragment);
+                        $("#candidatosAlc").empty().append(row);
+                    }
+                })
+                .catch(error => console.log('Authorization failed : ' + error.message));
+
+            fetch(url3)
+                .then(function (result) {
+                    if (result.ok) {
+                        return result.json();
+                    }
+                })
+                .then(function (response) {
+                    if (response != undefined && response.data.length > 0) {
+                        // Objeto para almacenar los diputados agrupados por partido político
+                        var diputadosPorPartido = {};
+
+                        response.data.forEach(function (row) {
+                            // Comprobamos si el partido ya existe en el objeto
+                            if (!diputadosPorPartido[row.partido]) {
+                                // Si no existe, creamos un nuevo array para ese partido
+                                diputadosPorPartido[row.partido] = [];
+                            }
+                            // Añadimos el diputado al array correspondiente al partido
+                            diputadosPorPartido[row.partido].push(row);
+                        });
+
+                        // Limpiamos el contenedor de diputados antes de agregar los nuevos elementos
+                        $("#candidatosDip").empty();
+
+                        // Iteramos sobre cada partido político y sus diputados
+                        Object.keys(diputadosPorPartido).forEach(function (partido) {
+                            // Creamos una nueva fila para cada partido político
+                            var row = $("<div>").addClass("");
+
+                            // Iteramos sobre los diputados de ese partido
+                            diputadosPorPartido[partido].forEach(function (diputado) {
+                                var card = $("<div>").addClass("card text-center border-primary mb-2").append(
+                                    $("<div>").addClass("card-body p-2").append(
+                                        $("<img>").attr({
+                                            "src": "../images/" + diputado.par_ImgUrl,
+                                            "alt": "Foto",
+                                            "width": "100",
+                                            "height": "50"
+                                        }).addClass("border border-primary"),
+                                        $("<img>").attr({
+                                            "src": "../images/" + diputado.dip_ImgUrl,
+                                            "alt": "Foto",
+                                            "width": "60",
+                                            "height": "100"
+                                        }).addClass("border border-primary"),
+                                        $("<h5>").addClass("card-title").text(diputado.per_Nombre + ' ' + diputado.per_Apellido),
+                                        //$("<input>").attr({
+                                        //    "type": "checkbox",
+                                        //    "name": "optionCandidatoD",
+                                        //    "data-optionCandidatoD": diputado.dip_Id
+                                        //}).data("optionCandidatoD", diputado.dip_Id)
+                                        $("<input>").attr({
+                                            "type": "checkbox",
+                                            "name": "optionCandidatoD",
+                                            "data-idcandidatoD": diputado.dip_Id // Aquí debería ser "data-idcandidatoD"
+                                        }).addClass("optionCandidatoD").data("idcandidatoD", diputado.dip_Id)
+                                    )
+                                );
+
+                                // Creamos una nueva columna para cada diputado
+                                var column = $("<div>").addClass("col-sm-3").append(card);
+
+                                // Agregamos la columna a la fila correspondiente al partido
+                                row.append(column);
+                            });
+
+                            // Agregamos la fila al contenedor de diputados
+                            $("#candidatosDip").append(row);
+                        });
+                    }
+                })
+                .catch(error => console.log('Authorization failed : ' + error.message));
+
+
+            //fetch(url3)
+            //    .then(function (result) {
+            //        if (result.ok) {
+            //            return result.json();
+            //        }
+            //    })
+            //    .then(function (response) {
+            //        if (response != undefined && response.data.length > 0) {
+            //            // Objeto para almacenar los diputados agrupados por partido político
+            //            var diputadosPorPartido = {};
+
+            //            response.data.forEach(function (row) {
+            //                // Comprobamos si el partido ya existe en el objeto
+            //                if (!diputadosPorPartido[row.partido]) {
+            //                    // Si no existe, creamos un nuevo array para ese partido
+            //                    diputadosPorPartido[row.partido] = [];
+            //                }
+            //                // Añadimos el diputado al array correspondiente al partido
+            //                diputadosPorPartido[row.partido].push(row);
+            //            });
+
+            //            // Limpiamos el contenedor de diputados antes de agregar los nuevos elementos
+            //            $("#candidatosDip").empty();
+
+            //            // Iteramos sobre cada partido político y sus diputados
+            //            Object.keys(diputadosPorPartido).forEach(function (partido) {
+            //                // Creamos una nueva fila para cada partido político
+            //                var row = $("<div>").addClass("row");
+
+            //                // Iteramos sobre los diputados de ese partido
+            //                diputadosPorPartido[partido].forEach(function (diputado) {
+            //                    var card = $("<div>").addClass("card text-center border-primary mb-2").append(
+            //                        $("<div>").addClass("card-body p-2").append(
+            //                            $("<img>").attr({
+            //                                "src": "~/images/" + diputado.par_ImgUrl,
+            //                                "alt": "Foto",
+            //                                "width": "100",
+            //                                "height": "50"
+            //                            }).addClass("border border-primary"),
+            //                            $("<img>").attr({
+            //                                "src": "~/images/" + diputado.dip_ImgUrl,
+            //                                "alt": "Foto",
+            //                                "width": "60",
+            //                                "height": "100"
+            //                            }).addClass("border border-primary"),
+            //                            $("<h5>").addClass("card-title").text(diputado.per_Nombre + ' ' + diputado.per_Apellido),
+            //                            $("<input>").attr({
+            //                                "type": "checkbox",
+            //                                "name": "optionCandidatoD"
+            //                            }).data("idcandidatoD", diputado.pre_Id)
+            //                        )
+            //                    );
+
+            //                    // Creamos una nueva columna para cada diputado
+            //                    var column = $("<div>").addClass("col-sm-3").append(card);
+
+            //                    // Agregamos la columna a la fila correspondiente al partido
+            //                    row.append(column);
+            //                });
+
+            //                // Agregamos la fila al contenedor de diputados
+            //                $("#candidatosDip").append(row);
+            //            });
+            //        }
+            //    })
+            //    .catch(error => console.log('Authorization failed : ' + error.message));
+
+
+            //fetch(url3)
+            //    .then(function (result) {
+            //        if (result.ok) {
+            //            return result.json();
+            //        }
+            //    })
+            //    .then(function (response) {
+            //        if (response != undefined && response.data.length > 0) {
+            //            var fragment = document.createDocumentFragment();
+
+            //            response.data.forEach(function (row) {
+            //                var card = $("<div>").addClass("card text-center border-primary mb-2").append(
+
+
+            //                    $("<div>").addClass("card-body p-2").append(
+            //                        $("<img>").attr({
+            //                            "src": "~/images/" + row.par_ImgUrl,
+            //                            "alt": "Foto",
+            //                            "width": "100",
+            //                            "height": "50"
+            //                        }).addClass("border border-primary"),
+            //                        $("<img>").attr({
+            //                            "src": "~/images/" + row.dip_ImgUrl,
+            //                            "alt": "Foto",
+            //                            "width": "60",
+            //                            "height": "100"
+            //                        }).addClass("border border-primary"),
+            //                        $("<h5>").addClass("card-title").text(row.per_Nombre + ' ' + row.per_Apellido),
+
+            //                        $("<input>").attr({
+            //                            "type": "checkbox",
+            //                            "name": "optionCandidatoD"
+            //                        }).data("idcandidatoD", row.pre_Id)
+            //                    )
+            //                );
+
+            //                var column = $("<div>").addClass("col-sm-3").append(card);
+
+            //                fragment.appendChild(column[0]);
+            //            });
+
+            //            var row = $("<div>").addClass("row").append(fragment);
+            //            $("#candidatosDip").empty().append(row);
+            //        }
+            //    })
+            //    .catch(error => console.log('Authorization failed : ' + error.message));
+
+
         });
 
 
-        $(document).on('click', 'input:checkbox', function (event) {
 
+
+        $(document).on('click', 'input:checkbox[name="optionCandidato"]', function (event) {
             var $box = $(this);
+            var idCandidato = $box.data("idcandidato");
+            console.log("presi=" + idCandidato);
+            $("#Pre_Id").val(idCandidato);
 
-            idcandidato = $box.data("idcandidato");
-            console.log(idcandidato);
-            $("#Pre_Id").val(idcandidato)
-            $("#Mes_Id").val(1)
-            $("#Alc_Id").val(1)
 
             if ($box.is(":checked")) {
                 var group = "input:checkbox[name='" + $box.attr("name") + "']";
-                $(group).prop("checked", false);
-                $box.prop("checked", true);
-            } else {
-                $box.prop("checked", false);
+                $(group).not($box).prop("checked", false);
             }
-
         });
+
+        $(document).on('click', 'input:checkbox[name="optionCandidatoalc"]', function (event) {
+            var $boxa = $(this);
+            var idCandidatoAlc = $boxa.data("idcandidatoal");
+            console.log("alcalde=" + idCandidatoAlc);
+            $("#Alc_Id").val(idCandidatoAlc);
+
+            if ($boxa.is(":checked")) {
+                var group = "input:checkbox[name='" + $boxa.attr("name") + "']";
+                $(group).not($boxa).prop("checked", false);
+            }
+        });
+
+//$(document).on('click', 'input:checkbox', function (event) {
+
+//    var $box = $(this);
+
+//    idcandidato = $box.data("idcandidato");
+//    console.log("presi=" +idcandidato);
+//    $("#Pre_Id").val(idcandidato)
+//    $("#Mes_Id").val(1)
+
+//    if ($box.is(":checked")) {
+//        var group = "input:checkbox[name='" + $box.attr("name") + "']";
+//        $(group).prop("checked", false);
+//        $box.prop("checked", true);
+//    } else {
+//        $box.prop("checked", false);
+//    }
+
+//});
+
+
+//    $(document).on('click', 'input:checkbox[name="optionCandidatoalc"]', function (event) {
+//        var $boxa = $(this);
+//        var idCandidatoAlc = $boxa.data("idcandidatoal");
+//        $("#Alc_Id").val(idCandidatoAlc);
+
+//        // Aquí puedes realizar las operaciones que necesites con el id del candidato alcalde seleccionado
+//        console.log("alcalde=" + idCandidatoAlc);
+
+//        // Si necesitas asignar el id del candidato alcalde a algún campo oculto, puedes hacerlo aquí
+//        // Por ejemplo:
+//        // $("#Alc_Id").val(idCandidatoAlc);
+
+//        // Si deseas asegurarte de que solo se pueda seleccionar un candidato alcalde a la vez, puedes deseleccionar los demás
+//        if ($boxa.is(":checked")) {
+//            $('input:checkbox[name="optionCandidatoalc"]').not($boxa).prop("checked", false);
+//        } else {
+//            $boxa.prop("checked", false);
+//        }
+//    });
+
+            //$(document).on('click', 'input:checkbox[name="optionCandidatoalc"]', function (event) {
+            //    var $boxa = $(this);
+            //    var idCandidatoAlc = $boxa.data("idcandidatoal");
+            //    $("#Alc_Id").val(idCandidatoAlc)
+
+            //    // Aquí puedes realizar las operaciones que necesites con el id del candidato alcalde seleccionado
+            //    console.log("alcalde="+idCandidatoAlc);
+
+            //    // Si necesitas asignar el id del candidato alcalde a algún campo oculto, puedes hacerlo aquí
+            //    // Por ejemplo:
+            //    // $("#Alc_Id").val(idCandidatoAlc);
+
+            //    // Si deseas asegurarte de que solo se pueda seleccionar un candidato alcalde a la vez, puedes deseleccionar los demás
+            //    if ($boxa.is(":checked")) {
+            //        $('input:checkbox[name="optionCandidatoalc"]').not($boxa).prop("checked", false);
+            //    } else {
+            //        $boxa.prop("checked", false);
+            //    }
+            //});
+
     </script>
 
 </body>
 </html>
+

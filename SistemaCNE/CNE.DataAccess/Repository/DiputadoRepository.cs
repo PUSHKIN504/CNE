@@ -11,18 +11,20 @@ using System.Threading.Tasks;
 
 namespace CNE.DataAccess.Repository
 {
-    public class DiputadoRepository
+    public class DiputadoRepository : IRepository<tbDiputados>
     {
 
         public RequestStatus Insert(tbDiputados item)
         {
+
             const string sql = "Vota.sp_Diputados_insertar";
+
 
 
 
             using (var db = new SqlConnection(CNEContext.ConnectionString))
             {
-               
+
 
                 var parametro = new DynamicParameters();
                 parametro.Add("@Dip_Id", item.Dip_Id);
@@ -38,12 +40,17 @@ namespace CNE.DataAccess.Repository
                 return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
 
+                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+
         }
 
 
         public IEnumerable<tbDiputados> List()
         {
-            const string sql = "Vota.sp_Diputados_listar";
+            const string sql = "[Vota].[sp_Diputados_listar]";
 
             List<tbDiputados> result = new List<tbDiputados>();
 
@@ -55,6 +62,9 @@ namespace CNE.DataAccess.Repository
             }
             //throw new NotImplementedException();
         }
+        //public IEnumerable<tbDiputados> ListA(string dni)
+        //{
+
 
      
 
@@ -70,11 +80,22 @@ namespace CNE.DataAccess.Repository
                 result = db.QueryFirst<tbDiputados>(ScriptsBaseDeDatos.Diputado_Llenar, parameter, commandType: CommandType.StoredProcedure);
                 return result;
             }
-
-
         }
+        //    //string sql = $"Vota.sp_Alcalde_listar {dni}";
 
 
+        //    //List<tbDiputados> result = new List<tbDiputados>();
+
+        //    //using (var db = new SqlConnection(CNEContext.ConnectionString))
+        //    //{
+        //    //    result = db.Query<tbDiputados>(sql, commandType: CommandType.Text).ToList();
+
+        //    //    return result;
+        //    //}
+
+        //    try
+        //    {
+        //        string sql = $"Vota.sp_Alcalde_listar '{dni}'";
 
 
         public RequestStatus Delete(int Dip_Id)
@@ -93,9 +114,11 @@ namespace CNE.DataAccess.Repository
 
 
         public tbAlcaldes Details(int id)
+
         {
             throw new NotImplementedException();
         }
+
 
 
         public RequestStatus Update(tbDiputados item)
@@ -103,6 +126,7 @@ namespace CNE.DataAccess.Repository
 
 
             string sql = ScriptsBaseDeDatos.Diputado_editar;
+
 
             using (var db = new SqlConnection(CNEContext.ConnectionString))
             {
@@ -120,6 +144,7 @@ namespace CNE.DataAccess.Repository
         }
 
 
+
         public RequestStatus Delete(tbDiputados item)
         {
             throw new NotImplementedException();
@@ -127,6 +152,7 @@ namespace CNE.DataAccess.Repository
 
 
         public tbDiputados find(int? id)
+
         {
             throw new NotImplementedException();
         }
