@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,12 +41,8 @@ namespace CNE.DataAccess.Repository
                 return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
 
-                var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
-                string mensaje = (result == 1) ? "Exito" : "Error";
-                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
             }
 
-        }
 
 
         public IEnumerable<tbDiputados> List()
@@ -157,8 +154,9 @@ namespace CNE.DataAccess.Repository
             throw new NotImplementedException();
         }
 
-
-
-        
+        public tbDiputados Details(int? id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

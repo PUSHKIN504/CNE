@@ -756,24 +756,24 @@ namespace CNE.BusinessLogic.Services
             }
         }
         #endregion
-        #region Presidentes
+        //#region Presidentes
 
-        public ServiceResult ListadoPresi()
-        {
-            var result = new ServiceResult();
-            try
-            {
-                var list = _presidenteRepository.List();
-                return result.Ok(list);
-            }
+        //public ServiceResult ListadoPresi()
+        //{
+        //    var result = new ServiceResult();
+        //    try
+        //    {
+        //        var list = _presidenteRepository.List();
+        //        return result.Ok(list);
+        //    }
 
-            catch (Exception ex)
-            {
+        //    catch (Exception ex)
+        //    {
 
-                return result.Error(ex.Message);
-            }
-        }
-        #endregion
+        //        return result.Error(ex.Message);
+        //    }
+        //}
+        //#endregion
 
         #region Voto
         public ServiceResult InsertarVoto(tbVotos item)
