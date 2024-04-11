@@ -6,3 +6,79 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        var Votos = [], presidentes = [], votD = [], dip = [], votA = [], Alc = [], ciu = [];
+
+        var url = "https://localhost:44377/Presidentes/List";
+        var url2 = "https://localhost:44377/Diputados/List";
+        var url3 = "https://localhost:44377/API/Alcalde/ListCh";
+
+
+        fetch(url)
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            }).then(function (data) {
+                console.log(data)
+
+                data.data.forEach(function (row) {
+                    presidentes.push(row.per_Nombre);
+                    Votos.push(row.pre_Votos);
+                });
+
+                localStorage.setItem("PVot", JSON.stringify(Votos)); // Serialize to JSON string
+                localStorage.setItem("Pres", JSON.stringify(presidentes)); // Serialize to JSON string
+
+                console.log('presi : ' + JSON.stringify(presidentes));
+                console.log('presivot : ' + JSON.stringify(Votos));
+            }).catch(error => console.log('Authorization failed : ' + error.message));
+
+        fetch(url2)
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            }).then(function (data) {
+                console.log(data)
+
+                data.data.forEach(function (row) {
+                    dip.push(row.per_Nombre);
+                    votD.push(row.dip_Votos);
+                });
+
+                localStorage.setItem("DVot", JSON.stringify(votD)); // Serialize to JSON string
+                localStorage.setItem("Dip", JSON.stringify(dip)); // Serialize to JSON string
+
+                console.log('presi : ' + JSON.stringify(dip));
+                console.log('presivot : ' + JSON.stringify(votD));
+            }).catch(error => console.log('Authorization failed : ' + error.message));
+
+        fetch(url3)
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            }).then(function (data) {
+                console.log(data)
+
+                data.data.forEach(function (row) {
+                    Alc.push(row.per_Nombre);
+                    votA.push(row.alc_Votos);
+                    ciu.push(row.mun_Descripcion)
+                });
+
+                localStorage.setItem("DVot", JSON.stringify(votA)); // Serialize to JSON string
+                localStorage.setItem("Dip", JSON.stringify(Alc)); // Serialize to JSON string
+                localStorage.setItem("Ciu", JSON.stringify(ciu)); // Serialize to JSON string
+
+                console.log('Alc : ' + JSON.stringify(Alc));
+                console.log('AVot : ' + JSON.stringify(votA));
+                console.log('AVot : ' + JSON.stringify(ciu));
+            }).catch(error => console.log('Authorization failed : ' + error.message));
+    });
+</script>

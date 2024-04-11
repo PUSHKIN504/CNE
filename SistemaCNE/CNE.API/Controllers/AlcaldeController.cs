@@ -29,6 +29,11 @@ namespace CNE.API.Controllers
         }
 
 
-
+        [HttpGet("ListCh")]
+        public IActionResult list()
+        {
+            var list = _votacionesServices.ListAlcChart();
+            return Ok(list);
+        }
     }
 }

@@ -377,6 +377,21 @@ namespace CNE.BusinessLogic.Services
                 return result.Error(ex);
             }
         }
+
+        public ServiceResult ListAlcChart()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _alcaldesRepository.List();
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
         #endregion
         #region Presidentes
 

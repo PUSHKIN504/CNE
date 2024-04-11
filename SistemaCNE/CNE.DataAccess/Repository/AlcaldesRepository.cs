@@ -37,7 +37,7 @@ namespace CNE.DataAccess.Repository
 
         public IEnumerable<tbAlcaldes> List()
         {
-            const string sql = "[Vota].[sp_Presidentes_listar] ";
+            const string sql = "[Vota].[sp_Alcaldes_listarChart]";
 
             List<tbAlcaldes> result = new List<tbAlcaldes>();
 

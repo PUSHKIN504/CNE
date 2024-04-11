@@ -100,7 +100,7 @@ namespace FrontendCNE
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Login}/{id?}");
+                    pattern: "{controller=Votacion}/{action=Index}/{id?}");
             });
         }
     }

@@ -14,7 +14,8 @@ namespace CNE.Common.Models
         public string Alc_ImgUrl { get; set; }
         [NotMapped]
         public string Partido { get; set; }
-
+        [NotMapped]
+        public string Mun_Descripcion { get; set; }
         public int Alc_UsuarioCreacion { get; set; }
         public DateTime Alc_FechaCreacion { get; set; }
         public int? Alc_UsuarioModificacion { get; set; }

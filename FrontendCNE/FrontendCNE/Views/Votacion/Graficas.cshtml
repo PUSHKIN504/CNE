@@ -6,8 +6,8 @@
 
 <h1>Graficas</h1>
 <header class="w-100 d-flex justify-content-between align-items-center p-2 text-center" style="background: rgb(255,255,255); min-height: 12vh;">
-    <h1>Conteo de Votos</h1>
     <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Votar</a>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </header>
 
 <div class="row">
@@ -17,7 +17,37 @@
             <div class="card-body">
                 <h5 class="card-title">Presidentes</h5>
                 <div id="pieChartAlcaldes"></div>
-                <canvas id="myChart"></canvas>
+                <canvas id="myChart1"></canvas>
+                <script> 
+                    console.log(JSON.parse(localStorage.getItem("PVot")));
+                    document.addEventListener("DOMContentLoaded", () => {
+                        const ctx1 = document.getElementById('myChart1');
+                        const labels1 = JSON.parse(localStorage.getItem("Pres"));
+                        const data1 = JSON.parse(localStorage.getItem("PVot"));
+                        const backgroundColors = [
+                            'rgb(0, 121, 181)',
+                            'rgb(255, 0, 0)',
+                            'rgb(255, 205, 86)'
+                        ];
+
+                        const datasets1 = [{
+                            label: 'Votos',
+                            data: data1,
+                            backgroundColor: backgroundColors.slice(0, data1.length), // Ensure colors match data length
+                            hoverOffset: 4
+                        }];
+
+                        const chartData1 = {
+                            labels: labels1,
+                            datasets: datasets1
+                        };
+
+                        new Chart(ctx1, {
+                            type: 'doughnut',
+                            data: chartData1
+                        });
+                    });
+                </script>    
                 <script>
                     //document.addEventListener("DOMContentLoaded", () => {
                         
@@ -76,25 +106,95 @@
                 <div id="pieChartAlcaldes"></div>
 
 
+                <select id="ciudadSelect" class="form-control">
+                    <option value="todas">Todas las ciudades</option>
+                </select>
+                <canvas id="myChart" width="400" height="400"></canvas>
 
+                <script>
+                    const Alc = JSON.parse(localStorage.getItem("Dip"));
+                    const votA = JSON.parse(localStorage.getItem("DVot"));
+                    const ciu = JSON.parse(localStorage.getItem("Ciu"));
+
+                    const ciudadSelect = document.getElementById('ciudadSelect');
+                    const ctx = document.getElementById('myChart').getContext('2d');
+
+                    const dataTodas = {
+                        labels: Alc,
+                        datasets: [{
+                            label: 'Votos por Alcalde',
+                            data: votA,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    };
+
+                    const myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: dataTodas,
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
+                    ciu.forEach(ciudad => {
+                        const option = document.createElement('option');
+                        option.textContent = ciudad;
+                        option.value = ciudad;
+                        ciudadSelect.appendChild(option);
+                    });
+
+                    ciudadSelect.addEventListener('change', () => {
+                        const ciudadSeleccionada = ciudadSelect.value;
+                        if (ciudadSeleccionada === 'todas') {
+                            myChart.data = dataTodas;
+                        } else {
+                            const dataCiudad = {
+                                labels: [],
+                                datasets: [{
+                                    label: 'Votos por Alcalde',
+                                    data: [],
+                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                    borderColor: 'rgba(255, 99, 132, 1)',
+                                    borderWidth: 1
+                                }]
+                            };
+
+                            for (let i = 0; i < Alc.length; i++) {
+                                if (ciu[i] === ciudadSeleccionada) {
+                                    dataCiudad.labels.push(Alc[i]);
+                                    dataCiudad.datasets[0].data.push(votA[i]);
+                                }
+                            }
+
+                            myChart.data = dataCiudad;
+                        }
+                        myChart.update();
+                    });
+                </script>
 
                 @*<script>
-                    document.addEventListener("DOMContentLoaded", () => {
+            document.addEventListener("DOMContentLoaded", () => {
 
 
-                        new ApexCharts(document.querySelector("#pieChartAlcaldes"), {
-                            series: seriesData,
-                            chart: {
-                                height: 350,
-                                type: 'pie',
-                                toolbar: {
-                                    show: true
-                                }
-                            },
-                            labels: labelsData
-                        }).render();
-                    });
-                </script>*@
+                new ApexCharts(document.querySelector("#pieChartAlcaldes"), {
+                    series: seriesData,
+                    chart: {
+                        height: 350,
+                        type: 'pie',
+                        toolbar: {
+                            show: true
+                        }
+                    },
+                    labels: labelsData
+                }).render();
+            });
+        </script>*@
 
             </div>
         </div>
@@ -103,26 +203,56 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Presidentes</h5>
+                <h5 class="card-title">Diputados</h5>
                 <div id="pieChartPresidentes"></div>
-
-                @*<script>
+                <canvas id="myChart2"></canvas>
+                <script>
+                    console.log(JSON.parse(localStorage.getItem("DVot")));
                     document.addEventListener("DOMContentLoaded", () => {
+                        const ctx2 = document.getElementById('myChart2');
+                        const labels2 = JSON.parse(localStorage.getItem("Dip"));
+                        const data2 = JSON.parse(localStorage.getItem("DVot"));
+                        const backgroundColors = [
+                            'rgb(0, 121, 181)',
+                            'rgb(255, 0, 0)',
+                            'rgb(255, 205, 86)'
+                        ];
 
+                        const datasets = [{
+                            label: 'Votos',
+                            data: data2,
+                            backgroundColor: backgroundColors.slice(0, data2.length), // Ensure colors match data length
+                            hoverOffset: 4
+                        }];
 
-                        new ApexCharts(document.querySelector("#pieChartPresidentes"), {
-                            series: seriesData,
-                            chart: {
-                                height: 350,
-                                type: 'pie',
-                                toolbar: {
-                                    show: true
-                                }
-                            },
-                            labels: labelsData
-                        }).render();
+                        const chartData2 = {
+                            labels: labels2,
+                            datasets: datasets
+                        };
+
+                        new Chart(ctx2, {
+                            type: 'doughnut',
+                            data: chartData2
+                        });
                     });
-                </script>*@
+                </script>
+                @*<script>
+            document.addEventListener("DOMContentLoaded", () => {
+
+
+                new ApexCharts(document.querySelector("#pieChartPresidentes"), {
+                    series: seriesData,
+                    chart: {
+                        height: 350,
+                        type: 'pie',
+                        toolbar: {
+                            show: true
+                        }
+                    },
+                    labels: labelsData
+                }).render();
+            });
+        </script>*@
 
             </div>
         </div>
@@ -144,72 +274,10 @@
 <script src="~/js/todolist.js"></script>-->
 <script src="~/lib/jquery/dist/jquery.js"></script>
 <script>
-    var Votos = [], presidentes = [];
 
 
-    $(document).ready(function () {
-        var url = "https://localhost:44377/Presidentes/List";
+   
 
-        fetch(url)
-            .then(function (result) {
-                if (result.ok) {
-                    return result.json();
-                }
-            })
-            .then(function (data) {
-
-                console.log(data)
-
-                data.data.forEach(function(row) {
-                 
-                    presidentes.push(row.per_Nombre);
-                    Votos.push(row.pre_Votos);
-                });
-
-                   
-                
-                console.log('presi : ' + presidentes);
-                console.log('presivot : ' + Votos);
-
-
-
-            })
-            .catch(error => console.log('Authorization failed : ' + error.message));
-
-        const ctx = document.getElementById('myChart');
-                const data = {
-                    labels: presidentes,
-                    datasets: [{
-                        label: 'Presidentes',
-                        data: Votos,
-                        backgroundColor: [
-                            'rgb(0, 121, 181)',
-                            'rgb(54, 162, 235)',
-                            'rgb(255, 205, 86)'
-                        ],
-                        hoverOffset: 4
-                    }]
-                };
-                new Chart(ctx, {
-                    type: 'doughnut',
-                    data
-                    //: {
-                    //    labels: presidentes,
-                    //    datasets: [{
-                    //        label: '# of Votes',
-                    //        data: Votos,
-                    //        borderWidth: 1
-                    //    }]
-                    //}
-                    //,
-                    //options: {
-                    //    scales: {
-                    //        y: {
-                    //            beginAtZero: true
-                    //        }
-                    //    }
-                    //}
-                });
-    });
+       
                 
 </script>

@@ -147,6 +147,57 @@
         @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     }
     <script>
+        // Esperar a que el documento esté completamente cargado
+        // Escuchar los eventos de cambio en los checkboxes
+        //$(document).on("change", "input[type='checkbox'][name='optionCandidatoD']", function () {
+        //    var listaEnteros = $("input[name='listaEnteros']"); // Seleccionar el campo listaEnteros
+        //    var valorActual = listaEnteros.val(); // Obtener el valor actual del campo
+
+        //    // Obtener el valor del checkbox seleccionado
+        //    var valorCheckbox = $(this).data("idcandidatoD");
+
+        //    // Si el checkbox está marcado, agregar su valor al campo listaEnteros
+        //    if ($(this).prop("checked")) {
+        //        // Si ya existe en la lista, no hacer nada
+        //        if (valorActual.indexOf(valorCheckbox) === -1) {
+        //            // Agregar el valor del checkbox a la lista
+        //            var nuevoValor = valorActual + (valorActual.length > 0 ? "," : "") + valorCheckbox;
+        //            listaEnteros.val(nuevoValor);
+        //        }
+        //    } else { // Si el checkbox está desmarcado, quitar su valor del campo listaEnteros
+        //        // Crear un array con los valores actuales en el campo listaEnteros
+        //        var valoresActuales = valorActual.split(",");
+
+        //        // Encontrar y eliminar el valor del checkbox del array
+        //        var index = valoresActuales.indexOf(valorCheckbox);
+        //        if (index !== -1) {
+        //            valoresActuales.splice(index, 1);
+        //            // Actualizar el valor del campo listaEnteros
+        //            listaEnteros.val(valoresActuales.join(","));
+        //        }
+        //    }
+        //});
+        $(document).on("change", "input[type='checkbox'][name='optionCandidatoD']", function () {
+            var listaEnteros = $("input[name='listaEnteros']"); 
+            var valorActual = listaEnteros.val(); 
+
+            var valorCheckbox = $(this).data("idcandidatoD");
+
+            if ($(this).prop("checked")) {
+                if (valorActual.indexOf(valorCheckbox) === -1) {
+                    var nuevoValor = valorActual + (valorActual.length > 0 ? "," : "") + valorCheckbox;
+                    listaEnteros.val(nuevoValor);
+                }
+            } else {
+                var valoresActuales = valorActual.split(",");
+
+                var index = valoresActuales.indexOf(valorCheckbox.toString());
+                if (index !== -1) {
+                    valoresActuales.splice(index, 1);
+                    listaEnteros.val(valoresActuales.join(","));
+                }
+            }
+        });
 
         //INSERT DIP X VOTO
 
