@@ -20,21 +20,46 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <label asp-for="Dep_Id" class="control-label"></label>
-                <input asp-for="Dep_Id" class="form-control" id="id" name="id" />
-                <span asp-validation-for="Dep_Id" class="text-danger"></span>
+
+                <label for="Dep_Id">Departamento</label>
+                <select id="Dep_Id" name="Dep_Id" class="form-control">
+                    <option value="">Seleccionar DEpto</option>
+                </select>
+</div>
+
             </div>
-            </div>
+
+
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
 
 
             </div>
-    </form>
+</form>
 
 </div>
 
+<script>
+    async function ObtenerDepto() {
+        try {
+            const response = await fetch('https://localhost:44377/API/Municipio/Depto');
+            if (!response.ok) {
+                throw new Error('Error al obtener Departamentos');
+            }
+            const data = await response.json();
+            console.log(data)
+            $("#Dep_Id").empty().append('<option value="">Seleccione una opcion</option>');
+            $.each(data, function (key, depto) {
+                $("#Dep_Id").append(`<option value="${depto.dep_Id}">${depto.dep_Descripcion}</option>`);
+            });
 
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    ObtenerDepto();
+</script>
 
 

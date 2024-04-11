@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="~/css/dataTables.dataTables.min.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="~/images/favicon.png" />
+    <link href="~/css/IziToast.css" rel="stylesheet" />
+
 </head>
 <body>
     <div class="row" id="proBanner">
@@ -244,3 +246,46 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<script src="~/js/IziToast.js"></script>
+
+<script>
+$(document).ready(function () {
+      @if (TempData["Exito"] != null)
+      {
+          <text>
+              iziToast.success({
+                  title: 'Éxito',
+                  message: '@TempData["Exito"]',
+                  position: 'topRight',
+                  transitionIn: 'flipInX',
+                  transitionOut: 'flipOutX'
+              });
+          </text>
+      }
+
+      @if (TempData["Error"] != null)
+      {
+          <text>
+              iziToast.error({
+                  title: 'Error',
+                  message: '@TempData["Error"]',
+                  position: 'topRight',
+                  transitionIn: 'flipInX',
+                  transitionOut: 'flipOutX'
+              });
+          </text>
+      }
+      @if (TempData["Advertencia"] != null)
+      {
+          <text>
+              iziToast.warning({
+                  title: 'Error',
+                  message: '@TempData["Advertencia"]',
+                  position: 'topRight',
+                  transitionIn: 'flipInX',
+                  transitionOut: 'flipOutX'
+              });
+          </text>
+      }
+  });
+</script>

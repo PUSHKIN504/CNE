@@ -78,10 +78,6 @@ namespace CNE.API.Controllers
         }
 
 
-
-
-
-
         [HttpGet("UpdateRol")]
         public IActionResult Update(int Roles_id)
         {

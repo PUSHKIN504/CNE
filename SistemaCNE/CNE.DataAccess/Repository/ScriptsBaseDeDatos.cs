@@ -91,7 +91,6 @@ namespace CNE.DataAccess
 
 
 
-        ///////////////////////
 
         #region Pantallas
         public static string pantalla_Listar = "Vota.sp_Pantallas_listar";
@@ -108,6 +107,11 @@ namespace CNE.DataAccess
         public static string Usua_Login = "Acce.sp_Usuarios_iniciosesion1";
         public static string Usua_usuario = "Acce.sp_Usuarios_validarusuario";
         public static string Usua_clave = "Acce.sp_Usuarios_validarclave";
+        public static string Usua_Eliminar = "Acce.sp_Usuarios_eliminar";
+        public static string Actualizarc = "Acce.sp_Usuarios_Restablecer_Contra";
+        public static string Usuario_Llenar = "Gral.sp_Usuario_buscar";
+
+
         #endregion
 
 
@@ -136,18 +140,33 @@ namespace CNE.DataAccess
 
         #region Partido
         public static string Partido_Listar = "Vota.sp_Partidos_listar";
+        public static string Partido_Insertar = "[Vota].[sp_Partidos_insertar]";
+        public static string Partido_Lenar = "Vota.sp_Partidos_buscar";
+        public static string Partido_Eliminar = "Vota.sp_Partido_eliminar";
+        public static string Partido_Editar = "Vota.sp_Partidos_actualizar";
+
+
+
 
         #endregion
 
 
         #region Alcalde
         public static string Alcalde_Listar = "Vota.sp_Alcaldes_listar";
+        public static string Alcalde_Llenar = "Vota.sp_Alcaldes_buscar";
+        public static string Alcalde_eliminar = "Vota.sp_Alcaldes_eliminar";
+        public static string Alcalde_editar = "Vota.sp_Alcaldes_actualizar";
+
+
 
         #endregion
 
 
         #region Diputados
         public static string Diputados_Listar = "Vota.sp_Diputados_listarMindy";
+        public static string Diputado_Llenar = "Vota.sp_Diputados_buscar";
+        public static string Diputado_eliminar = "Vota.sp_Diputados_eliminar";
+        public static string Diputado_editar = "Vota.sp_Diputados_actualizar]";
 
         #endregion
 
@@ -155,7 +174,9 @@ namespace CNE.DataAccess
 
         #region Presidentes
         public static string Presidentes_Listar = "Vota.sp_Presidentes_listar";
-
+        public static string Presidente_Llenar = "Vota.sp_Presidente_buscar";
+        public static string Presi_eliminar = "Vota.sp_Presidente_eliminar";
+        public static string Presi_editar = "Vota.sp_Presidente_actualizar";
         #endregion
 
 

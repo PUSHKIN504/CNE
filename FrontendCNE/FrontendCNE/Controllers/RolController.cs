@@ -180,11 +180,11 @@ namespace FrontendCNE.Controllers
 
 
         [HttpGet("UpdateRol")]
-        public async Task<IActionResult> Edit(int Rol_Id)
+        public async Task<IActionResult> Edit(int Roles_id)
         {
             try
             {
-                var apiUrl = "https://localhost:44377/API/Rol/UpdateRol?Rol_id=" + Rol_Id; 
+                var apiUrl = "https://localhost:44377/API/Rol/UpdateRol?Roles_Id=" + Roles_id; 
                 using (var httpClient = new HttpClient())
                 {
                     var response = await httpClient.GetAsync(apiUrl);
@@ -207,6 +207,10 @@ namespace FrontendCNE.Controllers
                 return RedirectToAction("Error", "Home");
             }
         }
+
+
+
+
 
 
     }
