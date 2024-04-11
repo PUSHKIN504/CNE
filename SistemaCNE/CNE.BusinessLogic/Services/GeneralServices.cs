@@ -12,10 +12,10 @@ namespace CNE.BusinessLogic.Services
         private readonly PersonasRepository _personasRepository;
 
 
-        public GeneralServices(DepartamentoRepository departamentosRepository, EstadoCivilRepository estadoCivilRepository, MunicipioRepository municipioRepository, PersonasRepository personasRepository )
+        public GeneralServices(DepartamentoRepository departamentosRepository, EstadoCivilRepository estadoCivilRepository, MunicipioRepository municipioRepository, PersonasRepository personasRepository)
         {
             _departamentosRepository = departamentosRepository;
-               _municipioRepository = municipioRepository;
+            _municipioRepository = municipioRepository;
             _estadoCivilRepository = estadoCivilRepository;
             _personasRepository = personasRepository;
 
@@ -485,6 +485,23 @@ namespace CNE.BusinessLogic.Services
 
 
 
+//#endregion
 
+//        #region Personas
+//        public ServiceResult YaVoto(string DNI)
+//        {
+//            var result = new ServiceResult();
+//            try
+//            {
+//                var list = _personasRepository.VotoVerf(DNI);
+
+//                return result.Ok(list);
+//            }
+//            catch (Exception ex)
+//            {
+//                return result.Error(ex);
+//            }
+//        }
+//        #endregion
     }
 }

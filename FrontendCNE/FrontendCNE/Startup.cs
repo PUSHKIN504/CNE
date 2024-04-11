@@ -28,7 +28,16 @@ namespace FrontendCNE
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {services.AddSession();
+        {
+            services.AddSession();  
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<API>();
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddControllersWithViews();
+            services.AddScoped<DepartamentoService>();
+            services.AddScoped<VotacionesService>();
+            services.AddScoped<PresidenteService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -49,8 +58,6 @@ namespace FrontendCNE
             services.AddScoped<PartidoService>();
             services.AddScoped<MesaService>();
 
-
-
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddCookie(option =>
 {
@@ -66,22 +73,12 @@ namespace FrontendCNE
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.IsEssential = true;
             });
-
-
-
-
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSession();
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -103,7 +100,7 @@ namespace FrontendCNE
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Votacion}/{action=Index}/{id?}");
             });
         }
     }

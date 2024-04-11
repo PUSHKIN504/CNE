@@ -1,5 +1,11 @@
 ﻿@model FrontendCNE.Models.PersonasViewModel
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 
+@{
+    // Acceder a la sesión
+    var session = HttpContextAccessor.HttpContext.Session;
+}
 @{
     Layout = null;
 }
@@ -9,15 +15,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <link rel="stylesheet" href="~../../vendors/typicons.font/font/typicons.css">
-    <link rel="stylesheet" href="~../../vendors/css/vendor.bundle.base.css">
+    @*<title>Index</title>*@
+    <link rel="stylesheet" href="~/vendors/typicons.font/font/typicons.css">
+    <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/css/vertical-layout-light/style.css">
 
-    <link rel="stylesheet" href="~../../css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="~../../css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/dataTables.dataTables.min.css">
 </head>
 <body style="background-color: gray;">
-
+    
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -30,7 +37,7 @@
                                         <h4>@ViewData["Title"]</h4>
                                         <div class="text-center mb-4 mt-3">
                                             <a>
-                                                <span><img src="~../../images/consejo-nacional-electoral-seeklogo.svg" alt="" height="100"></span>
+                                                <span><img src="~/images/consejo-nacional-electoral-seeklogo.svg" alt="" height="100"></span>
                                             </a>
                                         </div>
                                         @*<form asp-action="@ViewData["ViewName"]" asp-controller="Votacion" method="post" class="p-2">*@
@@ -47,9 +54,15 @@
                                             </div>}
                                                     </div>*@
 
-                                        <div class="mb-3 text-center">
-                                            <button class="btn btn-primary btn-block" id="ingresar" type="submit">Ingresar</button>
-                                        </div>
+                                    <div class="mb-3 text-center">
+
+
+                                        <button class="btn btn-primary btn-block" id="ingresar" type="submit">Ingresar</button>
+                                    </div>
+                                    <div class="mb-3 text-center">
+                                        <a class="btn btn-secondary  btn-block" asp-controller="Home" asp-action="Login">Inicio Sesion</a>
+
+                                    </div>
                                         @*</form>*@
                                     </div>
                                     <!-- end card-body -->
@@ -65,20 +78,22 @@
             </div> <!-- end col-->
         </div> <!-- end row -->
     </div>
-    <script src="~../../vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="~../../js/off-canvas.js"></script>
-    <script src="~../../js/hoverable-collapse.js"></script>
-    <script src="~../../js/template.js"></script>
-    <script src="~../../js/settings.js"></script>
-    <script src="~../../js/todolist.js"></script>
+
+    <script src="~/js/off-canvas.js"></script>
+    <script src="~/css/script.js"></script>
+    <script src="~/js/hoverable-collapse.js"></script>
+    <script src="~/js/template.js"></script>
+    <script src="~/js/settings.js"></script>
+    <script src="~/js/todolist.js"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="~../../vendors/progressbar.js/progressbar.min.js"></script>
+    <script src="~/vendors/progressbar.js/progressbar.min.js"></script>
     @*@Scripts.Render("~/bundles/jquery")*@
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @section Scripts {
@@ -99,21 +114,21 @@
 
 @*<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Ingreso</title>
-    @Styles.Render("~/Content/css")
-    <link rel="stylesheet" href="~../../vendors/typicons.font/font/typicons.css">
-    <link rel="stylesheet" href="~../../vendors/css/vendor.bundle.base.css">
-     
-    <link rel="stylesheet" href="~../../css/vertical-layout-light/style.css">
-    <link rel="stylesheet" href="~../../css/dataTables.dataTables.min.css">
-</head>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Ingreso</title>
+        @Styles.Render("~/Content/css")
+        <link rel="stylesheet" href="~/vendors/typicons.font/font/typicons.css">
+        <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css">
 
-   
-</body>
-</html>*@
+        <link rel="stylesheet" href="~/css/vertical-layout-light/style.css">
+        <link rel="stylesheet" href="~/css/dataTables.dataTables.min.css">
+    </head>
+
+
+    </body>
+    </html>*@
 <script>
 
     let headers = new Headers();
@@ -133,7 +148,7 @@
     //        if (data.data.per_Voto === false) {
     //            console.log("El valor de per_Voto es false.", data.data.per_Voto);
     //            window.location.href = "/Presidente";
-              
+
     //        }
     //        else {
     //            console.log("El valor de per_Voto no es false.", data.data.per_Voto);
@@ -157,6 +172,7 @@
     $("#ingresar").click(function () {
         var id = $("#dni").val();
         var url = "https://localhost:44377/InfoVotante/" + id;
+        localStorage.setItem("id", id);
 
         fetch(url)
             .then(function (result) {
@@ -165,17 +181,26 @@
                 }
             })
             .then(function (data) {
-                if (data.data.per_Voto === false) {
-                    console.log("El valor de per_Voto es false.", data.data.per_Voto);
-                    window.location.href = "/Presidente";
-                } else {
+                if (data.data.per_Voto === true) {
                     console.log("El valor de per_Voto no es false.", data.data.per_Voto);
+                    console.log("El valor de per_Voto no es false.", id);
                     Swal.fire({
                         title: "ADVERTENCIA",
                         text: "Ya realizó su voto",
                         icon: "info"
                     });
                 }
+                else {
+                    console.log("El valor de per_Voto es false.", data.data.per_Voto);
+                    if (data.data.per_Voto === false) {
+                        console.log("Si entro al otro if");
+                        window.location.href = "/Presidente/Index";
+                    }
+
+                   
+                    
+                }
+               
             })
             .catch(function (error) {
                 console.error('Authorization failed : ' + error.message);
@@ -185,5 +210,21 @@
                     icon: "error"
                 });
             });
+
+         $.ajax({
+            url: "/Votacion/AlgunaAccion", // Reemplaza "Controlador" por el nombre de tu controlador
+            type: "POST",
+            data: { id: id },
+            
+        });
+        @{
+
+
+                                                  // Recuperar un valor de la sesión
+            var coso = session.GetString("DNI");
+         }
+
     });
+
+
 </script>

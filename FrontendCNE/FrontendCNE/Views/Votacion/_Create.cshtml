@@ -24,8 +24,15 @@
                 <input asp-for="Alc_Id" class="form-control" />
                 <span asp-validation-for="Alc_Id" class="text-danger"></span>
             </div>
+            <div class="form-group" hidden>
+                <label asp-for="dni" class="control-label"></label>
+                <input asp-for="dni" class="form-control" value="" />
+                <span asp-validation-for="dni" class="text-danger"></span>
+            </div>
+          
+            <input type="hidden" name="listaEnteros" value="" />
             <div class="form-group">
-                <input type="submit" value="Votar" class="btn btn-primary" />
+                <input type="submit" value="Votar" id="Vot" name="vot" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -34,4 +41,23 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+        //document.getElementById("Vot").addEventListener("click", function () {
+        //    var listaEnteros = document.getElementById("listaEnteros").value;
+        //    var formData = new FormData(document.getElementById("votoForm"));
+        //    formData.append("listaEnteros", listaEnteros);
+
+        //    // Enviar la solicitud AJAX
+        //    var xhr = new XMLHttpRequest();
+        //    xhr.open("POST", "/Voto/Create");
+        //    xhr.setRequestHeader("RequestVerificationToken", document.getElementsByName("__RequestVerificationToken")[0].value);
+        //    xhr.onreadystatechange = function () {
+        //        if (xhr.readyState === 4 && xhr.status === 200) {
+        //            // Redirigir o realizar otras acciones después de que la solicitud se complete correctamente
+        //            window.location.href = "/Votacion/Index";
+        //        }
+        //    };
+        //    xhr.send(formData);
+        //});
+</script>
 }

@@ -1,12 +1,12 @@
+﻿<!DOCTYPE html>
 ﻿@using Microsoft.AspNetCore.Http;
 @using System.Text.Json;
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CelestialUI Admin</title>
+    <title>CNE</title>
     <!-- base:css -->
     <link rel="stylesheet" href="~/vendors/typicons.font/font/typicons.css">
     <link rel="stylesheet" href="~/vendors/css/vendor.bundle.base.css">
@@ -38,7 +38,7 @@
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <ul class="navbar-nav mr-lg-2">
 
-                    <span class=" float-sm-right " style="padding-left: 10%;"> <img src="../../images/bandera.png" alt=""></span
+                    <span class=" float-sm-right " style="padding-left: 10%;"> <img src="../../images/bandera.png" alt=""></span>
 
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
@@ -185,18 +185,16 @@
                                     {
                                         <li class="nav-item"> <a class="nav-link" asp-controller="Presidente" asp-action="Index">Presidentes</a></li>
                                     }
-                                    @if (pantallas != null && pantallas.Contains("Votacion") || pantallas.Contains("Admin"))
-                                    {
+                                    <li class="nav-item"> <a class="nav-link" asp-controller="Votacion" asp-action="Index">Votos</a></li>
+                                    <li class="nav-item"> <a class="nav-link" asp-controller="Votacion" asp-action="Graficas">Graficas</a></li>
 
-                                        <li class="nav-item"> <a class="nav-link" asp-controller="Votacion" asp-action="Index">Votos</a></li>
-                                    }
                                 </ul>
                             </div>
                         </li>
 
                     }
 
-                    </ul>
+                </ul>
 
             </nav>
             <!-- partial -->
@@ -238,7 +236,7 @@
     <!-- endinject -->
     <!-- plugin js for this page -->
     <script src="~/vendors/progressbar.js/progressbar.min.js"></script>
-    <!-- <script src="vendors/chart.js/Chart.min.js"></script> -->
+    @*<script src="vendors/chart.js/Chart.min.js"></script>*@
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <!-- <script src="js/dashboard.js"></script> -->

@@ -26,6 +26,7 @@ namespace CNE.DataAccess.Repository
                 parametro.Add("@Mes_Id", item.Mes_Id);
                 parametro.Add("@Pre_Id", item.Pre_Id);
                 parametro.Add("@Alc_Id", item.Alc_Id);
+                parametro.Add("@DNI", item.dni);
 
 
                 var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
@@ -35,6 +36,27 @@ namespace CNE.DataAccess.Repository
 
         }
 
+
+        public RequestStatus InsertD(int id)
+        {
+         string sql = $"Vota.sp_votopordiputado_insert";
+
+
+
+            using (var db = new SqlConnection(CNEContext.ConnectionString))
+            {
+                var parametro = new DynamicParameters();
+                parametro.Add("@Dip_Id", id);
+
+
+
+
+                var result = db.Execute(sql,  parametro ,commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "Exito" : "Error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+            }
+
+        }
         public IEnumerable<tbVotos> List()
         {
             const string sql = "Gral.sp_Departamentos_listar";

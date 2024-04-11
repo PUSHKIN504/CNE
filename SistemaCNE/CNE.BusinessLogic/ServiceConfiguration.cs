@@ -18,33 +18,13 @@ namespace CNE.BusinessLogic
             service.AddScoped<DepartamentoRepository>();
             service.AddScoped<VotacionesServices>();
             service.AddScoped<VotoRepository>();
-            CNEContext.BuildConnectionString(conn);
-            service.AddScoped<EstadoCivilRepository>();
-            service.AddScoped<PersonasRepository>();
-            service.AddScoped<MunicipioRepository>();
-            service.AddScoped<CentroVotacionRepository>();
-            service.AddScoped<MesaRepository>();
-            service.AddScoped<PantallaRepository>();
+            service.AddScoped<AlcaldesRepository>();
             service.AddScoped<DiputadoRepository>();
-            service.AddScoped<PartidoRepository>();
-            service.AddScoped<AlcaldeRepository>();
-            service.AddScoped<PantallaRepository>();
-            service.AddScoped<RolRepository>();
-            service.AddScoped<UsuarioRepository>();
-
-
-
-
-
-
-
+            CNEContext.BuildConnectionString(conn);
         }
         public static void BusinessLogic(this IServiceCollection service)
         {
             service.AddScoped<GeneralServices>();
-            service.AddScoped<AccesoServices>();
-            service.AddScoped<VotacionesServices>();
-
         }
     }
 }

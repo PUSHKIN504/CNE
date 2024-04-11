@@ -1,4 +1,11 @@
 ﻿@{ Layout = null; }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    // Acceder a la sesión
+    var session = HttpContextAccessor.HttpContext.Session;
+}
 <!DOCTYPE html>
 
 <html>
@@ -40,12 +47,20 @@
                                             <div class="form-group">
                                                 @if (ViewBag.Mensaje != null)
                                                 {
-                                    <div class="alert alert-danger" role="alert">
-                                        @ViewBag.Mensaje
-                                    </div>}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        @ViewBag.Mensaje
+                                                    </div>}
                                             </div>
 
                                             <div class="mb-3 text-center">
+                                                @{
+
+
+                                                    // Recuperar un valor de la sesión
+                                                    var coso = session.GetString("DNI");
+                                                }
+
+
                                                 <button class="btn btn-primary btn-block" type="submit">Ingresar</button>
                                             </div>
                                         </form>
