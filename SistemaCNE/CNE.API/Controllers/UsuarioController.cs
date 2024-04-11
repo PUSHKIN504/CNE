@@ -61,18 +61,61 @@ namespace CNE.API.Controllers
         }
 
 
-        //[HttpPost("Login")]
+        [HttpPost("Create")]
+        public IActionResult Insert(UsuarioViewModel item)
+        {
+            var model = _mapper.Map<tbUsuarios>(item);
+            var modelo = new tbUsuarios()
+            {
+                Usuar_Usuario = item.Usuar_Usuario,
+                Usuar_Contrasena = item.Usuar_Contrasena,
+                Per_Id = item.Per_Id,
+                Roles_Id = item.Roles_Id,
+                Usuar_Admin = item.Usuar_Admin,
+                Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion,
+                Usuar_FechaCreacion = item.Usuar_FechaCreacion
+            };
+            var list = _AccesoServices.InsertarUsuario(modelo);
+            return Ok(list);
+        }
 
-        //public IActionResult Login(string usuario, string contraseña)
-        //{
-        //    var list = _AccesoServices.login(usuario, contraseña);
-        //    return Ok(list);
-        //}
+
+
+
+        [HttpDelete("Delete")]
+        public IActionResult Delete(int Usuar_Id)
+        {
+            var list = _AccesoServices.EliminarUsuario(Usuar_Id);
+            return Ok(list);
+        }
 
 
 
 
+        [HttpGet("Fill/{id}")]
+
+        public IActionResult Llenar(int id)
+        {
+
+            var list = _AccesoServices.ListUsuario(id);
+            return Json(list);
+        }
 
 
+        [HttpPut("Edit")]
+
+        public IActionResult Update(UsuarioViewModel item)
+        {
+            _mapper.Map<tbUsuarios>(item);
+            var modelo = new tbUsuarios()
+            {
+                Usuar_Id = item.Usuar_Id,
+                Usua_Contrasenia = item.Usua_Contrasenia,
+                Usuar_UsuarioModificacion = 1,
+                Usuar_FechaModificacion = DateTime.Now
+            };
+            var list = _AccesoServices.cotra(modelo);
+            return Ok(list);
+        }
     }
-}
+    }

@@ -89,6 +89,20 @@ namespace CNE.API.Controllers
 
 
 
+        [HttpGet("Depto")]
+        public async Task<IActionResult> ListaDepto()
+        {
+            var result = await _generalServices.ObtenerDepto();
+
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+            else
+            {
+                return StatusCode(500, new { message = result.Message });
+            }
+        }
 
 
 

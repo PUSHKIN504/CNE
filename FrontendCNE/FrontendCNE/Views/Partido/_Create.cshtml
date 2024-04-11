@@ -1,0 +1,47 @@
+﻿@model CNE.Common.Models.PartidosViewModel
+@{ ViewData["Title"] = "tbPartidos".Substring(2);
+    ViewData["ViewName"] = "_Create".Substring(1); }
+<h4>Agregar Partido</h4>
+<hr />
+<div class="row">
+    <div class="col" style="max-width: 600px;">
+        <form asp-action="@ViewData["ViewName"]" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="Par_Nombre" class="control-label"></label>
+                            <input asp-for="Par_Nombre" class="form-control" />
+                            <span asp-validation-for="Par_Nombre" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label asp-for="FotoP" class="control-label"></label>
+
+                            <div class="mb-5">
+                                <label  for="formFile" class="form-label">Elija una imagen</label>
+                                <input asp-for="FotoP"  class="form-control" type="file" id="formFile">
+                            </div>
+
+                            <span asp-validation-for="FotoP" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            
+                </div>
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

@@ -148,7 +148,7 @@ namespace FrontendCNE.Services
 
   
 
-        public async Task<ServiceResult> EliminarEstadoCivil(string id)
+        public async Task<ServiceResult> EliminarEstadoCivil(int id)
         {
             var result = new ServiceResult();
             try

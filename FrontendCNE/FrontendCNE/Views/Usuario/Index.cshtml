@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>EstadoCivil</h1>
+<h1>Usuarios</h1>
 
 <p>
     <button class="btnCreate btn btn-primary">Nuevo</button>
@@ -53,6 +53,10 @@
                         <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Roles_Id')">
                             <i class="bi bi-trash-fill"></i>
                             Eliminar
+                        </button>
+                        <button class="d-flex align-items-center justify-content-around btn btn-outline-info btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Roles_Id')">
+                            <i class="bi bi-trash-fill"></i>
+                            Restablecer Contraseña
                         </button>
                     </div>
                 </div>

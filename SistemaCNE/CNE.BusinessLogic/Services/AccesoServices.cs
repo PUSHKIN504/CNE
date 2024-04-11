@@ -341,30 +341,84 @@ namespace CNE.BusinessLogic.Services
         }
 
 
-        //public ServiceResult login2(string Usua_Usuario, string Usua_Clave)
-        //{
-        //    var result = new ServiceResult();
-        //    try
-        //    {
-        //        var list = _usuarioRepository.Login(Usua_Usuario, Usua_Clave);
-        //        return result.Ok(list);
-        //    }
-
-        //    catch (Exception ex)
-        //    {
-
-        //        return result.Error(ex.Message);
-        //    }
-        //}
-
-
-
-
-
-
-
+        public ServiceResult InsertarUsuario(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuarioRepository.Insert(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok(list);
+                }
+                else
+                {
+                    return result.Error(list);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
 
 
+        public ServiceResult EliminarUsuario(int Usuar_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuarioRepository.Delete(Usuar_Id);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"La accion ha sido existosa", list);
+                }
+                else
+                {
+                    return result.Error("No se pudo realizar la accion");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+        public ServiceResult cotra(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuarioRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"editado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("Y existe un registro con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+        public ServiceResult ListUsuario(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuarioRepository.List(id);
+
+                return result.Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
 
 
         #endregion

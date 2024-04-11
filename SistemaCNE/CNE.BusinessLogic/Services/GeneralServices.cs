@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using CNE.DataAccess.Repository;
 using CNE.Entities.Entities;
 
@@ -124,6 +125,27 @@ namespace CNE.BusinessLogic.Services
                 return result.Error(ex);
             }
         }
+
+
+
+
+
+
+
+
+        public async Task<ServiceResult> ObtenerDepto()
+        {
+            try
+            {
+                var empleados = await _departamentosRepository.ObtenerDepto();
+                return new ServiceResult().Ok(empleados);
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResult().Error(ex.Message);
+            }
+        }
+
 
 
 

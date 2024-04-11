@@ -49,11 +49,15 @@ namespace FrontendCNE.Controllers
                 item.EsC_FechaCreacion = DateTime.Now;
                 item.EsC_Estado = true;
                 var list = await _estadoCivilServices.CrearEstadoCivil(item);
+                TempData["Exito"] ="La accion se realizo con exito";
+
                 return RedirectToAction("Index");
                 //return View(new List<EstadoCivilViewModel> { (EstadoCivilViewModel)list.Data } );
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al crear el departamento.";
+
                 return View(item);
             }
         }
@@ -74,11 +78,11 @@ namespace FrontendCNE.Controllers
         }
 
         [HttpPost("EstadoCivil/Edit")]
-        public async Task<IActionResult> Edit(EstadoCivilViewModel item, int id, string Descripcion)
+        public async Task<IActionResult> Edit(EstadoCivilViewModel item, int EsC_Id, string Descripcion)
         {
             try
             {
-                item.EsC_Id = id;
+                item.EsC_Id = EsC_Id;
                 item.EsC_Descripcion = Descripcion;
                 item.EsC_UsuarioCreacion = 1;
                 item.EsC_FechaCreacion = DateTime.Now;
@@ -101,7 +105,7 @@ namespace FrontendCNE.Controllers
 
         [HttpPost("/EstadoCivil/Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Delete([FromForm] string id)
+        public async Task<IActionResult> Delete([FromForm] int id)
         {
             try
             {
