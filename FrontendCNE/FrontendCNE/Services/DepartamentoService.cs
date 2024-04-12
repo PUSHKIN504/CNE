@@ -144,7 +144,30 @@ namespace FrontendCNE.Services
             }
         }
 
-
+        public async Task<ServiceResult> DepartamentoCiudadesList()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<DepartamentoViewModel>, IEnumerable<DepartamentoViewModel>>(req =>
+                {
+                    req.Path = $"API/Departamento/ListadoDepartamentosCiudades";
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
         public async Task<ServiceResult> EliminarDepartamento(string id)
         {
             var result = new ServiceResult();

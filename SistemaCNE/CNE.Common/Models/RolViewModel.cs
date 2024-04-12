@@ -29,5 +29,10 @@ namespace CNE.Common.Models
 
         [NotMapped]
         public int Resultado { get; set; }
+        [NotMapped]
+        public string Panta_Descripcion { get; set; }
+
+        [NotMapped]
+        public int Panta_Id { get; set; }
     }
 }

@@ -30,7 +30,14 @@ namespace FrontendCNE.Controllers
         [HttpPost]
         public void AlgunaAccion(string id)
         {
-            HttpContext.Session.SetString("DNI", id);
+            try
+            {
+                HttpContext.Session.SetString("DNI", id);
+
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
 

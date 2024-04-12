@@ -17,6 +17,7 @@ namespace CNE.Common.Models
         public DateTime? Dep_FechaModificacion { get; set; }
         public bool? Dep_Estado { get; set; }
 
-       
+        public  ICollection<tbMunicipios> tbMunicipios { get; set; }
+
     }
 }
