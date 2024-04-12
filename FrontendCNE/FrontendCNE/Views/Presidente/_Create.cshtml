@@ -12,7 +12,7 @@
                     <div class="col-md-6">
 
                         <label for="Alc_id">Persona</label>
-                        <select asp-for="Per_Id" name="Per_Id" class="form-control">
+                        <select asp-for="Per_Id" name="Per_Id" class="form-control" required>
                             @foreach (var item in ViewBag.Personas)
                             {
                                 <option id="prueba" value="@item.Value">@item.Text</option>

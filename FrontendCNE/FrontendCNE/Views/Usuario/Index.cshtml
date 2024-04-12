@@ -4,6 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link rel="stylesheet" href="~/css/dataTables.dataTables.min.css">
 
 <h1>Usuarios</h1>
 
@@ -60,7 +61,7 @@
                             </button>
                         </div>
                     </div>
-                    </td>
+                </td>
             </tr>
         }
     </tbody>
@@ -125,16 +126,6 @@
 </div>
 
 
-
-
-
-
-
-
-<script src="~../../lib/jquery/dist/jquery.min.js"></script>
-
-<script src="~../../js/dataTables.min.js"></script>
-
 <script>
     $(document).ready(function () {
         let table = new DataTable('#myTable');
@@ -171,15 +162,15 @@
                 return result.json();
             }
         }).then(function (data) {
-            console.log(data.data);
+          
             var datos = data.data
-            console.log("hola");
+           
 
-            //var depa = datos[0];
+        
             var id = datos.usuar_Id
             var descripcion = datos.usuar_Usuario;
 
-            console.log(descripcion);
+           
             $("#Usuar_Usuario").val(descripcion);
 
         });
@@ -187,7 +178,7 @@
 
 
     function Eliminar(id) {
-        console.log(id)
+    
         $("#inputHidden").val(id);
         localStorage.setItem("inputHidden", id);
         $('#modalEliminar').modal('show');

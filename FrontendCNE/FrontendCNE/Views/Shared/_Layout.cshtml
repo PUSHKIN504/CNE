@@ -19,7 +19,7 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="~/images/favicon.png" />
     <link href="~/css/IziToast.css" rel="stylesheet" />
-
+   
 </head>
 <body>
     <div class="row" id="proBanner">
@@ -49,10 +49,10 @@
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
 
                             @*<a class="dropdown-item">*@
-                                <a class="nav-link dropdown-item " asp-controller="Home" asp-action="CerrarSesion">Logout</a>
-                                @*<i class="typcn typcn-power text-primary"></i>*@
-                                @*Logout
-                            </a>*@
+                            <a class="nav-link dropdown-item " asp-controller="Home" asp-action="CerrarSesion">Logout</a>
+                            @*<i class="typcn typcn-power text-primary"></i>*@
+                            @*Logout
+                                </a>*@
                         </div>
                     </li>
                 </ul>
@@ -184,10 +184,10 @@
 
                                         <li class="nav-item"> <a class="nav-link" asp-controller="Partido" asp-action="Index">Partido</a></li>
                                     }
-                                    @if (pantallas != null && pantallas.Contains("Presidentes") || pantallas.Contains("Admin"))
-                                    {
-                                        <li class="nav-item"> <a class="nav-link" asp-controller="Presidente" asp-action="Index">Presidentes</a></li>
-                                    }
+                                    @*@if (pantallas != null && pantallas.Contains("Presidentes") || pantallas.Contains("Admin"))
+                                        {
+                                            <li class="nav-item"> <a class="nav-link" asp-controller="Presidente" asp-action="Index">Presidentes</a></li>
+                                        }*@
                                     <li class="nav-item"> <a class="nav-link" asp-controller="Votacion" asp-action="Index">Votos</a></li>
                                     <li class="nav-item"> <a class="nav-link" asp-controller="Votacion" asp-action="Graficas">Graficas</a></li>
 
@@ -225,23 +225,29 @@
     </div>
     <!-- container-scroller -->
     <!-- base:js -->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
     <script src="~/vendors/js/vendor.bundle.base.js"></script>
     <!-- endinject -->
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+    @*<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>*@
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
     <script src="~/js/off-canvas.js"></script>
+    <script src="~/js/data-table.js"></script>
+    <script src="~/vendors/datatables.net/jquery.dataTables.js"></script>
     <script src="~/js/hoverable-collapse.js"></script>
     <script src="~/js/template.js"></script>
     <script src="~/js/settings.js"></script>
     <script src="~/js/todolist.js"></script>
+    @*<script src="~/js/form-validation.js"></script>*@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- endinject -->
     <!-- plugin js for this page -->
     <script src="~/vendors/progressbar.js/progressbar.min.js"></script>
-    @*<script src="vendors/chart.js/Chart.min.js"></script>*@
+    <script src="vendors/chart.js/Chart.min.js"></script>
     <!-- End plugin js for this page -->
     <!-- Custom js for this page-->
     <!-- <script src="js/dashboard.js"></script> -->

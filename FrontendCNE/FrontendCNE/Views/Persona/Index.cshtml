@@ -106,7 +106,7 @@
                 <div class="w-100" style="max-width: 250px">
                     <div class="d-flex w-100" style="gap: 5px;">
                         @*<button class="btn btn-outline-warning btn-sm editar-depa" data-depa-id="@item.Per_Id"><i class="fas fa-edit"></i>Editar</button>*@
-                        <a href="@Url.Action("Edit", "Persona", new { Per_Id = item.Per_Id })" class="btn btn-outline-warning btn-sm editar-depa">Editar <i class="fas fa-edit"></i></a>
+                        <a  class="btn btn-outline-warning btn-sm editar-depa" onclick="Ed('@item.Per_Id')">Editar <i class="fas fa-edit"></i></a>
 
 
                         <a href="@Url.Action("Details", "Persona", new { Per_Id = item.Per_Id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
@@ -164,14 +164,9 @@
 
 
 
-    $(".editar-depa").click(function () {
+    function Ed(id) {
         $('#modalEditar').modal('show');
-    });
-
-
-    $(".editar-depa").click(function () {
-        var id = $(this).data("depa-id");
-        var url = "https://localhost:44377/API/Departamento/Fill/" + id;
+        var url = "https://localhost:44377/API/Persona/Fill/" + id;
         fetch(url).then(function (result) {
             if (result.ok) {
                 return result.json();
@@ -190,6 +185,12 @@
             $("#Dep_Descripcion").val(descripcion);
 
         });
+    };
+
+
+    $(".editar-depa").click(function (id) {
+       
+      
     });
 
 

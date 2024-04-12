@@ -60,11 +60,11 @@ namespace FrontendCNE.Controllers
 
 
         [HttpGet("Persona/Edit/{id}")]
-        public async Task<IActionResult> Edit(string id)
+        public async Task<IActionResult> Edit(int id)
         {
             try
             {
-                var model = await _personasServices.ObtenerPersona();
+                var model = await _personasServices.ObtenerPersonaMindy(id);
                 return Json(model.Data);
             }
             catch (Exception ex)
