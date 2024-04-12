@@ -8,7 +8,7 @@
 <h1>Personas</h1>
 
 <p>
-    <button class="btn btn-primary" asp-action="Create" asp-controller="Persona">Nuevo</button>
+    <a class="btn btn-primary" asp-action="Create">Nuevo</a>
 </p>
 <table class="display table  table-striped table-hover  table-responsive"  cellspacing="0" width="100%" id="myTable">
     <thead>
@@ -41,9 +41,7 @@
                 @Html.DisplayNameFor(model => model.Per_Telefono)
             </th>
           
-            <th>
-                @Html.DisplayNameFor(model => model.EsC_Id)
-            </th>
+        
            
             <th>
                 @Html.DisplayNameFor(model => model.Mes_Mesa)
@@ -55,7 +53,6 @@
                 @Html.DisplayNameFor(model => model.Per_Voto)
             </th>
 
-            <th></th>
             <th> Acciones</th>
         </tr>
     </thead>
@@ -91,10 +88,7 @@
                 @Html.DisplayFor(modelItem => item.Per_Telefono)
             </td>
            
-            <td>
-                @Html.DisplayFor(modelItem => item.EsC_Id)
-            </td>
-           
+    
             <td>
                 @Html.DisplayFor(modelItem => item.Mes_Mesa)
             </td>

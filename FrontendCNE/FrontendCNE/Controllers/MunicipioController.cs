@@ -50,11 +50,15 @@ namespace FrontendCNE.Controllers
                 item.Mun_FechaCreacion = DateTime.Now;
                 item.Mun_Estado = true;
                 var list = await _municipioService.CrearMunucipio(item);
+                TempData["Exito"] = "La accion se realizo con exito";
+
                 return RedirectToAction("Index");
                 //return View(new List<MunicipioViewModel> { (MunicipioViewModel)list.Data } );
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return View(item);
             }
         }
@@ -88,6 +92,8 @@ namespace FrontendCNE.Controllers
                 var result = await _municipioService.EditarMunicipio(item);
                 if (result.Success)
                 {
+                    TempData["Exito"] = "La accion se realizo con exito";
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -97,6 +103,8 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return View(item);
                 throw;
             }
@@ -112,6 +120,7 @@ namespace FrontendCNE.Controllers
                 var result = await _municipioService.EliminarMunicpio(id);
                 if (result.Success)
                 {
+                    TempData["Exito"] = "La accion se realizo con exito";
 
                     return RedirectToAction(nameof(Index));
                 }
@@ -123,6 +132,7 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
 
                 return RedirectToAction(nameof(Index));
             }
@@ -143,6 +153,8 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return RedirectToAction("Index", "Home");
             }
 

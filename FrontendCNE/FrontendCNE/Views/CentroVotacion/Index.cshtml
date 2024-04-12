@@ -47,7 +47,7 @@
                     <div class="d-flex w-100" style="gap: 5px;">
                         <button class="btn btn-outline-warning btn-sm editar-depa" data-depa-id="@item.CeV_Id"><i class="fas fa-edit"></i>Editar</button>
 
-                        <a href="@Url.Action("Details", "EstadoCivil", new { EsC_Id = item.CeV_Id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
+                        <a href="@Url.Action("Details", "CentroVotacion", new { EsC_Id = item.CeV_Id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
 
                         <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.CeV_Id')">
                             <i class="bi bi-trash-fill"></i>

@@ -1,0 +1,62 @@
+﻿
+@model FrontendCNE.Models.EstadoCivilViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Detalle</h5>
+    </div>
+    <div class="card-body">
+
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.EsC_Descripcion)</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.EsC_Id)</strong>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.EsC_Descripcion)
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.EsC_Id)
+                </div>
+            </div>
+        </div>
+
+        <h5 class="card-title mt-5">Auditoria</h5>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Creación</td>
+                    <td>@Html.DisplayFor(model => model.EsC_UsuarioCreacion)</td>
+                    <td>@Html.DisplayFor(model => model.EsC_FechaCreacion)</td>
+                </tr>
+                <tr>
+                    <td>Modificación</td>
+                    <td>@Html.DisplayFor(model => model.EsC_UsuarioModificacion)</td>
+                    <td>@Html.DisplayFor(model => model.EsC_FechaModificacion)</td>
+                </tr>
+            </tbody>
+        </table>
+        <a asp-controller="EstadoCivil" asp-action="Index" class="btn btn-primary">Regresar</a>
+
+    </div>
+</div>
+

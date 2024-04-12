@@ -75,7 +75,7 @@
             pantallasSeleccionadas.push($(this).val());
         });
         var formData = {
-            Roles_Id: 0,
+            Rol_Id: @Model.Roles_Id,
             txtRol: rol,
             pantallasSeleccionadas: pantallasSeleccionadas,
         };
@@ -88,7 +88,7 @@
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function (response) {
-                window.location.href = 'RolListado';
+                window.location.href = 'Rol';
             },
             error: function (xhr, status, error) {
                 console.error(error);

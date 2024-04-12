@@ -113,7 +113,6 @@ namespace CNE.DataAccess.Repository
                 parametro.Add("@Usuar_Contrasena ", item.Usuar_Contrasena);
                 parametro.Add("@Per_Id", item.Per_Id);
                 parametro.Add("@Roles_Id", item.Roles_Id);
-                parametro.Add("@Usuar_Admin", item.Usuar_Admin);
                 parametro.Add("@Usuar_UsuarioCreacion", 1);
                 parametro.Add("@Usuar_FechaCreacion", item.Usuar_FechaCreacion);
 
@@ -166,7 +165,7 @@ namespace CNE.DataAccess.Repository
             {
                 var parameter = new DynamicParameters();
                 parameter.Add("@Usuar_Id", item.Usuar_Id);
-                parameter.Add("@Usuar_Contrasena", item.Usuar_Contrasena);
+                parameter.Add("@Usuar_Contrasena", item.Usua_Contrasenia);
                
 
                 var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
@@ -178,6 +177,44 @@ namespace CNE.DataAccess.Repository
 
 
         }
+
+
+
+
+
+
+
+
+
+
+        public RequestStatus UpdateU(tbUsuarios item)
+        {
+
+
+            string sql = ScriptsBaseDeDatos.Actualizar;
+
+            using (var db = new SqlConnection(CNEContext.ConnectionString))
+            {
+                var parameter = new DynamicParameters();
+                parameter.Add("@Usuar_Id", item.Usuar_Id);
+                parameter.Add("@Usuar_Usuario", item.Usuar_Usuario);
+                parameter.Add("@Per_Id", item.Per_Id);
+                parameter.Add("@Roles_Id", item.Roles_Id);
+                parameter.Add("@Usuar_UsuarioModificacion", 1);
+                parameter.Add("@Usuar_FechaModificacion",DateTime.Now);
+
+
+
+                var result = db.Execute(sql, parameter, commandType: CommandType.StoredProcedure);
+                string mensaje = (result == 1) ? "exito" : "error";
+                return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };
+
+            }
+
+
+
+        }
+
         public tbUsuarios List(int id)
         {
 

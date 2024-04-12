@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -42,5 +43,21 @@ namespace CNE.Common.Models
         [Required(ErrorMessage = "El Campo {0} es requerido")]
         [NotMapped]
         public string Partido { get; set; }
+        [NotMapped]
+        public string partido { get; set; }
+
+
+
+
+        public IFormFile FotoP { get; set; }
+
+        [NotMapped]
+        public string Par_Nombre { get; set; }
+
+
+
+
+        [NotMapped]
+        public string Per_Id { get; set; }
     }
 }

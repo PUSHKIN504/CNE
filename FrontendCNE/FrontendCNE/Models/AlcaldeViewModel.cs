@@ -45,10 +45,21 @@ namespace FrontendCNE.Models
 
 
         public IFormFile FotoP { get; set; }
+
+        [Display(Name = "Nombre")]
+  
+        [NotMapped]
+        public string partido { get; set; }
+
         [Display(Name = "Nombre")]
         [Required(ErrorMessage = "El Campo {0} es requerido")]
 
+
         [NotMapped]
         public string Par_Nombre { get; set; }
+        [NotMapped]
+        public string Per_Id { get; set; }
+        [NotMapped]
+        public string Per_Nombre { get; set; }
     }
 }

@@ -33,11 +33,8 @@ namespace CNE.DataAccess.Repository
                 parametro.Add("@Per_Telefono", item.Per_Telefono);
                 parametro.Add("@Per_UsuarioCreacion", item.Per_UsuarioCreacion);
                 parametro.Add("@Per_FechaCreacion", item.Per_FechaCreacion);
-                parametro.Add("@Mes_Id", item.Mes_Id);
-
-
-                parametro.Add("@Mes_Mesa", item.Mes_Mesa);
                 parametro.Add("@EsC_Id", item.EsC_Id);
+                parametro.Add("@Mes_Id", item.Mes_Id);
                 var result = db.Execute(sql, parametro, commandType: CommandType.StoredProcedure);
                 string mensaje = (result == 1) ? "Exito" : "Error";
                 return new RequestStatus { CodeStatus = result, MessageStatus = mensaje };

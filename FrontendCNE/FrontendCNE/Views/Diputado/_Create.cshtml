@@ -1,0 +1,157 @@
+﻿@model CNE.Common.Models.DiputadoViewModel
+@{ ViewData["Title"] = "tbDiputados".Substring(2);
+    ViewData["ViewName"] = "_Create".Substring(1); }
+<h4>Agregar Partido</h4>
+<hr />
+<div class="modal-content">
+    <div class="modal-body ">
+        <form asp-action="@ViewData["ViewName"]" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <label for="Alc_id">Persona</label>
+                        <select asp-for="Per_Id" name="Per_Id" class="form-control">
+                            @foreach (var item in ViewBag.Personas)
+                            {
+                                <option id="prueba" value="@item.Value">@item.Text</option>
+
+                            }
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label asp-for="Par_id">Partido</label>
+                        <select id="Par_id" name="Par_id" class="form-control">
+                           
+                        </select>
+                    </div>
+
+
+                    <select id="esdra" name="esdra"class="form-control">                        
+                    </select>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <label for="formFile" class="form-label">Elija una imagen</label>
+                        <input asp-for="FotoP" class="form-control" type="file" id="formFile">
+
+
+                        <span asp-validation-for="FotoP" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a asp-controller="Diputado" class="btn btn-secondary" asp-action="Index">Regresar</a>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        console.log('crear');
+
+
+        var prueba = document.getElementById("prueba");
+
+
+
+        fetch('https://localhost:44377/API/Partido/List')
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            }).then(function (data) {
+                console.log("hols" + JSON.stringify(data));
+
+                data.data.forEach(function (row) {
+
+                    console.log(row);
+                    $("#Par_id").append('<option value=' + row.par_id + '> ' + row.par_Nombre + '</option>');
+                  /*  $("#esdra").append('<option value=' + row.par_id + '> ' + row.par_Nombre + '</option>');*/
+
+
+                });
+
+            }).catch(error => console.log('Authorization failed : ' + error.message));
+
+
+    })
+
+
+    $("#Par_id").change(function () {
+        var id = $("#Par_id").val();
+        console.log("MINDY VAMOSSSS" + id);
+    });
+
+
+   
+    //async function ObtenerDepto() {
+    //    try {
+    //        const response = await fetch('https://localhost:44377/API/Partido/List');
+
+    //        //if (!response.ok) {
+    //        //    throw new Error('Error al obtener Partido');
+    //        //}
+    //        const data = await response.json();
+    //        console.log('departamentos')
+    //        console.log(data)
+    //        console.log(data.data)
+    //        $("#Parc_id").empty().append('<option value="">Seleccione una opcion</option>');
+    //        $.each(data, function (key, depto) {
+    //            $("#Parc_id").append(`<option value="${depto.par_id}">${depto.par_Nombre}</option>`);
+    //        });
+
+    //    } catch (error) {
+    //        console.error(error);
+    //    }
+    //}
+
+    //ObtenerDepto();
+
+    //async function obtenerPersona() {
+    //    try {
+    //        const response = await fetch('https://localhost:44377/API/Persona/List');
+    //        if (!response.ok) {
+    //            throw new Error('Error al obtener Partido');
+    //        }
+    //        const data = await response.json();
+    //        console.log('Personas')
+    //        console.log(data)
+    //        $("#Per_Id").empty().append('<option value="">Seleccione una opcion</option>');
+    //        $.each(data, function (key, perso) {
+    //            $("#Per_Id").append(`<option value="${perso.per_Id}">${perso.per_Nombre}</option>`);
+    //        });
+
+    //    } catch (error) {
+    //        console.error(error);
+    //    }
+    //}
+
+    //obtenerPersona();
+</script>
+
+
+

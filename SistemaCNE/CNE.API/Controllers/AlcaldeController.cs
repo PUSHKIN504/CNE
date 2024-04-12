@@ -47,6 +47,7 @@ namespace CNE.API.Controllers
                 Alc_FechaCreacion = item.Alc_FechaCreacion,
                 Par_id = item.Par_id
 
+
             };
             var list = _votacionesServices.CrearAlcalde(modelo);
             return Ok(list);

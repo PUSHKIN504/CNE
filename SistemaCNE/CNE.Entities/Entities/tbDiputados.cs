@@ -26,6 +26,9 @@ namespace CNE.Entities.Entities
         [NotMapped]
         public string Par_ImgUrl { get; set; }
         [NotMapped]
+        public string partido { get; set; }
+
+        [NotMapped]
         public string Per_Nombre { get; set; }
         [NotMapped]
         public string Per_Apellido { get; set; }

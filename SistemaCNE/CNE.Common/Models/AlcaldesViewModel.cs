@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace CNE.Common.Models
 {
-    class AlcaldesViewModel
+   public class AlcaldesViewModel
     {
+        [NotMapped]
+        public string Per_Id { get; set; }
         public int Alc_Id { get; set; }
         public int? Alc_Votos { get; set; }
         public string Alc_ImgUrl { get; set; }
@@ -20,11 +22,23 @@ namespace CNE.Common.Models
         public int? Par_id { get; set; }
         [NotMapped]
         public string Par_ImgUrl { get; set; }
+      
         [NotMapped]
         public string Per_Nombre { get; set; }
         [NotMapped]
         public string Per_Apellido { get; set; }
         [NotMapped]
         public string Mun_Descripcion { get; set; }
+        [NotMapped]
+        public string partido { get; set; }
+
+        
+        [NotMapped]
+        public string Par_Nombre { get; set; }
+
+
+        
+   
+  
     }
 }

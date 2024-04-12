@@ -1,0 +1,62 @@
+﻿
+@model CNE.Common.Models.UsuarioViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Detalle</h5>
+    </div>
+    <div class="card-body">
+
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.Usuar_Usuario)</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.Roles_Id)</strong>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Usuar_Usuario)
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Roles_Id)
+                </div>
+            </div>
+        </div>
+
+        <h5 class="card-title mt-5">Auditoria</h5>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Creación</td>
+                    <td>@Html.DisplayFor(model => model.Usuar_UsuarioCreacion)</td>
+                    <td>@Html.DisplayFor(model => model.Usuar_FechaCreacion)</td>
+                </tr>
+                <tr>
+                    <td>Modificación</td>
+                    <td>@Html.DisplayFor(model => model.Usuar_UsuarioModificacion)</td>
+                    <td>@Html.DisplayFor(model => model.Usuar_FechaModificacion)</td>
+                </tr>
+            </tbody>
+        </table>
+        <a asp-controller="Usuario" asp-action="Index" class="btn btn-primary">Regresar</a>
+
+    </div>
+</div>
+

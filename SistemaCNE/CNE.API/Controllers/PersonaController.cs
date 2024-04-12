@@ -41,21 +41,20 @@ namespace CNE.API.Controllers
             var model = _mapper.Map<tbPersonas>(item);
             var modelo = new tbPersonas()
             {
-                Per_CedulaIdentidad= item.Per_CedulaIdentidad,
-            Per_Nombre = item.Per_Nombre,
-            Per_Apellido= item.Per_Apellido,
-           Per_FechaNacimiento= item.Per_FechaNacimiento,
-           Per_Sexo= item.Per_Sexo,
-            Per_Direccion=item.Per_Direccion,
-            Mun_Id= item.Mun_Id,
-            Per_Telefono= item.Per_Telefono,
-                Mes_Mesa = item.Mes_Mesa,
-                Mes_Id = item.Mes_Id,
+                Per_CedulaIdentidad = item.Per_CedulaIdentidad,
+                Per_Nombre = item.Per_Nombre,
+                Per_Apellido = item.Per_Apellido,
+                Per_FechaNacimiento = item.Per_FechaNacimiento,
+                Per_Sexo = item.Per_Sexo,
+                Per_Direccion = item.Per_Direccion,
+                Mun_Id = item.Mun_Id,
+                Per_Telefono = item.Per_Telefono,
+                Mes_Id =item.Mes_Id,
 
-                
+
                 EsC_Id = item.EsC_Id,
-            Per_UsuarioCreacion = item.Per_UsuarioCreacion,
-            Per_FechaCreacion= item.Per_FechaCreacion
+                Per_UsuarioCreacion = 1,
+                Per_FechaCreacion = DateTime.Now
            
         };
             var list = _generalServices.Insertarpersona(modelo);

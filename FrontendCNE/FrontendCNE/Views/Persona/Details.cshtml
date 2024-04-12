@@ -1,5 +1,5 @@
 ﻿
-@model FrontendCNE.Models.MunicipioViewModel
+@model FrontendCNE.Models.PersonasViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -17,25 +17,25 @@
         <div class="container-sm">
             <div class="row">
                 <div class="col-md-4">
-                    <strong>@Html.DisplayNameFor(model => model.Mun_Id)</strong>
+                    <strong>@Html.DisplayNameFor(model => model.Per_Nombre)</strong>
                 </div>
                 <div class="col-md-4">
-                    <strong>@Html.DisplayNameFor(model => model.Mun_Descripcion)</strong>
+                    <strong>@Html.DisplayNameFor(model => model.Per_Apellido)</strong>
                 </div>
                 <div class="col-md-4">
-                    <strong>@Html.DisplayNameFor(model => model.Dep_Id)</strong>
+                    <strong>@Html.DisplayNameFor(model => model.Per_Voto)</strong>
                 </div>
             </div>
 
             <div class="row mt-3">
                 <div class="col-md-4">
-                    @Html.DisplayFor(model => model.Mun_Id)
+                    @Html.DisplayFor(model => model.Per_Nombre)
                 </div>
                 <div class="col-md-4">
-                    @Html.DisplayFor(model => model.Mun_Descripcion)
+                    @Html.DisplayFor(model => model.Per_Apellido)
                 </div>
                 <div class="col-md-4">
-                    @Html.DisplayFor(model => model.Dep_Id)
+                    @Html.DisplayFor(model => model.Per_Voto)
                 </div>
             </div>
         </div>
@@ -52,13 +52,13 @@
             <tbody>
                 <tr>
                     <td>Creación</td>
-                    <td>@Html.DisplayFor(model => model.Mun_UsuarioCreacion)</td>
-                    <td>@Html.DisplayFor(model => model.Mun_FechaCreacion)</td>
+                    <td>@Html.DisplayFor(model => model.Per_UsuarioCreacion)</td>
+                    <td>@Html.DisplayFor(model => model.Per_FechaCreacion)</td>
                 </tr>
                 <tr>
                     <td>Modificación</td>
-                    <td>@Html.DisplayFor(model => model.Mun_UsuarioModificacion)</td>
-                    <td>@Html.DisplayFor(model => model.Mun_FechaModificacion)</td>
+                    <td>@Html.DisplayFor(model => model.Per_UsuarioModificacion)</td>
+                    <td>@Html.DisplayFor(model => model.Per_FechaModificacion)</td>
                 </tr>
             </tbody>
         </table>

@@ -92,7 +92,7 @@ namespace FrontendCNE.Services
                 throw;
             }
         }
-        public async Task<ServiceResult> ObtenerMesaMindy(int EsC_Id)
+        public async Task<ServiceResult> ObtenerMesaMindy(int Mes_Id)
         {
             var result = new ServiceResult();
             try
@@ -101,7 +101,7 @@ namespace FrontendCNE.Services
 
                 var response = await _api.Get<IEnumerable<MesaViewModel>, MesaViewModel>(req =>
                 {
-                    req.Path = $"API/Mesa/Fill/{EsC_Id}";
+                    req.Path = $"API/Mesa/Fill/{Mes_Id}";
                 });
                 if (!response.Success)
                 {

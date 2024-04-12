@@ -135,20 +135,26 @@ namespace CNE.API.Controllers
 
             var rol = new tbRoles()
             {
+                Roles_Id = formData.Rol_Id,
                 Roles_Descripcion = formData.txtRol,
-                Roles_UsuarioModificacion = 1, 
+                Roles_UsuarioModificacion = 1,
                 Roles_FechaModificacion = DateTime.Now,
 
             };
 
-            var id = _AccesoServices.ObtenerId(formData.txtRol, (int)rol.Roles_UsuarioModificacion, (DateTime)rol.Roles_FechaModificacion);
-            var role = id.Data;
-            int RolId = 0;
-            foreach (var item in role)
+            var id = _AccesoServices.ObtenerId((int)rol.Roles_UsuarioModificacion, (DateTime)rol.Roles_FechaModificacion);
+            var role = id.Data as IEnumerable<tbRoles>;
+
+            var Rol = new tbRoles()
             {
-                RolId = item.Rol_Id;
-            }
-            _AccesoServices.ActualizarRol(rol);
+                Roles_Id = formData.Rol_Id,
+                Roles_Descripcion = formData.txtRol,
+                Roles_UsuarioModificacion = 1,
+                Roles_FechaModificacion = DateTime.Now,
+
+            };
+
+            _AccesoServices.ActualizarRol(Rol);
             _AccesoServices.EliminarPantallaPorRol(formData.Rol_Id);
 
 
@@ -157,7 +163,7 @@ namespace CNE.API.Controllers
                 var modelo2 = new tbPantallasPorRoles()
                 {
                     Panta_Id = pantalla,
-                    Roles_Id = RolId,
+                    Roles_Id = formData.Rol_Id,
                     Papro_UsuarioCreacion = 1,
                     Papro_FechaCreacion = DateTime.Now
                 };
@@ -166,21 +172,20 @@ namespace CNE.API.Controllers
             }
 
             return Json(1);
-
         }
 
 
 
-        [HttpDelete("Delete")]
-        public IActionResult Delete(int id)
-        {
+    
 
-            var list = _AccesoServices.EliminarRol(id);
+
+        [HttpDelete("DeleteRol")]
+        public IActionResult Delete(int Rol_id)
+        {
+            _AccesoServices.EliminarPantallaPorRol(Rol_id);
+            var list = _AccesoServices.EliminarRol(Rol_id);
             return Ok(list);
         }
-
-
-
 
 
 

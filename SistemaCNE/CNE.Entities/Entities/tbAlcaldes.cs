@@ -21,8 +21,16 @@ namespace CNE.Entities.Entities
         public DateTime Alc_FechaCreacion { get; set; }
         public int? Alc_UsuarioModificacion { get; set; }
         public DateTime? Alc_FechaModificacion { get; set; }
+        [NotMapped]
+        public string partido { get; set; }
+
         public bool? Alc_Estado { get; set; }
-      
+        [NotMapped]
+        public string Par_Nombre { get; set; }
+
+
+
+   
         public int? Par_id { get; set; }
         [NotMapped]
         public string Par_ImgUrl { get; set; }
@@ -32,11 +40,15 @@ namespace CNE.Entities.Entities
         public string Per_Apellido { get; set; }
         [NotMapped]
         public string Mun_Descripcion { get; set; }
+        [NotMapped]
+        public string Per_Id { get; set; }
 
         public virtual tbPersonas Alc { get; set; }
         public virtual tbUsuarios Alc_UsuarioCreacionNavigation { get; set; }
         public virtual tbUsuarios Alc_UsuarioModificacionNavigation { get; set; }
         public virtual tbPartidos Par { get; set; }
         public virtual ICollection<tbVotos> tbVotos { get; set; }
+
+    
     }
 }
