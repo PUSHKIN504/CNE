@@ -163,6 +163,7 @@
                                 dataType: 'json',
                                 success: function (response) {
                                     console.log(response.data);
+
                                     var table = $('#myTable').DataTable({
                                         "data": response.data,
                                         "columns": [{
@@ -197,7 +198,8 @@
                                                 $(row).find("td:eq(0)").addClass('details-control');
                                             }
                                         }
-                                    });//cierre datatable
+                                    });
+                                    //cierre datatable
                                     $('#myTable tbody').on('click', 'td.details-control', function () {
                                         var tr = $(this).closest('tr');
                                         var row = table.row(tr);
@@ -214,7 +216,8 @@
                                 error: function (xhr, status, error) {
                                     console.error(error);
                                 }
-                            });//cierre del ajax
+                            });
+                            //cierre del ajax
                             function format(d) {
                                 let fila = '';
                                 d.tbMunicipios.forEach(function (ciudad) {
