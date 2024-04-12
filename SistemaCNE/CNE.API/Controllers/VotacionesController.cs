@@ -61,25 +61,44 @@ namespace CNE.API.Controllers
         [HttpPost("Voto/Create")]
         public IActionResult Insert(VotoViewModel item)
         {
-            var splitLista = item.listaEnteros.Split(',');
-            List<int> listaEnteros = new List<int>();
-            foreach (var num in splitLista)
+            try
             {
-                listaEnteros.Add(Convert.ToInt32(num));
+                if ( item.listaEnteros != null)
+                {
+                    var splitLista = item.listaEnteros.Split(',');
+                    List<int> listaEnteros = new List<int>();
+                    foreach (var num in splitLista)
+                    {
+                        listaEnteros.Add(Convert.ToInt32(num));
+                    }
+                    var model = _mapper.Map<tbVotos>(item);
+
+                    var modelo = new tbVotos()
+                    {
+                        dni = item.dni,
+                        Pre_Id = item.Pre_Id,
+                        Mes_Id = item.Mes_Id,
+                        Alc_Id = item.Alc_Id,
+                    };
+                    var list = _votacionesServices.InsertarVoto(modelo);
+
+                    GuardarDiputados(listaEnteros);
+                    return Ok(list);
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+
+                }
+
             }
-            var model = _mapper.Map<tbVotos>(item);
-
-            var modelo = new tbVotos()
+            catch (Exception e)
             {
-                dni = item.dni,
-                Pre_Id = item.Pre_Id,
-                Mes_Id = item.Mes_Id,
-                Alc_Id = item.Alc_Id,
-            };
-            var list = _votacionesServices.InsertarVoto(modelo);
 
-            GuardarDiputados(listaEnteros);
-            return Ok(list);
+                return RedirectToAction("Index");
+
+            }
+
         }
 
         [HttpPost("Diputados/Create")]
