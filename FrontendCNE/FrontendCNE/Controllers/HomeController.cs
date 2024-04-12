@@ -102,6 +102,13 @@ namespace FrontendCNE.Controllers
 
             return Ok(list.Data);
         }
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult CerrarSesion()
+        {
+            int num = 0;
+            HttpContext.Session.SetString("roles", num.ToString());
+            return View("Login");
+        }
 
         public IActionResult Index()
         {
@@ -118,6 +125,10 @@ namespace FrontendCNE.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+
 
     }
 }

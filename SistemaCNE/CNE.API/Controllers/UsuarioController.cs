@@ -69,10 +69,9 @@ namespace CNE.API.Controllers
             {
                 Usuar_Usuario = item.Usuar_Usuario,
                 Usuar_Contrasena = item.Usuar_Contrasena,
-                Per_Id = item.Per_Id,
+                Per_Id = 1,
                 Roles_Id = item.Roles_Id,
-                Usuar_Admin = item.Usuar_Admin,
-                Usuar_UsuarioCreacion = item.Usuar_UsuarioCreacion,
+                Usuar_UsuarioCreacion = 1,
                 Usuar_FechaCreacion = item.Usuar_FechaCreacion
             };
             var list = _AccesoServices.InsertarUsuario(modelo);
@@ -102,9 +101,9 @@ namespace CNE.API.Controllers
         }
 
 
-        [HttpPut("Edit")]
+        [HttpPut("EditC")]
 
-        public IActionResult Update(UsuarioViewModel item)
+        public IActionResult UpdateC(UsuarioViewModel item)
         {
             _mapper.Map<tbUsuarios>(item);
             var modelo = new tbUsuarios()
@@ -117,5 +116,28 @@ namespace CNE.API.Controllers
             var list = _AccesoServices.cotra(modelo);
             return Ok(list);
         }
+
+
+
+
+        [HttpPut("Edit")]
+
+        public IActionResult Update(UsuarioViewModel item)
+        {
+            _mapper.Map<tbUsuarios>(item);
+            var modelo = new tbUsuarios()
+            {
+                Usuar_Id = item.Usuar_Id,
+                Usuar_Usuario = item.Usuar_Usuario,
+
+                Per_Id = item.Per_Id,
+                Roles_Id = item.Roles_Id,
+                Usuar_UsuarioModificacion = 1,
+                Usuar_FechaModificacion = DateTime.Now
+            };
+            var list = _AccesoServices.Editar(modelo);
+            return Ok(list);
+        }
+
     }
     }

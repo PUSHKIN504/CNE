@@ -30,6 +30,7 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+
                 return RedirectToAction("Index", "Home");
             }
         }
@@ -50,10 +51,14 @@ namespace FrontendCNE.Controllers
                 item.Mes_FechaCreacion = DateTime.Now;
                 item.Mes_Estado = true;
                 var list = await _mesaService.CrearMesa(item);
+                TempData["Exito"] = "La accion se realizo con exito";
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return View(item);
             }
         }
@@ -65,10 +70,14 @@ namespace FrontendCNE.Controllers
             try
             {
                 var model = await _mesaService.ObtenerMesa();
+                TempData["Exito"] = "La accion se realizo con exito";
+
                 return Json(model.Data);
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return RedirectToAction("Index");
             }
         }
@@ -86,6 +95,8 @@ namespace FrontendCNE.Controllers
                 var result = await _mesaService.EditarMesa(item);
                 if (result.Success)
                 {
+                    TempData["Exito"] = "La accion se realizo con exito";
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -95,6 +106,8 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return View(item);
                 throw;
             }
@@ -110,6 +123,7 @@ namespace FrontendCNE.Controllers
                 var result = await _mesaService.EliminarMesa(id);
                 if (result.Success)
                 {
+                    TempData["Exito"] = "La accion se realizo con exito";
 
                     return RedirectToAction(nameof(Index));
                 }
@@ -121,26 +135,29 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
 
                 return RedirectToAction(nameof(Index));
             }
         }
 
 
-        public async Task<IActionResult> Details(int EsC_Id)
+        public async Task<IActionResult> Details(int Mes_Id)
         {
             try
             {
-                var listd = await _mesaService.ObtenerMesaMindy(EsC_Id);
+                var listd = await _mesaService.ObtenerMesaMindy(Mes_Id);
                 if (listd == null)
                 {
                     return NotFound();
                 }
+
                 return View(listd.Data);
 
             }
             catch (Exception ex)
             {
+
                 return RedirectToAction("Index", "Home");
             }
 

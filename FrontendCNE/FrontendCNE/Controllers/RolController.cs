@@ -66,10 +66,14 @@ namespace FrontendCNE.Controllers
             {
                
                 var list = await _RolService.CrearPantallaporRol(formData);
+                TempData["Exito"] = "La accion se realizo con exito";
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return RedirectToAction("Index");
             }
 
@@ -158,7 +162,7 @@ namespace FrontendCNE.Controllers
                 var result = await _RolService.EliminarRol(id);
                 if (result.Success)
                 {
-
+                    TempData["Exito"] = "No se puede eliminar el rol por que tiene dependencias";
                     return RedirectToAction(nameof(Index));
                 }
                 else
@@ -169,6 +173,7 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
 
                 return RedirectToAction(nameof(Index));
             }
@@ -180,11 +185,11 @@ namespace FrontendCNE.Controllers
 
 
         [HttpGet("UpdateRol")]
-        public async Task<IActionResult> Edit(int Roles_id)
+        public async Task<IActionResult> Edit(int Roles_Id)
         {
             try
             {
-                var apiUrl = "https://localhost:44377/API/Rol/UpdateRol?Roles_Id=" + Roles_id; 
+                var apiUrl = "https://localhost:44377/API/Rol/UpdateRol?Roles_Id=" + Roles_Id; 
                 using (var httpClient = new HttpClient())
                 {
                     var response = await httpClient.GetAsync(apiUrl);
@@ -192,7 +197,9 @@ namespace FrontendCNE.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         var content = await response.Content.ReadAsStringAsync();
-                        var rolData = JsonConvert.DeserializeObject<RolViewModel>(content); 
+                        var rolData = JsonConvert.DeserializeObject<RolViewModel>(content);
+
+                        TempData["Exito"] = "Accion exitosa";
                         return View(rolData);
                     }
                     else
@@ -204,6 +211,8 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return RedirectToAction("Error", "Home");
             }
         }

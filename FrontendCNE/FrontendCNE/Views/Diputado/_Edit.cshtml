@@ -1,0 +1,86 @@
+﻿@model CNE.Common.Models.DiputadoViewModel
+
+<h4>Alcaldes</h4>
+<hr />
+<div class="modal-content">
+    <div class="modal-body ">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="Per_Id">Persona</label>
+                        <select id="Per_Id" name="Per_Id" class="form-control">
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label for="Par_id">Partido</label>
+                        <select id="Par_id" name="Par_id" class="form-control">
+                            <option value="">Seleccionar</option>
+                        </select>
+                    </div>
+
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <label for="formFile" class="form-label">Elija una imagen</label>
+                        <input asp-for="FotoP" class="form-control" type="file" id="formFile">
+
+
+                        <span asp-validation-for="FotoP" class="text-danger"></span>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+           
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-controller="Alcalde" class="btn btn-secondary" asp-action="Index">Regresar</a>
+
+            </div>
+        </form>
+
+    </div>
+    </div>
+
+    <script>
+
+       
+
+
+        //async function ObtenerDepto2() {
+        //    try {
+        //        const response = await fetch('https://localhost:44377/API/Partido/List');
+        //        if (!response.ok) {
+        //            throw new Error('Error al obtener Alcaldes');
+        //        }
+        //        const data = await response.json();
+        //        console.log(data)
+        //        $("#Par_id").empty().append('<option value="">Seleccione una opcion</option>');
+        //        $.each(data, function (key, alca) {
+        //            console.log(alca);
+        //            $("#Par_id").append(`<option value="${alca.par_id}">${alca.par_Nombre}</option>`);
+        //        });
+
+        //    } catch (error) {
+        //        console.error(error);
+        //    }
+        //}
+        //ObtenerDepto2();
+
+    </script>
+
+

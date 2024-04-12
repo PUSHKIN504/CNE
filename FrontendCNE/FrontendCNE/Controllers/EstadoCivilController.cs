@@ -56,7 +56,7 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Error"] = "Error al crear el departamento.";
+                TempData["Error"] = "Error al realizar la accion.";
 
                 return View(item);
             }
@@ -69,10 +69,14 @@ namespace FrontendCNE.Controllers
             try
             {
                 var model = await _estadoCivilServices.ObtenerEstadoCivil();
+                TempData["Exito"] = "La accion se realizo con exito";
+
                 return Json(model.Data);
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return RedirectToAction("Index");
             }
         }
@@ -89,6 +93,8 @@ namespace FrontendCNE.Controllers
                 var result = await _estadoCivilServices.EditarEstadoCivil(item);
                 if (result.Success)
                 {
+                    TempData["Exito"] = "La accion se realizo con exito";
+
                     return RedirectToAction("Index");
                 }
                 else
@@ -98,6 +104,8 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return View(item);
                 throw;
             }
@@ -113,17 +121,20 @@ namespace FrontendCNE.Controllers
                 var result = await _estadoCivilServices.EliminarEstadoCivil(id);
                 if (result.Success)
                 {
+                    TempData["Exito"] = "La accion se realizo con exito";
 
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
+                    TempData["Error"] = "Error al realizar la accion.";
 
                     return View("Error");
                 }
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
 
                 return RedirectToAction(nameof(Index));
             }

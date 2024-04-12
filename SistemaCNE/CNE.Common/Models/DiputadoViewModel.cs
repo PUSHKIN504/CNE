@@ -24,5 +24,8 @@ namespace CNE.Common.Models
         public string Per_Nombre { get; set; }
         [NotMapped]
         public string Per_Apellido { get; set; }
+        [NotMapped]
+        public string partido { get; set; }
+
     }
 }

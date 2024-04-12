@@ -1,0 +1,88 @@
+﻿@model CNE.Common.Models.UsuarioViewModel
+@{ ViewData["Title"] = "tbUsuarios".Substring(2);
+    ViewData["ViewName"] = "_Create".Substring(1); }
+<h4>Agregar Usuario</h4>
+<hr />
+<div class="row">
+    <div class="col" style="max-width: 600px;">
+        <form asp-action="@ViewData["ViewName"]">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Usuar_Usuario" class="control-label"></label>
+                            <input asp-for="Usuar_Usuario" class="form-control" />
+                            <span asp-validation-for="Usuar_Usuario" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Usuar_Contrasena" class="control-label"></label>
+                            <input asp-for="Usuar_Contrasena" class="form-control" />
+                            <span asp-validation-for="Usuar_Contrasena" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <label asp-for="Roles_Id">Rol</label>
+                <select id="Roles_Id" name="Roles_Id" class="form-control">
+                </select>
+            </div>
+            
+            <div class="form-group">
+
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        console.log('crear');
+
+
+        var prueba = document.getElementById("prueba");
+
+
+
+        fetch('https://localhost:44377/API/Rol/List')
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            }).then(function (data) {
+                console.log("hols" + JSON.stringify(data));
+
+                data.data.forEach(function (row) {
+
+                    console.log(row);
+                    $("#Roles_Id").append('<option value=' + row.roles_Id + '> ' + row.roles_Descripcion + '</option>');
+                  /*  $("#esdra").append('<option value=' + row.par_id + '> ' + row.par_Nombre + '</option>');*/
+
+
+                });
+
+            }).catch(error => console.log('Authorization failed : ' + error.message));
+
+
+    })
+
+
+    $("#Roles_Id").change(function () {
+        var id = $("#Roles_Id").val();
+        console.log("MINDY VAMOSSSS" + id);
+    });
+    </script>

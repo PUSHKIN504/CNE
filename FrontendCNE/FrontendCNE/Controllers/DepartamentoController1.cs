@@ -54,10 +54,14 @@ namespace FrontendCNE.Controllers
                 item.Dep_FechaCreacion = DateTime.Now;
                 item.Depar_Estado = true;
                 var list = await _departamentoServicios.CrearDepartamento(item);
+                TempData["Exito"] = "La accion se realizo con exito";
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return View(item);
             }
         }
@@ -69,10 +73,14 @@ namespace FrontendCNE.Controllers
             try
             {
                 var model = await _departamentoServicios.ObtenerDepartamento();
+                TempData["Exito"] = "La accion se realizo con exito";
+
                 return Json(model.Data);
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return RedirectToAction("Index");
             }
         }
@@ -98,6 +106,8 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return View(item);
                 throw;
             }
@@ -113,6 +123,7 @@ namespace FrontendCNE.Controllers
                 var result = await _departamentoServicios.EliminarDepartamento(id);
                 if (result.Success)
                 {
+                    TempData["Exito"] = "La accion se realizo con exito";
 
                     return RedirectToAction(nameof(Index));
                 }
@@ -124,6 +135,7 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
 
                 return RedirectToAction(nameof(Index));
             }
@@ -174,6 +186,8 @@ namespace FrontendCNE.Controllers
             }
             catch (Exception ex)
             {
+                TempData["Error"] = "Error al realizar la accion.";
+
                 return RedirectToAction("Index", "Home");
             }
 

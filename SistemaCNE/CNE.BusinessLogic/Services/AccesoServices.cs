@@ -60,6 +60,20 @@ namespace CNE.BusinessLogic.Services
 
 
 
+        public ServiceResult ObtenerId(int usuario_creacion, DateTime fecha_creacion)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _rolRepository.findObtenerId(usuario_creacion, fecha_creacion);
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
+
 
 
         public ServiceResult ActualizarRol(tbRoles item)
@@ -390,6 +404,30 @@ namespace CNE.BusinessLogic.Services
             try
             {
                 var list = _usuarioRepository.Update(item);
+                if (list.CodeStatus > 0)
+                {
+                    return result.Ok($"editado con éxito", list);
+                }
+                else
+                {
+                    return result.Error("Y existe un registro con ese nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
+            }
+        }
+
+
+
+
+        public ServiceResult Editar(tbUsuarios item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var list = _usuarioRepository.UpdateU(item);
                 if (list.CodeStatus > 0)
                 {
                     return result.Ok($"editado con éxito", list);

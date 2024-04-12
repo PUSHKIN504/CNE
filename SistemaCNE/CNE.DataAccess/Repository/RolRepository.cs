@@ -129,13 +129,13 @@ namespace CNE.DataAccess.Repository
         }
 
 
-        public RequestStatus EliminarPantallaPorRol(int PaRo_Id)
+        public RequestStatus EliminarPantallaPorRol(int @Papro_Id)
         {
             string sql = ScriptsBaseDeDatos.Papro_Eliminar;
             using (var db = new SqlConnection(CNEContext.ConnectionString))
             {
                 var parametro = new DynamicParameters();
-                parametro.Add("@Papro_Id", PaRo_Id);
+                parametro.Add("@Papro_Id", @Papro_Id);
 
                 var result = db.Execute(
                     sql, parametro,
@@ -192,7 +192,19 @@ namespace CNE.DataAccess.Repository
         }
 
 
+        public IEnumerable<tbRoles> findObtenerId(int usuario_creacion, DateTime fecha_creacion)
+        {
+            string sql = ScriptsBaseDeDatos.Rol_ObtenerId;
 
+            List<tbRoles> result = new List<tbRoles>();
+
+            using (var db = new SqlConnection(CNEContext.ConnectionString))
+            {
+                var parameters = new { usuario_creacion, fecha_creacion };
+                result = db.Query<tbRoles>(sql, parameters, commandType: CommandType.StoredProcedure).ToList();
+                return result;
+            }
+        }
         public RequestStatus Update(tbRoles item)
         {
 

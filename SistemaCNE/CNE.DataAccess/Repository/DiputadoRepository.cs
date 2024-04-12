@@ -30,8 +30,8 @@ namespace CNE.DataAccess.Repository
                 var parametro = new DynamicParameters();
                 parametro.Add("@Dip_Id", item.Dip_Id);
                 parametro.Add("@Dip_ImgUrl", item.Dip_ImgUrl);
-                parametro.Add("@Alc_UsuarioCreacion ", 1);
-                parametro.Add("@Alc_FechaCreacion", item.Dip_FechaCreacion);
+                parametro.Add("@Dip_UsuarioCreacion  ", 1);
+                parametro.Add("@Dip_FechaCreacion", item.Dip_FechaCreacion);
                 parametro.Add("@Par_id", item.Par_id);
 
 

@@ -110,6 +110,9 @@ namespace CNE.DataAccess
         public static string Usua_Eliminar = "Acce.sp_Usuarios_eliminar";
         public static string Actualizarc = "Acce.sp_Usuarios_Restablecer_Contra";
         public static string Usuario_Llenar = "Gral.sp_Usuario_buscar";
+        public static string Actualizar = "Acce.sp_Usuarios_actualizar";
+
+        
 
 
         #endregion

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -20,5 +21,21 @@ namespace CNE.Common.Models
         public int? Par_id { get; set; }
         [NotMapped]
         public string Partido { get; set; }
+        [NotMapped]
+        public string partido { get; set; }
+
+
+
+
+        public IFormFile FotoP { get; set; }
+
+        [NotMapped]
+        public string Par_Nombre { get; set; }
+
+
+
+
+        [NotMapped]
+        public string Per_Id { get; set; }
     }
 }

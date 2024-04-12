@@ -22,5 +22,8 @@ namespace CNE.Common.Models
         public DateTime? Alc_FechaModificacion { get; set; }
         public bool? Alc_Estado { get; set; }
         public int? Par_id { get; set; }
+        [NotMapped]
+        public string partido { get; set; }
+
     }
 }

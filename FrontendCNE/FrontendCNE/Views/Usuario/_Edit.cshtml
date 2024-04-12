@@ -1,0 +1,86 @@
+﻿@model CNE.Common.Models.UsuarioViewModel
+
+
+<h4>Usuarios</h4>
+<hr />
+<div class="row">
+    <div class="col" style="max-width: 600px;">
+
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Usuar_Usuario" class="control-label"></label>
+                        <input asp-for="Usuar_Usuario" class="form-control" name="Usuar_Usuario" id="Usuar_Usuario" />
+                        <span asp-validation-for="Usuar_Usuario" class="text-danger"></span>
+                    </div>
+                </div>
+            
+         
+
+
+                <div class="col-md-6">
+
+                    <label asp-for="Roles_Id">Rol</label>
+                    <select id="Roles2_Id" name="Roles2_Id" class="form-control">
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
+
+            </div>
+        </form>
+        </div>
+    </div>
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            console.log('crear');
+
+
+            var prueba = document.getElementById("prueba");
+
+
+
+            fetch('https://localhost:44377/API/Rol/List')
+                .then(function (result) {
+                    if (result.ok) {
+                        return result.json();
+                    }
+                }).then(function (data) {
+                    console.log("hols" + JSON.stringify(data));
+
+                    data.data.forEach(function (row) {
+
+                        console.log(row);
+                        $("#Roles2_Id").append('<option value=' + row.roles_Id + '> ' + row.roles_Descripcion + '</option>');
+                        /*  $("#esdra").append('<option value=' + row.par_id + '> ' + row.par_Nombre + '</option>');*/
+
+
+                    });
+
+                }).catch(error => console.log('Authorization failed : ' + error.message));
+
+
+        })
+
+
+        $("#Roles2_Id").change(function () {
+            var id = $("#Roles2_Id").val();
+            console.log("MINDY VAMOSSSS" + id);
+        });
+    </script>

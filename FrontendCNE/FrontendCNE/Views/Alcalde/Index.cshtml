@@ -21,7 +21,7 @@
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.Partido)
+                @Html.DisplayNameFor(model => model.partido)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Alc_Votos)
@@ -45,7 +45,7 @@
                     @Html.DisplayFor(modelItem => item.Alc_ImgUrl)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Partido)
+                    @Html.DisplayFor(modelItem => item.partido)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Alc_Votos)
@@ -74,7 +74,18 @@
 
 
 
-
+<div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                   <h5>Crear</h5>
+                </div">*@
+            <div class="modal-body">
+                @Html.Partial("_Create", new FrontendCNE.Models.AlcaldeViewModel())
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -91,16 +102,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="ModalCrear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
 
-            <div class="modal-body">
-                @Html.Partial("_Create", new FrontendCNE.Models.AlcaldeViewModel())
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -126,13 +128,69 @@
 <script>
     $(document).ready(function () {
         let table = new DataTable('#myTable');
+        /*ObtenerDepto2();*/
+        $("#Par_id").empty().append('<option value="">Seleccione una opcion</option>');
+        $("#Parc_id").empty().append('<option value="">Seleccione una opcion</option>');
+        $("#Per_Id").empty().append('<option value="">Seleccione una opcion</option>');
+        $("#PerC_Id").empty().append('<option value="">Seleccione una opcion</option>');
+
+
+        var prueba = document.getElementById("prueba");
+
+
+
+        //fetch('https://localhost:44377/API/Partido/List')
+        //    .then(function (result) {
+        //        if (result.ok) {
+        //            return result.json();
+        //        }
+        //    }).then(function (data) {
+        //        console.log("hols" + JSON.stringify(data));
+
+        //        data.data.forEach(function (row) {
+
+        //            console.log(row);
+        //            $("#Par_id").append('<option value=' + row.par_id + '> ' + row.par_Nombre + '</option>');
+        //            $("#Parc_id").append('<option value=' + row.par_id + '> ' + row.par_Nombre + '</option>');
+                   
+
+        //        });
+
+        //    }).catch(error => console.log('Authorization failed : ' + error.message));
+
+
+
+
+
+        fetch('https://localhost:44377/API/Persona/List')
+            .then(function (result) {
+                if (result.ok) {
+                    return result.json();
+                }
+            }).then(function (data) {
+                console.log(data)
+
+                data.data.forEach(function (row) {
+
+                    console.log(row);
+                    $("#Per_Id").append(`<option value="${row.per_Id}">${row.per_Nombre}</option>`);
+                    $("#PerC_Id").append(`<option value="${row.per_Id}">${row.per_Nombre}</option>`);
+
+                });
+
+
+
+            }).catch(error => console.log('Authorization failed : ' + error.message));
+
+       
     });
 
-
+    
 
     $('.btnCreate').click(function () {
         $('#ModalCrear').modal('show')
-
+        console.log('CREAR')
+       
     });
 
 
@@ -166,6 +224,7 @@
 
         });
     });
+
 
 
     function Eliminar(id) {

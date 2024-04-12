@@ -37,8 +37,15 @@ namespace FrontendCNE.Models
 
 
         public IFormFile FotoP { get; set; }
+        [NotMapped]
+        public string partido { get; set; }
+
 
         [NotMapped]
         public string Par_Nombre { get; set; }
+        [NotMapped]
+        public string Per_Id { get; set; }
+        [NotMapped]
+        public string Per_Nombre { get; set; }
     }
 }

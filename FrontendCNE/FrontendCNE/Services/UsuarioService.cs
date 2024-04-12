@@ -125,5 +125,204 @@ namespace FrontendCNE.Services
             }
         }
 
+
+
+
+
+
+
+        public async Task<ServiceResult> CrearUsuario(UsuarioViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Post<UsuarioViewModel, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Usuario/Create";
+                    req.Content = item;
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+        public async Task<ServiceResult> ObtenerUsuario()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<IEnumerable<UsuarioViewModel>, IEnumerable<UsuarioViewModel>>(req =>
+                {
+                    req.Path = $"API/Usuario/Fill/01";
+
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+        public async Task<ServiceResult> ObtenerUsuarioMindy(int Usuar_Id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+
+
+                var response = await _api.Get<IEnumerable<UsuarioViewModel>, UsuarioViewModel>(req =>
+                {
+                    req.Path = $"API/Usuario/Fill/{Usuar_Id}";
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+        public async Task<ServiceResult> EditarUsuario(UsuarioViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Put<UsuarioViewModel, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Usuario/Edit";
+                    req.Content = item;
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        public async Task<ServiceResult> EditarUsuarioC(UsuarioViewModel item)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Put<UsuarioViewModel, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Usuario/EditC";
+                    req.Content = item;
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+
+
+
+
+
+        public async Task<ServiceResult> EliminarUsuario(int id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Delete<string, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Usuario/Delete?Usuar_Id={id}";
+                });
+
+                if (response.Success)
+                {
+                    return result.Ok(response.Data);
+                }
+                else
+                {
+                    return result.FromApi(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+            }
+        }
+        public async Task<ServiceResult> DetallesUsuario(string id)
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var response = await _api.Get<UsuarioViewModel, ServiceResult>(req =>
+                {
+                    req.Path = $"API/Usuario/DetailsUsuarios?Usuar_Id={id}";
+                });
+                if (!response.Success)
+                {
+                    return result.FromApi(response);
+                }
+                else
+                {
+                    return result.Ok(response.Data);
+                }
+            }
+            catch (Exception ex)
+            {
+                return result.Error(Helpers.GetMessage(ex));
+                throw;
+            }
+        }
+
+
     }
 }

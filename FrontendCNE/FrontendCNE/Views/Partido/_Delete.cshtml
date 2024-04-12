@@ -1,0 +1,18 @@
+﻿
+
+<form asp-action="Delete" asp-controller="Partido" method="post">
+    <div class="form-row">
+        <p>¿Está seguro de que desea Eliminar el registro?</p>
+    </div>
+    <div class="row mt-6">
+        <div class="col-md-4">
+            <input type="hidden" id="inputHidden" name="id" value="" />
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+        </div>
+        <div class="col-md-2">
+            <p class="btn btn-secondary">
+                <a asp-action="Index">Cancelar</a>
+            </p>
+        </div>
+    </div>
+</form>

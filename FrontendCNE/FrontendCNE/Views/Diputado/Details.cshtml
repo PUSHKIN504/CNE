@@ -1,0 +1,67 @@
+﻿
+@model CNE.Common.Models.DiputadoViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <h5>Detalle</h5>
+    </div>
+    <div class="card-body">
+
+        <div class="container-sm">
+            <div class="row">
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.Dip_Id)</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.partido)</strong>
+                </div>
+                <div class="col-md-4">
+                    <strong>@Html.DisplayNameFor(model => model.Dip_Votos)</strong>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Dip_Id)
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.partido)
+                </div>
+                <div class="col-md-4">
+                    @Html.DisplayFor(model => model.Dip_Votos)
+                </div>
+            </div>
+        </div>
+
+        <h5 class="card-title mt-5">Auditoria</h5>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Acción</th>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Creación</td>
+                    <td>@Html.DisplayFor(model => model.Dip_UsuarioCreacion)</td>
+                    <td>@Html.DisplayFor(model => model.Dip_FechaCreacion)</td>
+                </tr>
+                <tr>
+                    <td>Modificación</td>
+                    <td>@Html.DisplayFor(model => model.Dip_UsuarioModificacion)</td>
+                    <td>@Html.DisplayFor(model => model.Dip_FechaModificacion)</td>
+                </tr>
+            </tbody>
+        </table>
+        <a asp-controller="Diputado" asp-action="Index" class="btn btn-primary">Regresar</a>
+
+    </div>
+</div>
+

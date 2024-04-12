@@ -156,7 +156,7 @@ namespace FrontendCNE.Services
             {
                 var response = await _api.Delete<string, ServiceResult>(req =>
                 {
-                    req.Path = $"API/Persona/Delete?Dep_Id={id}";
+                    req.Path = $"API/Persona/Delete?Per_Id={id}";
                 });
 
                 if (response.Success)

@@ -121,5 +121,119 @@ namespace FrontendCNE.Controllers
                 return View(item);
             }
         }
+
+
+
+
+
+
+
+
+        [HttpGet("Partido/Edit/{id}")]
+        public async Task<IActionResult> Edit(string id)
+        {
+            try
+            {
+                var model = await _partidoService.ObtenerPartido();
+                TempData["Exito"] = "La accion se realizo con exito";
+
+                return Json(model.Data);
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al realizar la accion.";
+
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost("Partido/Edit")]
+        public async Task<IActionResult> Edit(PartidosViewModel item, int id, string img, string par)
+        {
+            try
+            {
+
+                item.Par_id = id;
+                item.Par_ImgUrl = img;
+                item.Par_Nombre = par;
+                item.Par_UsuarioModificacion = 1;
+                item.Par_FechaModificacion = DateTime.Now;
+                var result = await _partidoService.EditarPartido(item);
+                if (result.Success)
+                {
+                    TempData["Exito"] = "La accion se realizo con exito";
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View("Index", item);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al realizar la accion.";
+
+                return View(item);
+                throw;
+            }
+        }
+
+        [HttpPost("/Partido/Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete([FromForm] int id)
+        {
+            try
+            {
+
+                var result = await _partidoService.EliminarPartido(id);
+                if (result.Success)
+                {
+                    TempData["Exito"] = "La accion se realizo con exito";
+
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    TempData["Error"] = "Error al realizar la accion.";
+
+
+                    return View("Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al realizar la accion.";
+
+                return RedirectToAction(nameof(Index));
+            }
+        }
+
+
+        public async Task<IActionResult> Details(int Par_Id)
+        {
+            try
+            {
+                var listd = await _partidoService.ObtenerPartidoMindy(Par_Id);
+                if (listd == null)
+                {
+                    return NotFound();
+                }
+                return View(listd.Data);
+
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "Error al realizar la accion.";
+
+                return RedirectToAction("Index", "Home");
+            }
+
+
+
+
+        }
+
+
     }
 }

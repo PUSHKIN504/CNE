@@ -179,7 +179,7 @@ namespace FrontendCNE.Services
             {
                 var response = await _api.Get<EstadoCivilViewModel, ServiceResult>(req =>
                 {
-                    req.Path = $"API/EstadoCivil/DetailsEstadoCivils?Esta_Id={id}";
+                    req.Path = $"API/EstadoCivil/DetailsEstadoCivils?EsC_Id={id}";
                 });
                 if (!response.Success)
                 {
