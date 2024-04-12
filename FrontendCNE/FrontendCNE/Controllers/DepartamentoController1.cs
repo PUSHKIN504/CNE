@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FrontendCNE.Models;
 using FrontendCNE.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -23,8 +24,16 @@ namespace FrontendCNE.Controllers
             _departamentoServicios = departamentoServicios;
         }
 
-        [HttpGet("Departamento/")]
+        [HttpGet("Departamento/DepartamentoCiudades")]
+        public async Task<IActionResult> ListDespartamentoCiudades()
+        {
+            var response = await _departamentoServicios.DepartamentoCiudadesList();
+            return Json(response);
 
+        }
+
+        [HttpGet("Departamento/")]
+       
         public async Task<IActionResult> Index()
         {
             try

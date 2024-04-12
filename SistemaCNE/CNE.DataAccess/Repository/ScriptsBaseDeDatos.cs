@@ -14,6 +14,8 @@ namespace CNE.DataAccess
         public static string Depa_Llenar = "Gral.sp_Departamentos_buscar";
         public static string Depa_Editar = "Gral.sp_Departamentos_actualizar";
         public static string Depa_Eliminar = "Gral.sp_Departamentos_eliminar";
+        public static string Estad_ListaDepartamentoCiudades = "[Gral].[sp_DeparCiudades_listar]";
+
 
         #endregion
 

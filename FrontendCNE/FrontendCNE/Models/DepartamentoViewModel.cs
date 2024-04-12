@@ -21,5 +21,7 @@ namespace FrontendCNE.Models
         [Display(Name = "Usuario Modificacion")]
         public DateTime? Dep_FechaModificacion { get; set; }
         public bool? Depar_Estado { get; set; }
+        public virtual ICollection<MunicipioViewModel> tbMunicipios { get; set; }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using CNE.DataAccess.Repository;
 using CNE.Entities.Entities;
@@ -39,6 +40,30 @@ namespace CNE.BusinessLogic.Services
             {
 
                 return result.Error(ex.Message);
+            }
+        }
+        public ServiceResult ListadoDepartamentosCiudades()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var resultados = _departamentosRepository.ListEstadoCiudades();
+                var departamentosConCiudades = resultados.Select(r => new tbDepartamentos
+                {
+                    Dep_Id = r.Dep_Id,
+                    Dep_Descripcion = r.Dep_Descripcion,
+                    tbMunicipios = r.tbMunicipios.Select(c => new tbMunicipios
+                    {
+                        Mun_Id = c.Mun_Id,
+                        Mun_Descripcion = c.Mun_Descripcion
+                    }).ToList()
+                });
+
+                return result.Ok(departamentosConCiudades);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex);
             }
         }
 

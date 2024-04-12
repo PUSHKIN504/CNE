@@ -56,7 +56,19 @@ namespace CNE.BusinessLogic.Services
                 return result.Error(ex.Message);
             }
         }
-
+        public ServiceResult ListRxP()
+        {
+            var result = new ServiceResult();
+            try
+            {
+                var lost = _rolRepository.ListPXR();
+                return result.Ok(lost);
+            }
+            catch (Exception ex)
+            {
+                return result.Error(ex.Message);
+            }
+        }
 
 
 

@@ -1,63 +1,37 @@
 ﻿@model IEnumerable<FrontendCNE.Models.DepartamentoViewModel>
 
 @{ ViewData["Title"] = "Index";
-                Layout = "~/Views/Shared/_Layout.cshtml"; }
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <h1>Departamentos</h1>
+<style>
+    td.details-control::after {
+        content: "▶";
+        cursor: pointer;
+    }
 
+    tr.shown td.details-control::after {
+        content: "▼";
+        cursor: pointer;
+    }
+</style>
 <p>
     <button class="btnCreate btn btn-primary">Nuevo</button>
 </p>
-<table class="table table-striped table-hover" id="myTable">
+<table class="table table-striped table-hover table-responsive" id="myTable">
     <thead>
         <tr>
+            <th></th>
             <th>
                 @Html.DisplayNameFor(model => model.Dep_Id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Dep_Descripcion)
             </th>
-
-
-
-
-
             <th> Acciones</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Dep_Id)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Dep_Descripcion)
-    </td>
-
-    <td style="width: 5%">
-        <div class="w-100" style="max-width: 250px">
-            <div class="d-flex w-100" style="gap: 5px;">
-                <button class="btn btn-outline-warning btn-sm editar-depa" data-depa-id="@item.Dep_Id"><i class="fas fa-edit"></i>Editar</button>
-
-                @*<a class="d-flex align-items-center btn-secondary" style="max-width: 100px" href="@Url.Action("_Details", new { id=item.Dep_Id })">
-                <i class="bi bi-eye"></i>
-        @<a href="@Url.Action("_Details", "Departamento", new { Dep_Id = item.Dep_Id })" class="btn btn-info btn-sm">Detallees <i class="tim-icons icon-zoom-split"></i></a>@
-
-                Detalles
-            </a>*@@*<div>
-            @Html.ActionLink("Details", "Departamento", new { id = Model.FirstOrDefault()?.Dep_Id }, new { @class = "btn btn-info btnVerDetalles" })
-        </div>*@
-            <a href="@Url.Action("Details", "DepartamentoController1", new { Dep_Id = item.Dep_Id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
-
-            <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('@item.Dep_Id')">
-                <i class="bi bi-trash-fill"></i>
-                Eliminar
-            </button>
-            </div>
-        </div>
-</tr>}
     </tbody>
 </table>
 
@@ -88,6 +62,7 @@
 </div>
 
 
+
 <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -107,13 +82,9 @@
 <script src="~../../lib/jquery/dist/jquery.min.js"></script>
 
 <script src="~../../js/dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    $(document).ready(function () {
-        let table = new DataTable('#myTable');
-    });
-
-
 
     $('.btnCreate').click(function () {
         $('#ModalCrear').modal('show')
@@ -143,7 +114,7 @@
     //});
 
 
-    $(".editar-depa").click(function () {
+    $("#editar-depa").click(function () {
         $('#modalEditar').modal('show');
     });
 
@@ -177,4 +148,93 @@
         localStorage.setItem("inputHidden", id);
         $('#modalEliminar').modal('show');
     }
+
 </script>
+
+    <script>
+
+        
+
+
+                        $(document).ready(function () {
+                            $.ajax({
+                                url: '/Departamento/DepartamentoCiudades',
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function (response) {
+                                    console.log(response.data);
+
+                                    var table = $('#myTable').DataTable({
+                                        "data": response.data,
+                                        "columns": [{
+                                            "orderable": false,
+                                            "data": null,
+                                            "defaultContent": ''
+                                        }, {
+                                            "data": "dep_Id",
+                                            "render": function (data, type, row) {
+                                                return '<div style="text-align: center;">' + data + '</div>';
+                                            }
+                                        }, {
+                                            "data": "dep_Descripcion"
+                                        }, {
+                                            "data": null,
+                                            "render": function (data, type, row) {
+                                                return `
+                                                <div style="text-align: center;">
+                                                <button class=" d-flex  justify-content-around btn btn-outline-warning btn-sm editar-depa " id="editar-depa" data-depa-id="${row.dep_Id}"><i class="fas fa-edit"></i>Editar</button>
+                                                <a href="@Url.Action("Details", "DepartamentoController1", new { Dep_Id = "${row.dep_Id}"})" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
+                                                <button class="d-flex align-items-center justify-content-around btn btn-outline-danger btn-sm flex-grow-1" style="max-width: 100px" onclick="Eliminar('${row.dep_Id}')">
+                                                    <i class="bi bi-trash-fill"></i>
+                                                    Eliminar
+                                                </button>
+                                                </div>
+                                                `;
+                                            }
+                                        }],
+                                        "createdRow": function (row, data, dataIndex) {
+
+                                            if (data.tbMunicipios && data.tbMunicipios.length > 0) {
+                                                $(row).find("td:eq(0)").addClass('details-control');
+                                            }
+                                        }
+                                    });
+                                    //cierre datatable
+                                    $('#myTable tbody').on('click', 'td.details-control', function () {
+                                        var tr = $(this).closest('tr');
+                                        var row = table.row(tr);
+
+                                        if (row.child.isShown()) {
+                                            row.child.hide();
+                                            tr.removeClass('shown');
+                                        } else {
+                                            row.child(format(row.data())).show();
+                                            tr.addClass('shown');
+                                        }
+                                    });
+                                },
+                                error: function (xhr, status, error) {
+                                    console.error(error);
+                                }
+                            });
+                            //cierre del ajax
+                            function format(d) {
+                                let fila = '';
+                                d.tbMunicipios.forEach(function (ciudad) {
+                                    fila += '<div style="display: flex; justify-content: flex-start; gap: 20px;"><div style="margin-left: 65px;">' + ciudad.mun_Id + '</div><div style="margin-left: 40px;">' + ciudad.mun_Descripcion + '</div></div>';
+                                })
+                                return '<div style="display: flex; justify-content: flex-start; gap: 20px;">' +
+                                    '<div style="margin-left: 65px;">ID</div>' +
+                                    '<div style="margin-left: 55px;">Ciudad</div>' +
+                                    '</div>' +
+                                    fila;
+                            }
+
+                        });// cierre del document ready
+
+                     
+
+
+
+                       
+    </script>

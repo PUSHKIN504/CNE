@@ -32,6 +32,13 @@ namespace CNE.API.Controllers
         }
 
 
+        [HttpGet("ListPXR")]
+        public IActionResult ListPXR()
+        {
+            var list = _AccesoServices.ListRxP();
+            return Ok(list);
+        }
+
         [HttpPost("Create")]
         public IActionResult Create([FromBody] FormData formData)
         {

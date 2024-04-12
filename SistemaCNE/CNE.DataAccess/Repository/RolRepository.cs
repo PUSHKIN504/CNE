@@ -89,14 +89,37 @@ namespace CNE.DataAccess.Repository
 
         }
 
-        public tbRoles List(int id)
+        public IEnumerable<tbRoles> List(int id)
         {
-            throw new NotImplementedException();
+            const string sql = "[Acce].[sp_PantallasPorRol_listar2]";
+
+            List<tbRoles> result = new List<tbRoles>();
+
+            using (var db = new SqlConnection(CNEContext.ConnectionString))
+            {
+                result = db.Query<tbRoles>(sql, commandType: CommandType.Text).ToList();
+
+                return result;
+            }
 
 
         }
 
+        public IEnumerable<tbRoles> ListPXR()
+        {
+            const string sql = "[Acce].[sp_PantallasPorRol_listar2]";
 
+            List<tbRoles> result = new List<tbRoles>();
+
+            using (var db = new SqlConnection(CNEContext.ConnectionString))
+            {
+                result = db.Query<tbRoles>(sql, commandType: CommandType.Text).ToList();
+
+                return result;
+            }
+
+
+        }
 
         public tbRoles Details(int id)
         {
