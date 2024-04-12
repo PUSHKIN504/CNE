@@ -34,7 +34,33 @@ namespace CNE.DataAccess.Repository
             }
 
         }
+        public IEnumerable<tbDepartamentos> ListEstadoCiudades()
+        {
+            string sql = ScriptsBaseDeDatos.Estad_ListaDepartamentoCiudades;
 
+            List<tbDepartamentos> result = new List<tbDepartamentos>();
+
+            using (var db = new SqlConnection(CNEContext.ConnectionString))
+            {
+                var lookup = new Dictionary<string, tbDepartamentos>();
+                return db.Query<tbDepartamentos, tbMunicipios, tbDepartamentos>(
+                    sql,
+                    (departamento, ciudad) =>
+                    {
+                        if (!lookup.TryGetValue(departamento.Dep_Id, out var departamentoEntry))
+                        {
+                            departamentoEntry = departamento;
+                            departamentoEntry.tbMunicipios = new List<tbMunicipios>();
+                            lookup.Add(departamentoEntry.Dep_Id, departamentoEntry);
+                        }
+                        departamentoEntry.tbMunicipios.Add(ciudad);
+                        return departamentoEntry;
+                    },
+                    splitOn: "Mun_Id")
+                    .Distinct()
+                    .ToList();
+            }
+        }
         public IEnumerable<tbDepartamentos> List()
         {
             const string sql = "Gral.sp_Departamentos_listar";

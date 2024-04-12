@@ -32,7 +32,12 @@ namespace CNE.API.Controllers
             return Ok(list);
         }
 
-
+        [HttpGet("ListadoDepartamentosCiudades")]
+        public IActionResult DepartamentosConCiudades()
+        {
+            var data = _generalServices.ListadoDepartamentosCiudades();
+            return Ok(data);
+        }
 
 
 
