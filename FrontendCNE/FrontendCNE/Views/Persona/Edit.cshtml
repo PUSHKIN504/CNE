@@ -1,4 +1,4 @@
-﻿@model FrontendCNE.Models.PersonasViewModel 
+﻿@model FrontendCNE.Models.PersonasViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,108 +9,161 @@
 
 <h4>Personas</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<div class="card-body">
+
+    <form asp-action="Editp">
+
+        <div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Per_Id" class="control-label"></label>
-                <input asp-for="Per_Id" class="form-control" />
-                <span asp-validation-for="Per_Id" class="text-danger"></span>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Per_Id" class="control-label"></label>
+                        <input asp-for="Per_Id" class="form-control"  name="Per_Nombre" />
+                        <span asp-validation-for="Per_Id" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Per_Nombre" class="control-label"></label>
+                        <input asp-for="Per_Nombre" class="form-control" id="Per_Nombre" name="Per_Nombre" />
+                        <span asp-validation-for="Per_Nombre" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Per_Apellido" class="control-label"></label>
+                        <input asp-for="Per_Apellido" class="form-control" id="Per_Apellido" name="Per_Apellido" />
+                        <span asp-validation-for="Per_Apellido" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Per_Nombre" class="control-label"></label>
-                <input asp-for="Per_Nombre" class="form-control" />
-                <span asp-validation-for="Per_Nombre" class="text-danger"></span>
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Per_FechaNacimiento" class="control-label"></label>
+                        <input asp-for="Per_FechaNacimiento" class="form-control" />
+                        <span asp-validation-for="Per_FechaNacimiento" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Per_Sexo" class="control-label"></label>
+                        <input asp-for="Per_Sexo" class="form-control" id="Per_Sexo" name="Per_Sexo" />
+                        <span asp-validation-for="Per_Sexo" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Per_Apellido" class="control-label"></label>
-                <input asp-for="Per_Apellido" class="form-control" />
-                <span asp-validation-for="Per_Apellido" class="text-danger"></span>
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Per_CedulaIdentidad" class="control-label"></label>
+                        <input asp-for="Per_CedulaIdentidad" class="form-control" id="Per_CedulaIdentidad" name="Per_CedulaIdentidad" />
+                        <span asp-validation-for="Per_CedulaIdentidad" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Per_Direccion" class="control-label"></label>
+                        <input asp-for="Per_Direccion" class="form-control" id="Per_Direccion" name="Per_Direccion" />
+                        <span asp-validation-for="Per_Direccion" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Per_FechaNacimiento" class="control-label"></label>
-                <input asp-for="Per_FechaNacimiento" class="form-control" />
-                <span asp-validation-for="Per_FechaNacimiento" class="text-danger"></span>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Mun_Id" class="control-label"></label>
+                    <input asp-for="Mun_Id" class="form-control" id="Mun_Id" name="Mun_Id" />
+                    <span asp-validation-for="Mun_Id" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Per_Sexo" class="control-label"></label>
-                <input asp-for="Per_Sexo" class="form-control" />
-                <span asp-validation-for="Per_Sexo" class="text-danger"></span>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Per_Telefono" class="control-label"></label>
+                    <input asp-for="Per_Telefono" class="form-control" id="Per_Telefono" name="Per_Telefono" />
+                    <span asp-validation-for="Per_Telefono" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Per_CedulaIdentidad" class="control-label"></label>
-                <input asp-for="Per_CedulaIdentidad" class="form-control" />
-                <span asp-validation-for="Per_CedulaIdentidad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_Direccion" class="control-label"></label>
-                <input asp-for="Per_Direccion" class="form-control" />
-                <span asp-validation-for="Per_Direccion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mun_Id" class="control-label"></label>
-                <input asp-for="Mun_Id" class="form-control" />
-                <span asp-validation-for="Mun_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_Telefono" class="control-label"></label>
-                <input asp-for="Per_Telefono" class="form-control" />
-                <span asp-validation-for="Per_Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_UsuarioCreacion" class="control-label"></label>
-                <input asp-for="Per_UsuarioCreacion" class="form-control" />
-                <span asp-validation-for="Per_UsuarioCreacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_FechaCreacion" class="control-label"></label>
-                <input asp-for="Per_FechaCreacion" class="form-control" />
-                <span asp-validation-for="Per_FechaCreacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_UsuarioModificacion" class="control-label"></label>
-                <input asp-for="Per_UsuarioModificacion" class="form-control" />
-                <span asp-validation-for="Per_UsuarioModificacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_FechaModificacion" class="control-label"></label>
-                <input asp-for="Per_FechaModificacion" class="form-control" />
-                <span asp-validation-for="Per_FechaModificacion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EsC_Id" class="control-label"></label>
-                <input asp-for="EsC_Id" class="form-control" />
-                <span asp-validation-for="EsC_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_Estado" class="control-label"></label>
-                <input asp-for="Per_Estado" class="form-control" />
-                <span asp-validation-for="Per_Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mes_Mesa" class="control-label"></label>
-                <input asp-for="Mes_Mesa" class="form-control" />
-                <span asp-validation-for="Mes_Mesa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mes_Id" class="control-label"></label>
-                <input asp-for="Mes_Id" class="form-control" />
-                <span asp-validation-for="Mes_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_Voto" class="control-label"></label>
-                <input asp-for="Per_Voto" class="form-control" />
-                <span asp-validation-for="Per_Voto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+        </div>
+
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+
+    </form>
+
 </div>
 
 <div>
     <a asp-action="Index">Regresar</a>
 </div>
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $("#Per_Id").val(localStorage.getItem("IDcoso"));
+
+
+    var url = "https://localhost:44377/API/Persona/Fill/" + localStorage.getItem("IDcoso");
+    fetch(url).then(function (result) {
+        if (result.ok) {
+            return result.json();
+        }
+    }).then(function (data) {
+        console.log(data.data);
+
+        //var nombre = data.per_Nombre
+        //console.log(nombre)
+
+        //$("#Per_Nombre").val(nombre)
+
+
+        var datos = data.data
+       
+      
+        var descripcion = datos.per_Nombre;
+        var apellido = datos.per_Apellido;
+        var nac = datos.per_FechaNacimiento;
+        var sexo = datos.per_Sexo;
+        var ied = datos.per_CedulaIdentidad;
+        var dire = datos.per_Direccion;
+        var muni = datos.mun_Id;
+        var tele = datos.per_Telefono;
+     
+
+
+        console.log(descripcion);
+        $("#Per_Nombre").val(descripcion);
+        $("#Per_Apellido").val(apellido);
+        $("#Per_FechaNacimiento").val(nac);
+        $("#Per_Sexo").val(sexo);
+        $("#Per_CedulaIdentidad").val(ied);
+        $("#Per_Direccion").val(dire);
+        $("#Mun_Id").val(muni);
+        $("#Per_Telefono").val(tele);
+
+
+
+        //var datos = data.data
+        //console.log("hola");
+
+        ////var depa = datos[0];
+        //var id = datos.dep_Id
+        //var descripcion = datos.dep_Descripcion;
+
+        //console.log(descripcion);
+        //$("#id").val(id);
+        //$("#Dep_Descripcion").val(descripcion);
+
+    });
+    </script>

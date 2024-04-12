@@ -106,7 +106,7 @@
                 <div class="w-100" style="max-width: 250px">
                     <div class="d-flex w-100" style="gap: 5px;">
                         @*<button class="btn btn-outline-warning btn-sm editar-depa" data-depa-id="@item.Per_Id"><i class="fas fa-edit"></i>Editar</button>*@
-                        <a  class="btn btn-outline-warning btn-sm editar-depa" onclick="Ed('@item.Per_Id')">Editar <i class="fas fa-edit"></i></a>
+                        <a href="@Url.Action("Editperf", "Persona", new { Per_Id = item.Per_Id })" class="btn btn-outline-warning btn-sm editar-depa" onclick="Ed('@item.Per_Id') " >Editar <i class="fas fa-edit"></i></a>
 
 
                         <a href="@Url.Action("Details", "Persona", new { Per_Id = item.Per_Id })" class="btn btn-outline-primary  btn-sm">Detalles <i class="tim-icons icon-zoom-split"></i></a>
@@ -165,26 +165,9 @@
 
 
     function Ed(id) {
-        $('#modalEditar').modal('show');
-        var url = "https://localhost:44377/API/Persona/Fill/" + id;
-        fetch(url).then(function (result) {
-            if (result.ok) {
-                return result.json();
-            }
-        }).then(function (data) {
-            console.log(data.data);
-            var datos = data.data
-            console.log("hola");
-
-            //var depa = datos[0];
-            var id = datos.dep_Id
-            var descripcion = datos.dep_Descripcion;
-
-            console.log(descripcion);
-            $("#id").val(id);
-            $("#Dep_Descripcion").val(descripcion);
-
-        });
+        //$('#modalEditar').modal('show');
+        localStorage.setItem("IDcoso",id)
+        
     };
 
 

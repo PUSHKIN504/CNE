@@ -9,82 +9,113 @@
 
 <h4>PersonasViewModel</h4>
 <hr />
-<div class="row">
+<div class="card-body">
     <form asp-action="Create">
-        <div class="col-md-6">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="Per_Id" class="control-label"></label>
-                <input asp-for="Per_Id" class="form-control" required />
-                <span asp-validation-for="Per_Id" class="text-danger"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Per_Nombre" class="control-label"></label>
-                <input asp-for="Per_Nombre" class="form-control" required/>
-                <span asp-validation-for="Per_Nombre" class="text-danger"></span>
+        <div class="row">
+            <div class="col-md-6">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*<div class="form-group">
+                    <label asp-for="Per_Id" class="control-label"></label>
+                    <input asp-for="Per_Id" class="form-control" required />
+                    <span asp-validation-for="Per_Id" class="text-danger"></span>
+                </div>*@
+                <div class="form-group">
+                    <label asp-for="Per_Nombre" class="control-label"></label>
+                    <input asp-for="Per_Nombre" class="form-control" required />
+                    <span asp-validation-for="Per_Nombre" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Per_Apellido" class="control-label"></label>
-                <input asp-for="Per_Apellido" class="form-control" />
-                <span asp-validation-for="Per_Apellido" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_FechaNacimiento" class="control-label"></label>
-                <input asp-for="Per_FechaNacimiento" class="form-control" />
-                <span asp-validation-for="Per_FechaNacimiento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_Sexo" class="control-label"></label>
-                <input asp-for="Per_Sexo" class="form-control" />
-                <span asp-validation-for="Per_Sexo" class="text-danger"></span>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Per_Apellido" class="control-label"></label>
+                    <input asp-for="Per_Apellido" class="form-control" />
+                    <span asp-validation-for="Per_Apellido" class="text-danger"></span>
+                </div>
+
             </div>
 
         </div>
-        <div class="col-md-6">
-            @*<form asp-action="Create">*@
-            <div class="form-group">
-                <label asp-for="Per_Direccion" class="control-label"></label>
-                <input asp-for="Per_Direccion" class="form-control" />
-                <span asp-validation-for="Per_Direccion" class="text-danger"></span>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Per_FechaNacimiento" class="control-label"></label>
+                    <input asp-for="Per_FechaNacimiento" class="form-control" />
+                    <span asp-validation-for="Per_FechaNacimiento" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Mun_Id" class="control-label"></label>
-                <input asp-for="Mun_Id" class="form-control" />
-                <span asp-validation-for="Mun_Id" class="text-danger"></span>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Per_Sexo" class="control-label"></label>
+                    <input asp-for="Per_Sexo" class="form-control" />
+                    <span asp-validation-for="Per_Sexo" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Per_Telefono" class="control-label"></label>
-                <input asp-for="Per_Telefono" class="form-control" />
-                <span asp-validation-for="Per_Telefono" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @*<form asp-action="Create">*@
+                <div class="form-group">
+                    <label asp-for="Per_Direccion" class="control-label"></label>
+                    <input asp-for="Per_Direccion" class="form-control" />
+                    <span asp-validation-for="Per_Direccion" class="text-danger"></span>
+                </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Mun_Id" class="control-label"></label>
+                    <input asp-for="Mun_Id" class="form-control" />
+                    <span asp-validation-for="Mun_Id" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
 
 
-            <div class="form-group">
-                <label asp-for="EsC_Id" class="control-label"></label>
-                <input asp-for="EsC_Id" class="form-control" />
-                <span asp-validation-for="EsC_Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Per_CedulaIdentidad" class="control-label"></label>
-                <input asp-for="Per_CedulaIdentidad" class="form-control" />
-                <span asp-validation-for="Per_CedulaIdentidad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mes_Id" class="control-label"></label>
-                <input asp-for="Mes_Id" class="form-control" />
-                <span asp-validation-for="Mes_Id" class="text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-                <a class=" btn btn-secondary" asp-action="Index">Regresar</a>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Per_Telefono" class="control-label"></label>
+                    <input asp-for="Per_Telefono" class="form-control" />
+                    <span asp-validation-for="Per_Telefono" class="text-danger"></span>
+                </div>
 
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="EsC_Id" class="control-label"></label>
+                    <input asp-for="EsC_Id" class="form-control" />
+                    <span asp-validation-for="EsC_Id" class="text-danger"></span>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Per_CedulaIdentidad" class="control-label"></label>
+                    <input asp-for="Per_CedulaIdentidad" class="form-control" />
+                    <span asp-validation-for="Per_CedulaIdentidad" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Mes_Id" class="control-label"></label>
+                    <input asp-for="Mes_Id" class="form-control" />
+                    <span asp-validation-for="Mes_Id" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <a class=" btn btn-secondary" asp-action="Index">Regresar</a>
+
+                </div>
     </form>
 
 </div>
-</div>
+
 
 @*<div>
-    <a class="btn-secondary" asp-action="Index">Regresar</a>
-</div>*@
+        <a class="btn-secondary" asp-action="Index">Regresar</a>
+    </div>*@

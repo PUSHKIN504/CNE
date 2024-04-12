@@ -59,13 +59,14 @@ namespace FrontendCNE.Controllers
         }
 
 
-        [HttpGet("Persona/Edit/{id}")]
-        public async Task<IActionResult> Edit(int id)
+        //[HttpGet("Persona/Edita/{id}")]
+        public async Task<IActionResult> Editperf(int id)
         {
             try
             {
                 var model = await _personasServices.ObtenerPersonaMindy(id);
-                return Json(model.Data);
+                
+                return View("~/Views/Persona/Edit.cshtml");
             }
             catch (Exception ex)
             {
@@ -73,26 +74,19 @@ namespace FrontendCNE.Controllers
             }
         }
 
-        [HttpPost("Persona/Edit")]
-        public async Task<IActionResult> Edit(PersonasViewModel item, int id, string Identidad, string Nombre, string Apellido, DateTime Nacimiento , string Sexo, string direcc, string mun
-            , string telefo, int mesa, int idmes, int estadadoC)
+        //[HttpPost("Persona/Edit")]
+        public async Task<IActionResult> Editp(PersonasViewModel item)
         {
             try
             {
-                item.Per_Id = id;
-                item.EsC_Id = estadadoC;
-                item.Per_CedulaIdentidad = Identidad;
-                item.Per_Nombre = Nombre;
-                item.Per_Apellido = Apellido;
-                item.Per_FechaNacimiento = Nacimiento;
-                item.Per_Sexo = Sexo;
-                item.Per_Direccion = direcc;
-                item.Mun_Id = mun;
-                item.Per_Telefono = telefo;
-                item.Mes_Mesa = mesa;
-                item.Mes_Id = idmes;
-                item.Per_UsuarioModificacion = 1;
-                item.Per_FechaModificacion = DateTime.Now;
+                //item.Per_Id = item.Per_Id;
+                //item.Per_Direccion = item.Per_Direccion;
+                //item.Mun_Id = item.Mun_Id;
+                //item.Per_Telefono = item.Per_Telefono;
+                //item.Mes_Mesa = item.;
+                //item.Mes_Id = idmes;
+                //item.Per_UsuarioModificacion = 1;
+                //item.Per_FechaModificacion = DateTime.Now;
                 var result = await _personasServices.EditarPersona(item);
                 if (result.Success)
                 {
